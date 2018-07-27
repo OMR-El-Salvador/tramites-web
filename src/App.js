@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import ProcedureSearch from './ProcedureSearch';
+import ProcedureSearch from './components/Procedure/Search';
 
 class App extends Component {
   render() {
