@@ -5,12 +5,12 @@ export default class ProcedureSearch extends Component {
     return (
       <div>
         <form>
-            <div class="form-group">
-                <label for="searchTerm">Termino de búsqueda</label>
-                <input type="text" class="form-control" aria-describedby="searchHelp" placeholder="Ingresar termino" />
-                    <small id="searchHelp" class="form-text text-muted">Se utilizará para filtrar los trámites.</small>
+            <div className="form-group">
+                <label for="searchTerm">Término de búsqueda</label>
+                <input type="text" className="form-control" aria-describedby="searchHelp" placeholder="Ingresar término" />
+                    <small id="searchHelp" className="form-text text-muted">Se utilizará para filtrar los trámites.</small>
             </div>
-            <button type="submit" class="btn btn-primary">Buscar</button>
+            <button type="submit" className="btn btn-primary">Buscar</button>
         </form>
       </div>
     )
