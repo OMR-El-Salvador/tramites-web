@@ -5,7 +5,7 @@ export default class ProcedureSearch extends Component {
     return (
       <form className="searchForm">
         <div className="form-group">
-          <label for="searchTerm">Término de búsqueda</label>
+          <label>Término de búsqueda</label>
           <input type="text" className="form-control" aria-describedby="searchHelp"
             placeholder="Ingresar término" />
               <small id="searchHelp" className="form-text text-muted">
