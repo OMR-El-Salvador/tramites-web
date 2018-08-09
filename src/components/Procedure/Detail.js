@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default class ProcedureDetail extends Component {
   render() {
     return (
-      <p className="procedureDetail">{this.props.text}</p>
+      <p className='procedureDetail'>{this.props.text}</p>
     )
   }
 }

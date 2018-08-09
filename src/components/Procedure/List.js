@@ -5,7 +5,7 @@ import ProcedureElement from './Element';
 export default class ProcedureList extends Component {
   render() {
     return (
-      <div className="procedureList">
+      <div className='procedureList'>
         <ul>
           {
             this.props.procedures.map(procedure => (

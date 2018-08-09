@@ -6,7 +6,7 @@ import ProcedureMode from './Mode';
 export default class ProcedureElement extends Component {
   render() {
     return (
-      <div className="procedureElement">
+      <div className='procedureElement'>
         <ProcedureName text={this.props.name} />
         <ProcedureMode text={this.props.mode} />
       </div>
