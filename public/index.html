@@ -29,21 +29,41 @@
     <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/landing-2.css">
     <title>Registro Nacional de Trámites – El Salvador</title>
   </head>
-  <body>
+  <body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
     <noscript>
       Por favor, activar Javascript.
     </noscript>
+  
+    <nav class="navbar navbar-expand-lg navbar-dark pb_navbar pb_scrolled-light" id="pb-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Registro Nacional de Trámites</a>
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#probootstrap-navbar" aria-controls="probootstrap-navbar"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span><i class="ion-navicon"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="probootstrap-navbar">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="#">Datos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Categorías</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Acerca de</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Preguntas frecuentes</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- END nav -->
 
-    <div id="root" class="container"></div>
+    <div id="root"></div>
 
     <footer class="pb_footer bg-light" role="contentinfo">
       <div class="container">
         <div class="row text-center">
           <div class="col">
             <ul class="list-inline">
-              <li class="list-inline-item"><a href="#" class="p-2"><i class="fa fa-facebook"></i></a></li>
-              <li class="list-inline-item"><a href="#" class="p-2"><i class="fa fa-twitter"></i></a></li>
-              <li class="list-inline-item"><a href="#" class="p-2"><i class="fa fa-linkedin"></i></a></li>
+              <li class="list-inline-item"><a href="https://www.facebook.com/OMRsv/" class="p-2"><i class="fa fa-facebook"></i></a></li>
+              <li class="list-inline-item"><a href="https://twitter.com/OMR_sv" class="p-2"><i class="fa fa-twitter"></i></a></li>
+              <li class="list-inline-item"><a href="https://www.linkedin.com/company/omr-sv/" class="p-2"><i class="fa fa-linkedin"></i></a></li>
             </ul>
           </div>
         </div>

@@ -3,17 +3,17 @@ import React, { Component } from 'react'
 export default class ProcedureSearch extends Component {
   render() {
     return (
-      <form className="searchForm">
-        <div className="form-group">
-          <label>Término de búsqueda</label>
-          <input type="text" className="form-control" aria-describedby="searchHelp"
-            placeholder="Ingresar término" />
-              <small id="searchHelp" className="form-text text-muted">
-                Se utilizará para filtrar los trámites.
-              </small>
-        </div>
-        <button type="submit" className="btn btn-primary">Buscar</button>
-      </form>
+      <div className="col-md-5 relative align-self-center">
+        <form action="#" className="bg-white rounded pb_form_v1">
+          <h2 className="mb-4 mt-0 text-center">Registro Nacional de Trámites</h2>
+          <div className="form-group">
+            <input type="text" className="form-control pb_height-50 reverse" placeholder="Buscar…" />
+          </div>
+          <div className="form-group">
+            <input type="submit" className="btn btn-primary btn-lg btn-block pb_btn-pill btn-shadow-blue" value="Ir a Resultados" />
+          </div>
+        </form>
+      </div>
     )
   }
 }
