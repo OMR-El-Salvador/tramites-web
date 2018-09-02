@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class FAQ extends Component {
+export default class Categories extends Component {
   render() {
     return (
       <section className="pb_cover_v3 overflow-hidden cover-bg-indigo cover-bg-opacity text-left pb_gradient_v1 pb_slant-light" id="section-home">
