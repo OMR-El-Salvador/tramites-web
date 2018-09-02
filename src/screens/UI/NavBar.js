@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default class NavBar extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark pb_navbar pb_scrolled-light" id="pb-navbar">
+      <nav className="navbar navbar-expand-lg navbar-dark" id="pb-navbar">
         <div className="container">
           <Link className="navbar-brand" to="/">Gob.sv</Link>
           <button className="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#probootstrap-navbar" aria-controls="probootstrap-navbar"

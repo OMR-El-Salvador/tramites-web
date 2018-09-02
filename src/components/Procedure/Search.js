@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class ProcedureSearch extends Component {
   render() {
@@ -10,7 +11,7 @@ export default class ProcedureSearch extends Component {
             <input type="text" className="form-control pb_height-50 reverse" placeholder="Buscar…" />
           </div>
           <div className="form-group">
-            <input type="submit" className="btn btn-primary btn-lg btn-block pb_btn-pill btn-shadow-blue" value="Ir a Resultados" />
+            <Link to="/procedures" type="submit" className="btn btn-primary btn-lg btn-block pb_btn-pill btn-shadow-blue">Ir a Resultados</Link>
           </div>
         </form>
       </div>

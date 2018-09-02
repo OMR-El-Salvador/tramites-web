@@ -9,6 +9,7 @@ import Data from './screens/UI/Data';
 import FAQ from './screens/UI/FAQ';
 import Home from './screens/UI/Home';
 import NavBar from './screens/UI/NavBar';
+import ProcedureList from "./screens/Procedure/List";
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route path="/faq" component={FAQ} />
+          <Route path="/procedures" component={ProcedureList} />
         </div>
       </Router>
     );
