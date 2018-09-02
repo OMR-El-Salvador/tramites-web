@@ -9,7 +9,7 @@ export default class ProcedureList extends Component {
         {
           this.props.procedures.map(procedure => (
             <div className='card' key={procedure.id}>
-              <ProcedureElement name={procedure.name} id={procedure.id} mode={procedure.mode}/>
+              <ProcedureElement name={procedure.name} id={procedure.id} modes={procedure.modes}/>
             </div>
           ))
         }

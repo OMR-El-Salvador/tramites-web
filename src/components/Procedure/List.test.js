@@ -7,9 +7,33 @@ let mockProcedures, wrapper;
 
 beforeEach(() => {
   mockProcedures = [
-    {id: 1, name: 'Procedure A', mode: 'A mode for Procedure A'},
-    {id: 2, name: 'Procedure B', mode: 'A mode for Procedure B'},
-    {id: 3, name: 'Procedure C', mode: 'A mode for Procedure C'},
+    {
+      id: 1,
+      name: 'Procedure A',
+      modes: [
+        { id: 1, text: 'For natural persons' },
+        { id: 2, text: 'For companies' },
+        { id: 3, text: 'For under age applicants' },
+      ]
+    },
+    {
+      id: 2,
+      name: 'Procedure B',
+      modes: [
+        { id: 1, text: 'For natural persons' },
+        { id: 2, text: 'For companies' },
+        { id: 3, text: 'For under age applicants' },
+      ]
+    },
+    {
+      id: 3,
+      name: 'Procedure C',
+      modes: [
+        { id: 1, text: 'For natural persons' },
+        { id: 2, text: 'For companies' },
+        { id: 3, text: 'For under age applicants' },
+      ]
+    }
   ];
   wrapper = shallow(<ProcedureList procedures={mockProcedures}/>);
 });
