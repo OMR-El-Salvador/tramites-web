@@ -10,16 +10,14 @@ const mockProcedures = [
 export default class ProcedureListScreen extends Component {
   render() {
     return (
-      <section className="text-left" id="section-home">
+      <section className="text-left" id="section-procedures">
         <div className="container">
-          <ProcedureList procedures={mockProcedures} />
-          {/* <div className="row procedure-result">
-            <div className="col-md-1"></div>
-            <div className="col-md-10">
-              <h5>Depósito de Fondos Ajenos en Custodia</h5>
+          <div className="row align-items-center justify-content-center">
+            <div className="col-md-12">
+              <h3 className="heading mb-3">Se encontraron los siguiente 4 resultados para "dui":</h3>
+              <ProcedureList procedures={mockProcedures} />
             </div>
-            <div className="col-md-1"></div>
-          </div> */}
+          </div>
         </div>
       </section>
     )
