@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
+
 import PropTypes from 'prop-types';
 
 export default class ProcedureModes extends Component {
@@ -8,7 +10,9 @@ export default class ProcedureModes extends Component {
         {
           this.props.modes.map(mode => (
             <li key= {mode.id}>
-              <em className='procedureMode'>{mode.text}</em>
+              <Link to={`/procedures/${mode.id}`}>
+                <em className='procedureMode'>{mode.text}</em>
+              </Link>
             </li>
           ))
         }
