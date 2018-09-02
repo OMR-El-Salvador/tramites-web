@@ -9,7 +9,7 @@ let name, mode, wrapper;
 beforeEach(() => {
   name = 'Procedure of test';
   mode = 'The mode for the Procedure of test';
-  wrapper = shallow(<ProcedureElement name={name} mode={mode} />);
+  wrapper = shallow(<ProcedureElement name={name} id="6" mode={mode} />);
 });
 
 it('should display a ProcedureName component', () => {

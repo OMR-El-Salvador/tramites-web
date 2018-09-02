@@ -5,16 +5,14 @@ import ProcedureElement from './Element';
 export default class ProcedureList extends Component {
   render() {
     return (
-      <div className='procedureList'>
-        <ul>
-          {
-            this.props.procedures.map(procedure => (
-              <li key={procedure.id}>
-                <ProcedureElement name={procedure.name} mode={procedure.mode}/>
-              </li>
-            ))
-          }
-        </ul>
+      <div id='procedure-accordion' className='procedureList'>
+        {
+          this.props.procedures.map(procedure => (
+            <div className='card' key={procedure.id}>
+              <ProcedureElement name={procedure.name} id={procedure.id} mode={procedure.mode}/>
+            </div>
+          ))
+        }
       </div>
     )
   }
