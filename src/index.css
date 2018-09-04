@@ -13,3 +13,15 @@ nav {
   color: #386CA4;
   font-family: sans-serif;
 }
+
+.procedure-detail p,ol {
+  color: #3C3C3B;
+}
+
+.procedure-detail h5,h6 {
+  font-weight: bold !important;
+}
+
+.procedure-legal-base .row-header {
+  font-weight: bold !important;
+}
