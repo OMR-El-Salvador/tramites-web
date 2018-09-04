@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import queryString from 'query-string';
+
 import ProcedureList from '../../components/Procedure/List';
 
 const mockProcedures = [
@@ -32,13 +34,19 @@ const mockProcedures = [
 ];
 
 export default class ProcedureListScreen extends Component {
+  constructor(props) {
+    super(props);
+    let params = queryString.parse(this.props.location.search)
+    this.state = { term: params.term };
+  }
+
   render() {
     return (
-      <section className="text-left" id="section-procedures">
-        <div className="container">
-          <div className="row align-items-center justify-content-center">
-            <div className="col-md-12">
-              <h3 className="heading mb-3">
+      <section className='text-left' id='section-procedures'>
+        <div className='container'>
+          <div className='row align-items-center justify-content-center'>
+            <div className='col-md-12'>
+              <h3 className='heading mb-3'>
                 {
                   mockProcedures.length > 1
                   ?
@@ -46,7 +54,7 @@ export default class ProcedureListScreen extends Component {
                   :
                   'Se encontró el siguiente resultado '
                 }
-                para "dui":
+                para "{this.state.term}":
               </h3>
               <ProcedureList procedures={mockProcedures} />
             </div>
