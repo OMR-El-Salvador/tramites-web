@@ -6,10 +6,7 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <section
-            className='pb_cover_v3 overflow-hidden cover-bg-indigo cover-bg-opacity text-left
-              pb_gradient_v1'
-            id='section-home'>
+        <section className='pb_cover_v3 text-left pb_gradient_v1' id='section-home'>
           <div className='container'>
             <div className='row align-items-center justify-content-center'>
               <div className='col-md-6'>
