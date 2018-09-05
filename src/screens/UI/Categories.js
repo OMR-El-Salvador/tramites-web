@@ -77,7 +77,6 @@ export default class Categories extends Component {
             </div>
           </div>
         </section>
-        <Footer />
       </div>
     )
   }
