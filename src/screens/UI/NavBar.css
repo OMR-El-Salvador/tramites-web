@@ -1,0 +1,11 @@
+.nav-link {
+  color: white !important;
+}
+
+.nav-item {
+  margin-left: 0.5em;
+}
+
+.navbar .nav-site-title {
+  font-size: 2em;
+}

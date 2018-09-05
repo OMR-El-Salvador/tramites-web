@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import './NavBar.css';
 
 export default class NavBar extends Component {
   render() {
     return (
       <nav className='navbar navbar-expand-lg navbar-dark' id='pb-navbar'>
         <div className='container'>
-          <Link className='navbar-brand' to='/'>gob.sv</Link>
+          <Link className='navbar-brand site-title nav-site-title' to='/'>gob<span className='title-dot'></span>sv</Link>
           <button className='navbar-toggler ml-auto' type='button' data-toggle='collapse' data-target='#probootstrap-navbar' aria-controls='probootstrap-navbar'
             aria-expanded='false' aria-label='Toggle navigation'>
             <span><i className='ion-navicon'></i></span>

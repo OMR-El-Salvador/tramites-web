@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+
+import './Search.css';
 
 class ProcedureSearch extends Component {
   constructor(props) {
@@ -20,24 +22,28 @@ class ProcedureSearch extends Component {
   render() {
     return (
       <div className='col-md-5 relative align-self-center'>
-        <form onSubmit={this.handleSubmit} className='bg-white rounded pb_form_v1'>
-          <h2 className='mb-4 mt-0 text-center'>Portal de trámites</h2>
-          <div className='form-group'>
-            <input
-              value={this.state.value}
-              onChange={this.handleChange}
-              type='text'
-              className='form-control pb_height-50 reverse'
-              placeholder='Buscar…'
-            />
-          </div>
-          <div className='form-group'>
-            <input
-              type="submit"
-              disabled={!this.state.value}
-              className="btn btn-primary btn-lg btn-block pb_btn-pill btn-shadow-blue"
-              value="Ver resultados"
-            />
+        <form onSubmit={this.handleSubmit}>
+          <div className='row'>
+            <div className='col-md-8'>
+              <div className='form-group'>
+                <input
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  type='text'
+                  className='form-control-lg col-lg-12 search-box'
+                />
+              </div>
+            </div>
+            <div className='col-md-4'>
+              <div className='form-group'>
+                <input
+                  type='submit'
+                  disabled={!this.state.value}
+                  className='btn btn-search btn-lg btn-block'
+                  value='Buscar…'
+                />
+              </div>
+            </div>
           </div>
         </form>
       </div>

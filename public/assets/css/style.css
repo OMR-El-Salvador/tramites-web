@@ -409,7 +409,7 @@
 .pb_cover_v3,
 .pb_cover_v4 {
   position: relative;
-  height: 95vh; }
+  height: 55vh; }
   @media (max-width: 767px) {
     .pb_cover,
     .pb_cover_v1,
@@ -418,7 +418,7 @@
     .pb_cover_v4 {
       height: inherit;
       text-align: center !important;
-      padding: 6em 0; } }
+      padding: 3em 0; } }
   .pb_cover > .container,
   .pb_cover_v1 > .container,
   .pb_cover_v2 > .container,
@@ -430,7 +430,7 @@
     .pb_cover_v2 > .container > .row,
     .pb_cover_v3 > .container > .row,
     .pb_cover_v4 > .container > .row {
-      height: 95vh; }
+      height: 55vh; }
       @media (max-width: 767px) {
         .pb_cover > .container > .row,
         .pb_cover_v1 > .container > .row,
@@ -438,7 +438,7 @@
         .pb_cover_v3 > .container > .row,
         .pb_cover_v4 > .container > .row {
           height: inherit;
-          padding: 6em 0; } }
+          padding: 3em 0; } }
   .pb_cover .play,
   .pb_cover_v1 .play,
   .pb_cover_v2 .play,
