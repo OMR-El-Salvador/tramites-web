@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import queryString from 'query-string';
 
 import ProcedureList from '../../components/Procedure/List';
+import Footer from '../UI/Footer';
 
 const mockProcedures = [
   {
@@ -42,25 +43,28 @@ export default class ProcedureListScreen extends Component {
 
   render() {
     return (
-      <section className='text-left' id='section-procedures'>
-        <div className='container'>
-          <div className='row align-items-center justify-content-center'>
-            <div className='col-md-12'>
-              <h3 className='heading mb-3'>
-                {
-                  mockProcedures.length > 1
-                  ?
-                  'Se encontraron los siguientes ' + mockProcedures.length + ' resultados '
-                  :
-                  'Se encontró el siguiente resultado '
-                }
-                para "{this.state.term}":
-              </h3>
-              <ProcedureList procedures={mockProcedures} />
+      <div>
+        <section className='text-left' id='section-procedures'>
+          <div className='container'>
+            <div className='row align-items-center justify-content-center'>
+              <div className='col-md-12'>
+                <h3 className='heading mb-3'>
+                  {
+                    mockProcedures.length > 1
+                    ?
+                    'Se encontraron los siguientes ' + mockProcedures.length + ' resultados '
+                    :
+                    'Se encontró el siguiente resultado '
+                  }
+                  para "{this.state.term}":
+                </h3>
+                <ProcedureList procedures={mockProcedures} />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+        <Footer />
+      </div>
     )
   }
 }
