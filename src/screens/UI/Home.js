@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ProcedureSearch from '../../components/Procedure/Search';
 import Categories from '../UI/Categories'
+import Footer from '../UI/Footer';
 
 export default class Home extends Component {
   render() {
@@ -25,6 +26,7 @@ export default class Home extends Component {
           </div>
         </section>
         <Categories />
+        <Footer />
       </div>
     )
   }
