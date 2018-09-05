@@ -1,0 +1,13 @@
+.card {
+  padding: 1em;
+}
+
+.card-title {
+  color: #3C3C3B;
+}
+
+.card-btn {
+  background-color: #386CA4;
+  color: #EEE;
+  font-weight: bold;
+}
