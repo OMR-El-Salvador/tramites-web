@@ -130,7 +130,102 @@ const categories = [
   }
 ]
 
+const ministries = [
+  {
+    id: 1,
+    name: 'Ministerio de Agricultura y Ganadería',
+    iconClass: 'fas fa-leaf',
+  },
+  {
+    id: 2,
+    name: 'Ministerio de Medio Ambiente y Recursos Naturales',
+    iconClass: 'fas fa-tint',
+  },
+  {
+    id: 3,
+    name: ' ‏‏‎ Ministerio de Cultura ‏‏‎ ',
+    iconClass: 'fas fa-theater-masks',
+  },
+  {
+    id: 4,
+    name: 'Ministerio de la Defensa Nacional',
+    iconClass: 'fas fa-shield-alt',
+  },
+  {
+    id: 5,
+    name: 'Ministerio de Gobernación y Desarrollo Territorial',
+    iconClass: 'fas fa-map',
+  },
+  {
+    id: 6,
+    name: 'Ministerio de Hacienda',
+    iconClass: 'fas fa-clipboard-list',
+  },
+  {
+    id: 7,
+    name: 'Ministerio de Economía',
+    iconClass: 'fas fa-money-bill-alt',
+  },
+  {
+    id: 8,
+    name: 'Ministerio de Educación',
+    iconClass: 'fas fa-book',
+  },
+  {
+    id: 9,
+    name: ' ‏‏‎  ‏‏‎  ‏‏‎  ‏‏‎ Ministerio de Salud ‏‏‎  ‏‏‎  ‏‏‎  ‏‏‎ ',
+    iconClass: 'fas fa-user-md',
+  },
+  {
+    id: 10,
+    name: 'Ministerio de Turismo',
+    iconClass: 'fas fa-umbrella-beach',
+  },
+  {
+    id: 11,
+    name: 'Ministerio de Justicia y Seguridad Pública',
+    iconClass: 'fas fa-balance-scale',
+  },
+  {
+    id: 12,
+    name: 'Ministerio de Obras Públicas, Transporte, Vivienda y Desarrollo Urbano',
+    iconClass: 'fas fa-road',
+  },
+  {
+    id: 13,
+    name: 'Ministerio de Relaciones Exteriores',
+    iconClass: 'fas fa-passport',
+  },
+  {
+    id: 14,
+    name: 'Ministerio de Trabajo y Previsión Social',
+    iconClass: 'fas fa-industry',
+  }
+]
+
+const classes = [
+  {
+    id: 1,
+    name: 'Ciudadanos',
+    iconClass: 'fas fa-users',
+  },
+  {
+    id: 2,
+    name: 'Empresariales',
+    iconClass: 'fas fa-building',
+  }
+]
+
 export default class Categories extends Component {
+  constructor (props) {
+    super(props)
+    this.state = { groupBy: 'CAT' };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(evt) { this.setState({ groupBy: evt.target.value.toUpperCase() }); }
+
   render() {
     return (
       <div>
@@ -145,33 +240,76 @@ export default class Categories extends Component {
               <div className='col-md-3 offset-md-9'>
                 <form>
                   <div className='form-group row'>
-                    <select className='form-control-lg form-control' id='group-by'>
-                      <option>Categorías</option>
-                      <option>Ministerios</option>
-                      <option>Orientación</option>
+                    <select
+                      className='form-control-lg form-control'
+                      id='group-by'
+                      onChange={this.handleChange}>
+                      <option value='CAT'>Categorías</option>
+                      <option value='MIN'>Ministerios</option>
+                      <option value='CL'>Clase</option>
                     </select>
                   </div>
                 </form>
               </div>
             </div>
-            <div className='row'>
-              {
-                categories.map(cat => (
-                  <div key={cat.id} className='col-lg-4 col-sm-6 d-flex align-items-stretch'>
-                    <div className='pb_feature-v1 card text-center'>
-                      <div className='pb_icon card-img-top'>
-                        <i className={cat.iconClass + ' pb_icon-gradient'}></i>
-                      </div>
-                      <div className='media-body card-body d-flex flex-column'>
-                        <h6 className='mt-0 mb-3 heading card-title'>{cat.name}</h6>
-                        <p className='text-sans-serif card-text text-left'>{cat.description}</p>
-                        <button href='#' className='btn card-btn mt-auto'>Ver trámites</button>
+            { this.state.groupBy === 'CAT' &&
+              <div className='row'>
+                {
+                  categories.map(cat => (
+                    <div key={cat.id} className='col-lg-4 col-sm-6 d-flex align-items-stretch'>
+                      <div className='pb_feature-v1 card text-center'>
+                        <div className='pb_icon card-img-top'>
+                          <i className={cat.iconClass + ' pb_icon-gradient'}></i>
+                        </div>
+                        <div className='media-body card-body d-flex flex-column'>
+                          <h6 className='mt-0 mb-3 heading card-title'>{cat.name}</h6>
+                          <p className='text-sans-serif card-text text-left'>{cat.description}</p>
+                          <button href='#' className='btn card-btn mt-auto'>Ver trámites</button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))
-              }
-            </div>
+                  ))
+                }
+              </div>
+            }
+            {this.state.groupBy === 'MIN' &&
+              <div className='row'>
+                {
+                  ministries.map(min => (
+                    <div key={min.id} className='col-lg-3 col-sm-6 d-flex align-items-stretch mb-4'>
+                      <div className='pb_feature-v1 card text-center'>
+                        <div className='pb_icon card-img-top'>
+                          <i className={min.iconClass + ' pb_icon-gradient-institutions'}></i>
+                        </div>
+                        <div className='media-body card-body d-flex flex-column'>
+                          <h6 className='mt-0 mb-3 heading card-title'>{min.name}</h6>
+                          <button href='#' className='btn card-btn mt-auto'>Ver trámites</button>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+            }
+            {this.state.groupBy === 'CL' &&
+              <div className='row'>
+                {
+                  classes.map(cl => (
+                    <div key={cl.id} className='col-lg-6 col-sm-6 align-items-stretch'>
+                      <div className='pb_feature-v1 card text-center'>
+                        <div className='pb_icon card-img-top'>
+                          <i className={cl.iconClass + ' pb_icon-gradient-classes'}></i>
+                        </div>
+                        <div className='media-body card-body d-flex flex-column'>
+                          <h6 className='mt-0 mb-3 heading card-title'>{cl.name}</h6>
+                          <button href='#' className='btn card-btn mt-auto'>Ver trámites</button>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+            }
           </div>
         </section>
       </div>
