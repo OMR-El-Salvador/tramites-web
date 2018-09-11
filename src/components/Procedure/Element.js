@@ -8,7 +8,7 @@ export default class ProcedureElement extends Component {
     return (
       <div className='procedureElement card-header'>
         <div className='card-header' id={'heading-card-'+this.props.id}>
-          <h5 className='mb-0'>
+          <h5>
             <button className='btn btn-link' data-toggle='collapse'
                 data-target={'#procedureCollapse'+this.props.id}
                 aria-expanded='true'

@@ -66,7 +66,7 @@ export default class ProcedureListScreen extends Component {
             </div>
           </div>
         </section>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     )
   }
