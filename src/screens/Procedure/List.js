@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
 
+import './List.css';
+
 import ProcedureList from '../../components/Procedure/List';
 import Footer from '../UI/Footer';
 
@@ -46,9 +48,9 @@ export default class ProcedureListScreen extends Component {
       <div>
         <section className='text-left' id='section-procedures'>
           <div className='container'>
-            <div className='row align-items-center justify-content-center'>
+            <div className='row'>
               <div className='col-md-12'>
-                <h3 className='heading mb-3'>
+                <h6 className='result-text'>
                   {
                     mockProcedures.length > 1
                     ?
@@ -56,8 +58,9 @@ export default class ProcedureListScreen extends Component {
                     :
                     'Se encontró el siguiente resultado '
                   }
-                  para "{this.state.term}":
-                </h3>
+                  para "<em>{this.state.term}</em>":
+                </h6>
+                <hr />
                 <ProcedureList procedures={mockProcedures} />
               </div>
             </div>
