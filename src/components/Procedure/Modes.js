@@ -12,7 +12,11 @@ export default class ProcedureModes extends Component {
             this.props.modes.map(mode => (
               <tr key={mode.id}>
                 <th scope='row' className='procedureMode'>{mode.text}</th>
-                <td><Link to={`/procedures/${mode.id}`}>Ver detalle</Link></td>
+                <td>
+                  <Link to={`/procedures/${mode.id}`}>
+                    <span>Ver detalle <i class="pull-right fas fa-external-link-alt action-icon"></i></span>
+                  </Link>
+                </td>
               </tr>
             ))
           }

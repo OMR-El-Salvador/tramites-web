@@ -38,3 +38,7 @@ nav {
   border-radius: 50%;
   display: inline-block;
 }
+
+.action-icon {
+  color: #EC8804;
+}
