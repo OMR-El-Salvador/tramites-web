@@ -6,16 +6,18 @@ import PropTypes from 'prop-types';
 export default class ProcedureModes extends Component {
   render() {
     return (
-      <div className='row well'>
-        {
-          this.props.modes.map(mode => (
-            <div className='col-md-3' key= {mode.id}>
-              <p className='procedureMode'>{mode.text} </p>
-              <Link to={`/procedures/${mode.id}`}>Detalle</Link>
-            </div>
-          ))
-        }
-      </div>
+      <table className="table">
+        <tbody>
+          {
+            this.props.modes.map(mode => (
+              <tr key={mode.id}>
+                <th scope="row" className='procedureMode'>{mode.text}</th>
+                <td><Link to={`/procedures/${mode.id}`}>Detalle</Link></td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
     )
   }
 }
