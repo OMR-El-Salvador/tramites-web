@@ -9,6 +9,10 @@ const infoDivStyle = {
   marginTop: '1em'
 }
 
+const modeTextStyle = {
+  color: '#386CA4',
+}
+
 export default class ProcedureDetailScreen extends Component {
   render() {
     return (
@@ -24,7 +28,7 @@ export default class ProcedureDetailScreen extends Component {
                 </div>
                 <div className='row' style={infoDivStyle}>
                   <div className='col-md-7'>
-                    <p>Traslado Permanente</p>
+                    <p>Obtener la autorización de la máquina registradora o sistema computarizado</p>
                   </div>
                   <div className='col-md-3'></div>
                   <div className='col-md-2'>
@@ -34,12 +38,10 @@ export default class ProcedureDetailScreen extends Component {
                 <hr />
                 <div className='row'>
                   <div className='col-md-12'>
-                    <p>
-                      Obtener la autorización de la máquina registradora o sistema computarizado
-                    </p>
-                    <hr />
+                    <p style={modeTextStyle}>Traslado Permanente</p>
                   </div>
                 </div>
+                <hr />
                 <div className='row'>
                   <div className='col-md-12'>
                     <p>
@@ -48,6 +50,19 @@ export default class ProcedureDetailScreen extends Component {
                     </p>
                   </div>
                 </div>
+                <div className='row'>
+                  <div className='col-md-12'>
+                    <h6>Requisitos</h6>
+                    <ol type='a'>
+                      <li>
+                        Solicitud de traslado, especificando las carasterísticas del equipo y la
+                        nueva dirección
+                      </li>
+                      <li>Cartel original que se emitio al momento de la autorización</li>
+                    </ol>
+                  </div>
+                </div>
+                <hr />
                 <div className='row'>
                   <div className='col-md-4'>
                     <p>Medios de presentación: Presencial y en linea.</p>
@@ -171,69 +186,35 @@ export default class ProcedureDetailScreen extends Component {
                 </div>
                 <div className='row procedure-legal-base'>
                   <div className='col-md-12'>
-                    <div className='row'>
-                      <div className='col-md-12'>
-                        <h6>Base legal</h6>
-                      </div>
-                    </div>
-                    <div className='row'>
-                      <div className='col-md-6'>
-                        <p className='row-header'>Fundamento que da origen al trámite</p>
-                      </div>
-                      <div className='col-md-6'>
-                        <p>art. 50, 115 Reglamento del Código Tributario.</p>
-                      </div>
-                    </div>
-                    <div className='row'>
-                      <div className='col-md-6'>
-                        <p className='row-header'>Institución/Unidad responsable</p>
-                      </div>
-                      <div className='col-md-6'>
-                        <p>art. 34 Código tributario</p>
-                      </div>
-                    </div>
-                    <div className='row'>
-                      <div className='col-md-6'>
-                        <p className='row-header'>Requisitos</p>
-                      </div>
-                      <div className='col-md-6'>
-                        <p>Todo Instrucciones de Trabajo</p>
-                      </div>
-                    </div>
-                    <div className='row'>
-                      <div className='col-md-6'>
-                        <p className='row-header'>Plazos de respuesta</p>
-                      </div>
-                      <div className='col-md-6'>
-                        <p>Todo Instrucciones de Trabajo</p>
-                      </div>
-                    </div>
-                    <div className='row'>
-                      <div className='col-md-6'>
-                        <p className='row-header'>Vigencia</p>
-                      </div>
-                      <div className='col-md-6'>
-                      </div>
-                    </div>
-                    <div className='row'>
-                      <div className='col-md-6'>
-                        <p className='row-header'>Tarifas o derechos</p>
-                      </div>
-                      <div className='col-md-6'>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className='row'>
-                  <div className='col-md-12'>
-                    <h6>Requisitos</h6>
-                    <ol type='a'>
-                      <li>
-                        Solicitud de traslado, especificando las carasterísticas del equipo y la
-                        nueva dirección
-                      </li>
-                      <li>Cartel original que se emitio al momento de la autorización</li>
-                    </ol>
+                    <h6>Base legal</h6>
+                    <table className='table table-bordered table-striped table-hover'>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Fundamento que da origen al trámite</th>
+                          <td>art. 50, 115 Reglamento del Código Tributario.</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Institución/Unidad responsable</th>
+                          <td>art. 34 Código tributario</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Requisitos</th>
+                          <td>Todo Instrucciones de Trabajo</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Plazos de respuesta</th>
+                          <td>Todo Instrucciones de Trabajo</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Vigencia</th>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Tarifas o derechos</th>
+                          <td></td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>

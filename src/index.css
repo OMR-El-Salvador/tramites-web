@@ -21,6 +21,10 @@ nav {
   font-weight: bold !important;
 }
 
+.procedure-legal-base {
+  margin-top: 1em;
+}
+
 .procedure-legal-base .row-header {
   font-weight: bold !important;
 }
