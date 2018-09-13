@@ -57,7 +57,7 @@ export default class ProcedureListScreen extends Component {
   render() {
     return (
       <div>
-        <section className='text-left' id='section-procedures'>
+        <section className='text-left card card-body bg-light' id='section-procedures'>
           <div className='container'>
             <div className='row'>
               <div className='col-md-12'>
