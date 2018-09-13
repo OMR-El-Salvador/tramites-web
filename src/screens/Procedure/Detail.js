@@ -190,27 +190,27 @@ export default class ProcedureDetailScreen extends Component {
                     <table className='table table-bordered table-striped table-hover'>
                       <tbody>
                         <tr>
-                          <th scope="row">Fundamento que da origen al trámite</th>
+                          <td>Fundamento que da origen al trámite</td>
                           <td>art. 50, 115 Reglamento del Código Tributario.</td>
                         </tr>
                         <tr>
-                          <th scope="row">Institución/Unidad responsable</th>
+                          <td>Institución/Unidad responsable</td>
                           <td>art. 34 Código tributario</td>
                         </tr>
                         <tr>
-                          <th scope="row">Requisitos</th>
+                          <td>Requisitos</td>
                           <td>Todo Instrucciones de Trabajo</td>
                         </tr>
                         <tr>
-                          <th scope="row">Plazos de respuesta</th>
+                          <td>Plazos de respuesta</td>
                           <td>Todo Instrucciones de Trabajo</td>
                         </tr>
                         <tr>
-                          <th scope="row">Vigencia</th>
+                          <td>Vigencia</td>
                           <td></td>
                         </tr>
                         <tr>
-                          <th scope="row">Tarifas o derechos</th>
+                          <td>Tarifas o derechos</td>
                           <td></td>
                         </tr>
                       </tbody>
