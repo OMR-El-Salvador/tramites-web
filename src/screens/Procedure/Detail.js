@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
+
+import ProcedureName from '../../components/Procedure/Name';
+
 import URL from '../../components/UI/URL/URL';
 import Footer from '../UI/Footer';
+
+const infoDivStyle = {
+  marginTop: '1em'
+}
 
 export default class ProcedureDetailScreen extends Component {
   render() {
@@ -12,21 +19,16 @@ export default class ProcedureDetailScreen extends Component {
               <div className='col-md-12'>
                 <div className='row'>
                   <div className='col-md-12'>
-                    <h5>
-                      Autorización de uso, retiro, translado, traslado temporal, modificación o
-                      reemplazo de software de máquina registradora o sistema computarizado, así
-                      como autorización de cinta de auditoría o bitácora y emisión de documenttos
-                      preimpresos
-                    </h5>
+                    <ProcedureName text={'Autorización de uso, retiro, translado, traslado temporal, modificación o reemplazo de software de máquina registradora o sistema computarizado, así como autorización de cinta de auditoría o bitácora y emisión de documenttos preimpresos'} />
                   </div>
                 </div>
-                <div className='row'>
-                  <div className='col-md-6'>
+                <div className='row' style={infoDivStyle}>
+                  <div className='col-md-7'>
                     <p>Traslado Permanente</p>
                   </div>
-                  <div className='col-md-2'></div>
-                  <div className='col-md-4'>
-                    <URL href='https://miempresa.gob.sv/' text='https://miempresa.gob.sv/' />
+                  <div className='col-md-3'></div>
+                  <div className='col-md-2'>
+                    <URL href='https://miempresa.gob.sv/' text='Ver en línea' />
                   </div>
                 </div>
                 <hr />

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default class URL extends Component {
   render() {
     return (
-      <a href={this.props.href}><i className="fas fa-globe"></i> {this.props.text}</a>
+      <a href={this.props.href}>{this.props.text} <i className='pull-right fas fa-external-link-alt action-icon'></i></a>
     )
   }
 }
