@@ -10,7 +10,7 @@ nav {
 }
 
 #section-procedures {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Heebo', sans-serif;
 }
 
 .procedure-detail p,ol {
@@ -32,7 +32,7 @@ nav {
 }
 
 .site-description {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Heebo', sans-serif;
 }
 
 .title-dot {
@@ -45,10 +45,6 @@ nav {
 
 .action-icon {
   color: #EC8804;
-}
-
-.btn {
-  font-family: 'Lora', serif !important;
 }
 
 footer {
