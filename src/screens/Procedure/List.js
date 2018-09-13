@@ -39,7 +39,10 @@ const mockProcedures = [
     modes: [
       { id: 1, text: 'For natural persons' },
       { id: 2, text: 'For companies' },
-      { id: 3, text: 'For under age applicants' },
+      {
+        id: 3, text: 'And gosh vicious trenchant less cat neutral due oh factious owl lemur' +
+          'accordingly playfully flashy amongst the inanimately adversely like scorpion grudgingly' +
+        'yikes amongst near much over tepid dear less the octopus wrung emptied.' },
     ]
   }
 ];
