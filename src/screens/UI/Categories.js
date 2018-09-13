@@ -263,7 +263,7 @@ export default class Categories extends Component {
                         </div>
                         <div className='media-body card-body d-flex flex-column'>
                           <h6 className='mt-0 mb-3 heading card-title'>{cat.name}</h6>
-                          <p className='text-sans-serif card-text text-left'>{cat.description}</p>
+                          <p className='card-text text-left'>{cat.description}</p>
                           <button href='#' className='btn card-btn mt-auto'>Ver trámites</button>
                         </div>
                       </div>

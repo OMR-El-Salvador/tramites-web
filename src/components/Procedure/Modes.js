@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 
 import PropTypes from 'prop-types';
 
+import './Modes.css';
+
 export default class ProcedureModes extends Component {
   render() {
     return (
@@ -11,7 +13,7 @@ export default class ProcedureModes extends Component {
           {
             this.props.modes.map(mode => (
               <tr key={mode.id}>
-                <th scope='row' className='procedureMode'>{mode.text}</th>
+                <td scope='row' className='procedureMode'>{mode.text}</td>
                 <td>
                   <Link to={`/procedures/${mode.id}`}>
                     <span>Ver detalle <i class="pull-right fas fa-external-link-alt action-icon"></i></span>

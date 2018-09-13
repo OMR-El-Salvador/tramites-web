@@ -1,9 +1,11 @@
 #description {
   color: black;
+  font-family: 'Lora', serif;
 }
 
 .procedureHeader {
   font-size: 1.4em;
   margin: 1em;
   color: #386CA4;
+  font-family: 'Lora', serif;
 }

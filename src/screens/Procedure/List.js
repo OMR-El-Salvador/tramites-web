@@ -61,7 +61,7 @@ export default class ProcedureListScreen extends Component {
           <div className='container'>
             <div className='row'>
               <div className='col-md-12'>
-                <h6 className='result-text'>
+                <p className='result-text'>
                   {
                     mockProcedures.length > 1
                     ?
@@ -70,7 +70,7 @@ export default class ProcedureListScreen extends Component {
                     'Se encontró el siguiente resultado '
                   }
                   para "<em>{this.state.term}</em>":
-                </h6>
+                </p>
                 <hr />
                 <ProcedureList procedures={mockProcedures} />
               </div>

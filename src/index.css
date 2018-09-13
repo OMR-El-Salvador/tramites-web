@@ -10,7 +10,7 @@ nav {
 }
 
 #section-procedures {
-  font-family: sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .procedure-detail p,ol {
@@ -26,9 +26,13 @@ nav {
 }
 
 .site-title {
-  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  font-family: 'Libre Basquerville', 'Book Antiqua', Palatino, serif;
   font-size: 9em;
   color: #EEE;
+}
+
+.site-description {
+  font-family: 'Work Sans', sans-serif;
 }
 
 .title-dot {
@@ -41,4 +45,12 @@ nav {
 
 .action-icon {
   color: #EC8804;
+}
+
+.btn {
+  font-family: 'Lora', serif !important;
+}
+
+footer {
+  font-family: 'Open Sans', sans-serif;
 }

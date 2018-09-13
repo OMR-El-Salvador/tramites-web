@@ -13,7 +13,7 @@ export default class Home extends Component {
               <div className='col-md-6'>
                 <h1 className='mb-3 site-title'>gob<span className='title-dot'></span>sv </h1>
                 <div className='sub-heading'>
-                  <p className='mb-4'>
+                  <p className='mb-4 site-description'>
                     Bienvenido a tu portal para consulta de Trámites. Podrás encontrar información
                     sobre todos los trámites del Gobierno de El Salvador.
                   </p>
