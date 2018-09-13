@@ -10,7 +10,7 @@ export default class NavBar extends Component {
           <Link className='navbar-brand site-title nav-site-title' to='/'>gob<span className='title-dot'></span>sv</Link>
           <button className='navbar-toggler ml-auto' type='button' data-toggle='collapse' data-target='#probootstrap-navbar' aria-controls='probootstrap-navbar'
             aria-expanded='false' aria-label='Toggle navigation'>
-            <span><i class="fas fa-bars"></i></span>
+            <span><i className='fas fa-bars'></i></span>
           </button>
           <div className='collapse navbar-collapse' id='probootstrap-navbar'>
             <ul className='navbar-nav ml-auto'>
