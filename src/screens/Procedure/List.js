@@ -5,53 +5,24 @@ import './List.css';
 
 import ProcedureList from '../../components/Procedure/List';
 
-const mockProcedures = [
-  {
-    id: 1,
-    name: 'Procedure A',
-    description: 'And gosh vicious trenchant less cat neutral due oh factious owl lemur'+
-        'accordingly playfully flashy amongst the inanimately adversely like scorpion grudgingly'+
-        'yikes amongst near much over tepid dear less the octopus wrung emptied.',
-    modes: [
-      { id: 1, text: 'For natural persons' },
-      { id: 2, text: 'For companies' },
-      { id: 3, text: 'For under age applicants' },
-    ]
-  },
-  {
-    id: 2,
-    name: 'Procedure B',
-    description: 'And gosh vicious trenchant less cat neutral due oh factious owl lemur'+
-        'accordingly playfully flashy amongst the inanimately adversely like scorpion grudgingly'+
-        'yikes amongst near much over tepid dear less the octopus wrung emptied.',
-    modes: [
-      { id: 1, text: 'For natural persons' },
-      { id: 2, text: 'For companies' },
-      { id: 3, text: 'For under age applicants' },
-    ]
-  },
-  {
-    id: 3,
-    name: 'Procedure C',
-    description: 'And gosh vicious trenchant less cat neutral due oh factious owl lemur'+
-        'accordingly playfully flashy amongst the inanimately adversely like scorpion grudgingly'+
-        'yikes amongst near much over tepid dear less the octopus wrung emptied.',
-    modes: [
-      { id: 1, text: 'For natural persons' },
-      { id: 2, text: 'For companies' },
-      {
-        id: 3, text: 'And gosh vicious trenchant less cat neutral due oh factious owl lemur' +
-          'accordingly playfully flashy amongst the inanimately adversely like scorpion grudgingly' +
-        'yikes amongst near much over tepid dear less the octopus wrung emptied.' },
-    ]
-  }
-];
-
 export default class ProcedureListScreen extends Component {
   constructor(props) {
     super(props);
     let params = queryString.parse(this.props.location.search)
-    this.state = { term: params.term };
+    this.state = {
+      term: params.term,
+      procedures: []
+    };
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3000/procedures?select=id,name,description,modes(id,name)')
+    .then(results => {
+      return results.json();
+    })
+    .then(data => {
+      this.setState({procedures: data});
+    });
   }
 
   render() {
@@ -63,16 +34,16 @@ export default class ProcedureListScreen extends Component {
               <div className='col-md-12'>
                 <p className='result-text'>
                   {
-                    mockProcedures.length > 1
+                    this.state.procedures.length > 1
                     ?
-                    'Se encontraron los siguientes ' + mockProcedures.length + ' resultados '
+                    'Se encontraron los siguientes ' + this.state.procedures.length + ' resultados '
                     :
                     'Se encontró el siguiente resultado '
                   }
                   para "<em>{this.state.term}</em>":
                 </p>
                 <hr />
-                <ProcedureList procedures={mockProcedures} />
+                <ProcedureList procedures={this.state.procedures} />
               </div>
             </div>
           </div>
