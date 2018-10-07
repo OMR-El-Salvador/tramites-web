@@ -5,6 +5,8 @@ import './List.css';
 
 import ProcedureList from '../../components/Procedure/List';
 
+const SERVER_URL = 'http://localhost:3000/';
+
 export default class ProcedureListScreen extends Component {
   constructor(props) {
     super(props);
@@ -16,14 +18,13 @@ export default class ProcedureListScreen extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/procedures?select=id,name,modes(id,name,description)')
-    .then(results => {
-      return results.json();
-    })
-    .then(data => {
-      console.log(data);
-      this.setState({procedures: data});
-    });
+    let resourceURL = 'rpc/procedures_search';
+    let params = '?select=id,name,code,modes(id,name,code,description)&term=' + this.state.term;
+    let reqURL = SERVER_URL + resourceURL + params;
+
+    fetch(reqURL)
+    .then(results => results.json())
+    .then(data => this.setState({procedures: data}));
   }
 
   render() {
@@ -39,7 +40,11 @@ export default class ProcedureListScreen extends Component {
                     ?
                     'Se encontraron los siguientes ' + this.state.procedures.length + ' resultados '
                     :
+                    this.state.procedures.lenght === 1
+                    ?
                     'Se encontró el siguiente resultado '
+                    :
+                    'No se encontraron resultados '
                   }
                   para "<em>{this.state.term}</em>":
                 </p>
