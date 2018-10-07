@@ -6,9 +6,9 @@ let wrapper, mockModes;
 
 beforeEach(() => {
   mockModes = [
-    { id: 1, name: 'For natural persons' },
-    { id: 2, name: 'For companies' },
-    { id: 3, name: 'For under age applicants' },
+    { id: 1, name: 'For natural persons', description: 'Procedure for natural persons ' },
+    { id: 2, name: 'For companies', description: 'Procedure for companies ' },
+    { id: 3, name: 'For under age applicants', description: 'Procedure for under age applicants ' },
   ];
   wrapper = shallow(<ProcedureModes modes={mockModes} />);
 });

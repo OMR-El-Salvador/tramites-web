@@ -16,11 +16,12 @@ export default class ProcedureListScreen extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/procedures?select=id,name,description,modes(id,name)')
+    fetch('http://localhost:3000/procedures?select=id,name,modes(id,name,description)')
     .then(results => {
       return results.json();
     })
     .then(data => {
+      console.log(data);
       this.setState({procedures: data});
     });
   }

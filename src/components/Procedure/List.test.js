@@ -10,37 +10,28 @@ beforeEach(() => {
     {
       id: 1,
       name: 'Procedure A',
-      description: 'And gosh vicious trenchant less cat neutral due oh factious owl lemur'+
-          'accordingly playfully flashy amongst the inanimately adversely like scorpion grudgingly'+
-          'yikes amongst near much over tepid dear less the octopus wrung emptied.',
       modes: [
-        { id: 1, text: 'For natural persons' },
-        { id: 2, text: 'For companies' },
-        { id: 3, text: 'For under age applicants' },
+        { id: 1, name: 'For natural persons', description: 'Procedure for natural persons' },
+        { id: 2, name: 'For companies', description: 'Procedure for companies' },
+        { id: 3, name: 'For under age applicants', description: 'Procedure for under age app.' },
       ]
     },
     {
       id: 2,
       name: 'Procedure B',
-      description: 'And gosh vicious trenchant less cat neutral due oh factious owl lemur'+
-          'accordingly playfully flashy amongst the inanimately adversely like scorpion grudgingly'+
-          'yikes amongst near much over tepid dear less the octopus wrung emptied.',
       modes: [
-        { id: 1, text: 'For natural persons' },
-        { id: 2, text: 'For companies' },
-        { id: 3, text: 'For under age applicants' },
+        { id: 1, name: 'For natural persons', description: 'Procedure for natural persons' },
+        { id: 2, name: 'For companies', description: 'Procedure for companies' },
+        { id: 3, name: 'For under age applicants', description: 'Procedure for under age app.' },
       ]
     },
     {
       id: 3,
       name: 'Procedure C',
-      description: 'And gosh vicious trenchant less cat neutral due oh factious owl lemur'+
-          'accordingly playfully flashy amongst the inanimately adversely like scorpion grudgingly'+
-          'yikes amongst near much over tepid dear less the octopus wrung emptied.',
       modes: [
-        { id: 1, text: 'For natural persons' },
-        { id: 2, text: 'For companies' },
-        { id: 3, text: 'For under age applicants' },
+        { id: 1, name: 'For natural persons', description: 'Procedure for natural persons' },
+        { id: 2, name: 'For companies', description: 'Procedure for companies' },
+        { id: 3, name: 'For under age applicants', description: 'Procedure for under age app.' },
       ]
     }
   ];

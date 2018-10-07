@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './Element.css';
-
 import ProcedureName from './Name';
 import ProcedureModes from './Modes';
 
@@ -36,7 +34,6 @@ export default class ProcedureElement extends Component {
             aria-labelledby={'heading-card-'+this.props.id}
             data-parent='#accordion'>
           <div className='card-body'>
-            <p id='description'>{this.props.description}</p>
             <ProcedureModes modes={this.props.modes} />
           </div>
         </div>
@@ -47,7 +44,6 @@ export default class ProcedureElement extends Component {
 
 ProcedureElement.propTypes = {
   name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
   modes: PropTypes.array.isRequired,
   id: PropTypes.number.isRequired
 };
