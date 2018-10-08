@@ -37,25 +37,15 @@ const icoClass = {
   MOP: 'fas fa-road',
   MRREE: 'fas fa-passport',
   MTPS: 'fas fa-industry',
+  CIU: 'fas fa-users',
+  EMP: 'fas fa-building',
+  ORG: 'fas fa-warehouse',
 }
-
-const classes = [
-  {
-    id: 1,
-    name: 'Ciudadanos',
-    iconClass: 'fas fa-users',
-  },
-  {
-    id: 2,
-    name: 'Empresariales',
-    iconClass: 'fas fa-building',
-  }
-]
 
 export default class Categories extends Component {
   constructor (props) {
     super(props)
-    this.state = { groupBy: 'CAT', ministries: [], categories: [] };
+    this.state = { groupBy: 'CAT', ministries: [], categories: [], classes: [] };
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -65,6 +55,7 @@ export default class Categories extends Component {
   componentDidMount() {
     HttpService.getResource('institutions').then(data => this.setState({ministries: data}));
     HttpService.getResource('categories').then(data => this.setState({categories: data}));
+    HttpService.getResource('classes').then(data => this.setState({classes: data}));
   }
 
   render() {
@@ -131,11 +122,11 @@ export default class Categories extends Component {
             {this.state.groupBy === 'CL' &&
               <div className='row'>
                 {
-                  classes.map(cl => (
-                    <div key={cl.id} className='col-lg-6 col-sm-6 align-items-stretch'>
+                  this.state.classes.map(cl => (
+                    <div key={cl.id} className='col-lg-4 col-sm-4 align-items-stretch'>
                       <div className='pb_feature-v1 card text-center'>
                         <div className='pb_icon card-img-top'>
-                          <i className={cl.iconClass + ' pb_icon-gradient-classes'}></i>
+                          <i className={icoClass[cl.code] + ' pb_icon-gradient-classes'}></i>
                         </div>
                         <div className='media-body card-body d-flex flex-column'>
                           <h6 className='mt-0 mb-3 heading card-title'>{cl.name}</h6>
