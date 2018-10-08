@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
 
+import '../../services/http';
 import './List.css';
 
 import ProcedureList from '../../components/Procedure/List';
-
-const SERVER_URL = 'http://localhost:3000/';
+import { HttpService } from '../../services/http';
 
 export default class ProcedureListScreen extends Component {
   constructor(props) {
@@ -18,13 +18,9 @@ export default class ProcedureListScreen extends Component {
   }
 
   componentDidMount() {
-    let resourceURL = 'rpc/procedures_search';
+    let resPath = 'rpc/procedures_search';
     let params = '?select=id,name,code,modes(id,name,code,description)&term=' + this.state.term;
-    let reqURL = SERVER_URL + resourceURL + params;
-
-    fetch(reqURL)
-    .then(results => results.json())
-    .then(data => this.setState({procedures: data}));
+    HttpService.getResource(resPath, params).then(data => this.setState({procedures: data}));
   }
 
   render() {
