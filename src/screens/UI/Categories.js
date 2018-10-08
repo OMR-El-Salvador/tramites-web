@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Categories.css';
 
+const SERVER_URL = 'http://localhost:3000/';
+
 const categories = [
   {
     id: 1,
@@ -130,78 +132,23 @@ const categories = [
   }
 ]
 
-const ministries = [
+const icoClass =
   {
-    id: 1,
-    name: 'Ministerio de Agricultura y Ganadería',
-    iconClass: 'fas fa-leaf',
-  },
-  {
-    id: 2,
-    name: 'Ministerio de Medio Ambiente y Recursos Naturales',
-    iconClass: 'fas fa-tint',
-  },
-  {
-    id: 3,
-    name: ' ‏‏‎ Ministerio de Cultura ‏‏‎ ',
-    iconClass: 'fas fa-theater-masks',
-  },
-  {
-    id: 4,
-    name: 'Ministerio de la Defensa Nacional',
-    iconClass: 'fas fa-shield-alt',
-  },
-  {
-    id: 5,
-    name: 'Ministerio de Gobernación y Desarrollo Territorial',
-    iconClass: 'fas fa-map',
-  },
-  {
-    id: 6,
-    name: 'Ministerio de Hacienda',
-    iconClass: 'fas fa-clipboard-list',
-  },
-  {
-    id: 7,
-    name: 'Ministerio de Economía',
-    iconClass: 'fas fa-money-bill-alt',
-  },
-  {
-    id: 8,
-    name: 'Ministerio de Educación',
-    iconClass: 'fas fa-book',
-  },
-  {
-    id: 9,
-    name: ' ‏‏‎  ‏‏‎  ‏‏‎  ‏‏‎ Ministerio de Salud ‏‏‎  ‏‏‎  ‏‏‎  ‏‏‎ ',
-    iconClass: 'fas fa-user-md',
-  },
-  {
-    id: 10,
-    name: 'Ministerio de Turismo',
-    iconClass: 'fas fa-umbrella-beach',
-  },
-  {
-    id: 11,
-    name: 'Ministerio de Justicia y Seguridad Pública',
-    iconClass: 'fas fa-balance-scale',
-  },
-  {
-    id: 12,
-    name: 'Ministerio de Obras Públicas, Transporte, Vivienda y Desarrollo Urbano',
-    iconClass: 'fas fa-road',
-  },
-  {
-    id: 13,
-    name: 'Ministerio de Relaciones Exteriores',
-    iconClass: 'fas fa-passport',
-  },
-  {
-    id: 14,
-    name: 'Ministerio de Trabajo y Previsión Social',
-    iconClass: 'fas fa-industry',
+    mag: 'fas fa-leaf',
+    marn: 'fas fa-tint',
+    mc: 'fas fa-theater-masks',
+    mdn: 'fas fa-shield-alt',
+    mgdt: 'fas fa-map',
+    mh: 'fas fa-clipboard-list',
+    minec: 'fas fa-money-bill-alt',
+    mined: 'fas fa-book',
+    minsal: 'fas fa-user-md',
+    mitur: 'fas fa-umbrella-beach',
+    mjsp: 'fas fa-balance-scale',
+    mop: 'fas fa-road',
+    mrree: 'fas fa-passport',
+    mtps: 'fas fa-industry',
   }
-]
 
 const classes = [
   {
@@ -219,23 +166,27 @@ const classes = [
 export default class Categories extends Component {
   constructor (props) {
     super(props)
-    this.state = { groupBy: 'CAT' };
+    this.state = { groupBy: 'CAT', ministries: [] };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(evt) { this.setState({ groupBy: evt.target.value.toUpperCase() }); }
 
+  componentDidMount() {
+    let resourceURL = 'institutions';
+    let reqURL = SERVER_URL + resourceURL;
+
+    fetch(reqURL)
+    .then(results => results.json())
+    .then(data => this.setState({ministries: data}));
+  }
+
   render() {
     return (
       <div>
         <section>
           <div className='container'>
-            {/* <div className='row justify-content-center mb-5'>
-              <div className='col-md-6 text-center mb-5'>
-                <h5 className='text-uppercase pb_font-15 mb-2 pb_color-dark-opacity-3 pb_letter-spacing-2'><strong>Features</strong></h5>
-              </div>
-            </div> */}
             <div className='row group-by'>
               <div className='col-md-3 offset-md-9'>
                 <form>
@@ -275,11 +226,16 @@ export default class Categories extends Component {
             {this.state.groupBy === 'MIN' &&
               <div className='row'>
                 {
-                  ministries.map(min => (
+                  this.state.ministries.map(min => (
                     <div key={min.id} className='col-lg-3 col-sm-6 d-flex align-items-stretch mb-4'>
                       <div className='pb_feature-v1 card text-center'>
                         <div className='pb_icon card-img-top'>
-                          <i className={min.iconClass + ' pb_icon-gradient-institutions'}></i>
+                          <i
+                            className={
+                              icoClass[min.code.toLowerCase()] +
+                              ' pb_icon-gradient-institutions'
+                            }>
+                          </i>
                         </div>
                         <div className='media-body card-body d-flex flex-column'>
                           <h6 className='mt-0 mb-3 heading card-title'>{min.name}</h6>
