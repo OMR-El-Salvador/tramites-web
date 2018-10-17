@@ -10,7 +10,7 @@ nav {
 }
 
 #section-procedures {
-  font-family: 'Heebo', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .procedure-detail p,ol {
@@ -36,7 +36,8 @@ nav {
 }
 
 .site-description {
-  font-family: 'Heebo', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
 }
 
 .title-dot {
