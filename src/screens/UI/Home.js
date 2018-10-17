@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ProcedureSearch from '../../components/Procedure/Search';
 import Categories from '../UI/Categories'
 import Footer from '../UI/Footer';
-import Background from '../../img/bg.jpg';
+import Background from '../../img/bg-bw.jpg';
 
 var divStyle = {
   backgroundImage: `url(${Background})`
