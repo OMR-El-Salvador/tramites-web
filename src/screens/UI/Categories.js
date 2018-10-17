@@ -84,14 +84,13 @@ export default class Categories extends Component {
                 {
                   this.state.categories.map(cat => (
                     <div key={cat.id} className='col-lg-4 col-sm-6 d-flex align-items-stretch'>
-                      <div className='pb_feature-v1 card text-center'>
-                        <div className='pb_icon card-img-top'>
-                          <i className={icoClass[cat.code] + ' pb_icon-gradient'}></i>
+                      <div className='card'>
+                        <div>
+                          <i className={icoClass[cat.code]}></i>
                         </div>
-                        <div className='media-body card-body d-flex flex-column'>
-                          <h6 className='mt-0 mb-3 heading card-title'>{cat.name}</h6>
+                        <div className='d-flex flex-column'>
+                          <p className='card-title'>{cat.name}</p>
                           <p className='card-text text-left'>{cat.description}</p>
-                          <button href='#' className='btn card-btn mt-auto'>Ver trámites</button>
                         </div>
                       </div>
                     </div>
@@ -104,14 +103,13 @@ export default class Categories extends Component {
                 {
                   this.state.ministries.map(min => (
                     <div key={min.id} className='col-lg-3 col-sm-6 d-flex align-items-stretch mb-4'>
-                      <div className='pb_feature-v1 card text-center'>
-                        <div className='pb_icon card-img-top'>
-                          <i className={icoClass[min.code] + ' pb_icon-gradient-institutions'}>
+                      <div className='card'>
+                        <div>
+                          <i className={icoClass[min.code]}>
                           </i>
                         </div>
-                        <div className='media-body card-body d-flex flex-column'>
-                          <h6 className='mt-0 mb-3 heading card-title'>{min.name}</h6>
-                          <button href='#' className='btn card-btn mt-auto'>Ver trámites</button>
+                        <div className='d-flex flex-column'>
+                          <p className='card-title'>{min.name}</p>
                         </div>
                       </div>
                     </div>
@@ -124,13 +122,12 @@ export default class Categories extends Component {
                 {
                   this.state.classes.map(cl => (
                     <div key={cl.id} className='col-lg-4 col-sm-4 align-items-stretch'>
-                      <div className='pb_feature-v1 card text-center'>
-                        <div className='pb_icon card-img-top'>
-                          <i className={icoClass[cl.code] + ' pb_icon-gradient-classes'}></i>
+                      <div className='card'>
+                        <div>
+                          <i className={icoClass[cl.code]}></i>
                         </div>
-                        <div className='media-body card-body d-flex flex-column'>
-                          <h6 className='mt-0 mb-3 heading card-title'>{cl.name}</h6>
-                          <button href='#' className='btn card-btn mt-auto'>Ver trámites</button>
+                        <div className='d-flex flex-column'>
+                          <p className='card-title'>{cl.name}</p>
                         </div>
                       </div>
                     </div>
