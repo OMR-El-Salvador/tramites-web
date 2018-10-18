@@ -22,6 +22,7 @@ export default class ProcedureList extends Component {
               style={itemStyle}>
               <ProcedureElement
                   name={procedure.name}
+                  code={procedure.code}
                   id={procedure.id}
                   modes={procedure.modes}
                   />

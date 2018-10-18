@@ -9,6 +9,7 @@ export default class ProcedureElement extends Component {
     return (
       <div className='procedureElement'>
         <ProcedureName text={this.props.name} />
+        <div>{this.props.code}</div>
         <ProcedureModes modes={this.props.modes} />
       </div>
     )
@@ -17,6 +18,7 @@ export default class ProcedureElement extends Component {
 
 ProcedureElement.propTypes = {
   name: PropTypes.string.isRequired,
+  code: PropTypes.string.isRequired,
   modes: PropTypes.array.isRequired,
   id: PropTypes.number.isRequired
 };
