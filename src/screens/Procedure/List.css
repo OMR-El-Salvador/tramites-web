@@ -1,5 +1,10 @@
 .result-text {
   margin-top: 2%;
-  font-family: 'Heebo', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.2em;
+  font-weight: 500;
+}
+
+.term {
+  color: #95C11F;
 }

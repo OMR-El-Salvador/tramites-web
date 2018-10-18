@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import ProcedureName from '../../components/Procedure/Name';
 
 import URL from '../../components/UI/URL/URL';
-import Footer from '../UI/Footer';
 
 const infoDivStyle = {
   marginTop: '1em'
@@ -221,7 +220,6 @@ export default class ProcedureDetailScreen extends Component {
             </div>
           </div>
         </section>
-        <Footer />
       </div>
     )
   }

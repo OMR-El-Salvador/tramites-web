@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ProcedureElement from './Element';
 
+const listStyle = {
+  fontWeight: '300',
+  letterSpacing: '-0.05em'
+}
+
 const itemStyle = {
   marginTop: '2em'
 };
@@ -9,7 +14,7 @@ const itemStyle = {
 export default class ProcedureList extends Component {
   render() {
     return (
-      <div id='procedure-accordion' className='procedureList'>
+      <div className='procedureList' style={listStyle}>
         {
           this.props.procedures.map(procedure => (
             <div key={procedure.id}

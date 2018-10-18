@@ -26,7 +26,7 @@ export default class ProcedureListScreen extends Component {
   render() {
     return (
       <div>
-        <section className='text-left card card-body bg-light' id='section-procedures'>
+        <section id='section-procedures'>
           <div className='container'>
             <div className='row'>
               <div className='col-md-12'>
@@ -34,15 +34,15 @@ export default class ProcedureListScreen extends Component {
                   {
                     this.state.procedures.length > 1
                     ?
-                    'Se encontraron los siguientes ' + this.state.procedures.length + ' resultados '
+                    'Se encontraron ' + this.state.procedures.length + ' resultados '
                     :
                     this.state.procedures.lenght === 1
                     ?
-                    'Se encontró el siguiente resultado '
+                    'Se encontró un resultado '
                     :
                     'No se encontraron resultados '
                   }
-                  para "<em>{this.state.term}</em>":
+                  para "<em className='term'>{this.state.term}</em>":
                 </p>
                 <hr />
                 <ProcedureList procedures={this.state.procedures} />

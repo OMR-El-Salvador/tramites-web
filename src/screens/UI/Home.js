@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ProcedureSearch from '../../components/Procedure/Search';
 import Categories from '../UI/Categories'
-import Footer from '../UI/Footer';
 import Background from '../../img/bg-bw.jpg';
 
 var divStyle = {
@@ -34,7 +33,6 @@ export default class Home extends Component {
           </div>
         </section>
         <Categories />
-        <Footer />
       </div>
     )
   }
