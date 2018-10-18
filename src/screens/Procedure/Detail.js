@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
 import ProcedureName from '../../components/Procedure/Name';
-
 import URL from '../../components/UI/URL/URL';
+
+import '../../services/http';
+import { HttpService } from '../../services/http';
 
 const infoDivStyle = {
   marginTop: '1em'
@@ -13,6 +15,17 @@ const modeTextStyle = {
 }
 
 export default class ProcedureDetailScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { id: this.props.match.params.id, data: { } };
+  }
+
+  componentDidMount() {
+    let resPath = 'mode_detail';
+    let params = '?id=eq.' + this.state.id;
+    HttpService.getResource(resPath, params).then(data => this.setState({data: data[0]}));
+  }
+
   render() {
     return (
       <div>
@@ -22,12 +35,12 @@ export default class ProcedureDetailScreen extends Component {
               <div className='col-md-12'>
                 <div className='row'>
                   <div className='col-md-12'>
-                    <ProcedureName text={'Autorización de uso, retiro, translado, traslado temporal, modificación o reemplazo de software de máquina registradora o sistema computarizado, así como autorización de cinta de auditoría o bitácora y emisión de documenttos preimpresos'} />
+                    <ProcedureName text={this.state.data.procedure_name} />
                   </div>
                 </div>
                 <div className='row' style={infoDivStyle}>
                   <div className='col-md-7'>
-                    <p>Obtener la autorización de la máquina registradora o sistema computarizado</p>
+                    <p>{this.state.data.description}</p>
                   </div>
                   <div className='col-md-3'></div>
                   <div className='col-md-2'>
@@ -37,7 +50,7 @@ export default class ProcedureDetailScreen extends Component {
                 <hr />
                 <div className='row'>
                   <div className='col-md-12'>
-                    <p style={modeTextStyle}>Traslado Permanente</p>
+                    <p style={modeTextStyle}>{this.state.data.name}</p>
                   </div>
                 </div>
                 <hr />
