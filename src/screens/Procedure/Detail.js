@@ -6,12 +6,18 @@ import URL from '../../components/UI/URL/URL';
 import '../../services/http';
 import { HttpService } from '../../services/http';
 
-const infoDivStyle = {
-  marginTop: '1em'
+const sectionStyle = {
+  marginTop: '1.3em'
+}
+
+const headerStyle = {
+  fontWeight: '600'
 }
 
 const modeTextStyle = {
   color: '#386CA4',
+  fontWeight: '400',
+  fontSize: '1.3em'
 }
 
 export default class ProcedureDetailScreen extends Component {
@@ -29,28 +35,28 @@ export default class ProcedureDetailScreen extends Component {
   render() {
     return (
       <div>
-        <section className='text-left' id='section-procedures'>
+        <section className='text-left' id='section-procedures' style={sectionStyle}>
           <div className='container'>
             <div className='row align-items-center justify-content-center procedure-detail'>
               <div className='col-md-12'>
                 <div className='row'>
-                  <div className='col-md-12'>
-                    <ProcedureName text={this.state.data.procedure_name} />
+                  <div className='col-md-12' style={headerStyle}>
+                    { this.state.data.procedure_name &&
+                    <ProcedureName text={this.state.data.procedure_name} /> }
                   </div>
                 </div>
-                <div className='row' style={infoDivStyle}>
-                  <div className='col-md-7'>
+                <div className='row'>
+                  <div className='col-md-10'>
+                    <p style={modeTextStyle}>{this.state.data.name}</p>
+                  </div>
+                  <div className='col-md-2'>{this.state.data.code}</div>
+                </div>
+                <div className='row'>
+                  <div className='col-md-10'>
                     <p>{this.state.data.description}</p>
                   </div>
-                  <div className='col-md-3'></div>
                   <div className='col-md-2'>
                     <URL href='https://miempresa.gob.sv/' text='Ver en línea' />
-                  </div>
-                </div>
-                <hr />
-                <div className='row'>
-                  <div className='col-md-12'>
-                    <p style={modeTextStyle}>{this.state.data.name}</p>
                   </div>
                 </div>
                 <hr />

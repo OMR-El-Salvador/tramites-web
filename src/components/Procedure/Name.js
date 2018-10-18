@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 const nameStyle = {
   fontSize: '1.6em',
-  fontWeight: '400'
+  fontWeight: '500',
+  letterSpacing: '-0.03em'
 };
 
 export default class ProcedureName extends Component {
