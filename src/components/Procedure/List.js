@@ -4,7 +4,8 @@ import ProcedureElement from './Element';
 
 const listStyle = {
   fontWeight: '300',
-  letterSpacing: '-0.05em'
+  letterSpacing: '-0.07em',
+  marginTop: '1em'
 }
 
 const itemStyle = {
@@ -24,6 +25,7 @@ export default class ProcedureList extends Component {
                   id={procedure.id}
                   modes={procedure.modes}
                   />
+              <hr />
             </div>
           ))
         }

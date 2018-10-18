@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const nameStyle = {
-  fontSize: '1.4em'
+  fontSize: '1.6em',
+  fontWeight: '400'
 };
 
 export default class ProcedureName extends Component {

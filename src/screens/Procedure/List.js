@@ -44,7 +44,6 @@ export default class ProcedureListScreen extends Component {
                   }
                   para "<em className='term'>{this.state.term}</em>":
                 </p>
-                <hr />
                 <ProcedureList procedures={this.state.procedures} />
               </div>
             </div>
