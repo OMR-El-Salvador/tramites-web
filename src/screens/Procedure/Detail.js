@@ -14,10 +14,22 @@ const headerStyle = {
   fontWeight: '600'
 }
 
+const cardElementStyle = {
+  marginTop: '0.5em'
+}
+
+const tagStyle= {
+  marginLeft: '0.5em'
+}
+
 const modeTextStyle = {
   color: '#386CA4',
   fontWeight: '400',
   fontSize: '1.3em'
+}
+
+const itemHeaderStyle = {
+  fontWeight: '500'
 }
 
 export default class ProcedureDetailScreen extends Component {
@@ -40,34 +52,50 @@ export default class ProcedureDetailScreen extends Component {
             <div className='row align-items-center justify-content-center procedure-detail'>
               <div className='col-md-12'>
                 <div className='row'>
-                  <div className='col-md-12' style={headerStyle}>
-                    { this.state.data.procedure_name &&
-                    <ProcedureName text={this.state.data.procedure_name} /> }
+                  <div className='col-md-9'>
+                    <div className='row'>
+                      <div className='col-md-12' style={headerStyle}>
+                        { this.state.data.procedure_name &&
+                        <ProcedureName text={this.state.data.procedure_name} /> }
+                      </div>
+                    </div>
+                    <div className='row'>
+                      <div className='col-md-12'>
+                        <p style={modeTextStyle}>{this.state.data.name}</p>
+                      </div>
+                    </div>
+                    <div className='row'>
+                      <div className='col-md-12'>
+                        <p>{this.state.data.description}</p>
+                      </div>
+                    </div>
+                    <div className='row'>
+                      <div className='col-md-12'>
+                        <p>
+                          <span style={itemHeaderStyle}>Sujetos obligados: </span>
+                          {this.state.data.subject}
+                        </p>
+                      </div>
+                    </div>
+                    <div className='row'>
+                      <div className='col-md-12'>
+                        <a href='#' style={tagStyle} className='badge badge-success'>Subsidios y programas sociales</a>
+                        <a href='#' style={tagStyle} className='badge badge-success'>Inicio y operación de negocios</a>
+                        <a href='#' style={tagStyle} className='badge badge-success'>Seguridad, defensa y materiales peligrosos</a>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className='row'>
-                  <div className='col-md-10'>
-                    <p style={modeTextStyle}>{this.state.data.name}</p>
-                  </div>
-                  <div className='col-md-2'>{this.state.data.code}</div>
-                </div>
-                <div className='row'>
-                  <div className='col-md-10'>
-                    <p>{this.state.data.description}</p>
-                  </div>
-                  <div className='col-md-2'>
-                    <URL href='https://miempresa.gob.sv/' text='Ver en línea' />
+                  <div className='col-md-3'>
+                    <div className='card'>
+                      <div className='card-body'>
+                        <h5 style={cardElementStyle} className='card-title'>{this.state.data.institution}</h5>
+                        <h6 style={cardElementStyle} className='card-subtitle mb-2 text-muted'>{this.state.data.code}</h6>
+                        <URL style={cardElementStyle} href='https://miempresa.gob.sv/' text='Ver en línea' />
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <hr />
-                <div className='row'>
-                  <div className='col-md-12'>
-                    <p>
-                      Sujetos obligados: Comerciantes que inician operación y deben registrar sus
-                      máquinas
-                    </p>
-                  </div>
-                </div>
                 <div className='row'>
                   <div className='col-md-12'>
                     <h6>Requisitos</h6>
