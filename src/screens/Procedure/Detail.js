@@ -79,9 +79,9 @@ export default class ProcedureDetailScreen extends Component {
 
   componentDidMount() {
     let resPath = 'modes';
-    let addressesPath =
-      'addresses(detail,schedule,phone,responsible_name,responsible_position,'+
-      'municipality(name, department(name)))';
+    // let addressesPath =
+    //   'addresses(detail,schedule,phone,responsible_name,responsible_position,'+
+    //   'municipality(name, department(name)))';
     let legalBasePath =
       'legal_base(type,legislation_name,legislation_reference,legal_topic(name))';
     let procedurePath = 'procedure(name,institution(name))';
@@ -215,106 +215,6 @@ export default class ProcedureDetailScreen extends Component {
                           <a href='#' className='badge badge-success'>Subsidios y programas sociales</a>
                           <a href='#' className='badge badge-success'>Inicio y operación de negocios</a>
                           <a href='#' className='badge badge-success'>Seguridad, defensa y materiales peligrosos</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <hr />
-                <hr />
-                <hr />
-                <hr />
-                <div className='row'>
-                  <div className='col-md-12'>
-                    <div className='row'>
-                      <div className='col-md-12'><h6>Dirección, Horario y contacto</h6></div>
-                    </div>
-                    <div className='row'>
-                      <div className='col-md-12'>
-                        <div className='address-list'>
-                          <div className='card-header'>
-                            <div className='card-header' id='heading-card-1'>
-                              <h5 className='mb-0'>
-                                <button className='btn btn-link' data-toggle='collapse'
-                                  data-target='#procedureCollapse1'
-                                  aria-expanded='true'
-                                  aria-controls='procedureCollapse1'>
-                                  Ahuachapán
-                                </button>
-                              </h5>
-                            </div>
-                            <div id='procedureCollapse1'
-                              className='collapse'
-                              aria-labelledby='heading-card-1'
-                              data-parent='#accordion'>
-                              <div className='card-body'>
-                                <p>
-                                  <strong>Ahuachapán </strong>
-                                  Cantón Puente El Jobo, Ahuachapán Km. 112. <br />
-                                  <i className='fas fa-clock'></i> Lun - Dom 06:00 am - 10:00pm
-                                  <br />
-                                  <i className='fas fa-phone'></i> 2244-6422 <br />
-                                  <i className='fas fa-user'></i>Cajeros de Aduana: Dany Bonilla y
-                                      Carlos Luna <br />
-                                  <i className='fas fa-envelope'></i> dany.bonilla@mh.gob.sv y
-                                      carlos.luna@mh.gob.sv
-                                </p>
-                                <hr />
-                                <p>
-                                  <strong>Ahuachapán </strong>
-                                  Cantón Puente El Jobo, Ahuachapán Km. 112. <br />
-                                  <i className='fas fa-clock'></i> Lun - Dom 06:00 am - 10:00pm
-                                  <i className='fas fa-phone'></i> 2244-6422
-                                  <i className='fas fa-user'></i>Cajeros de Aduana: Dany Bonilla y
-                                      Carlos Luna
-                                  <i className='fas fa-envelope'></i> dany.bonilla@mh.gob.sv y
-                                      carlos.luna@mh.gob.sv
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className='card-header'>
-                            <div className='card-header' id='heading-card-2'>
-                              <h5 className='mb-0'>
-                                <button className='btn btn-link' data-toggle='collapse'
-                                  data-target='#procedureCollapse2'
-                                  aria-expanded='true'
-                                  aria-controls='procedureCollapse2'>
-                                  Santa Ana
-                                </button>
-                              </h5>
-                            </div>
-                            <div id='procedureCollapse2'
-                              className='collapse'
-                              aria-labelledby='heading-card-2'
-                              data-parent='#accordion'>
-                              <div className='card-body'>
-                                <p>
-                                  <strong>Santa Ana </strong>
-                                  Cantón Puente El Jobo, Santa Ana Km. 112. <br />
-                                  <i className='fas fa-clock'></i> Lun - Dom 06:00 am - 10:00pm
-                                  <br />
-                                  <i className='fas fa-phone'></i> 2244-6422 <br />
-                                  <i className='fas fa-user'></i>Cajeros de Aduana: Dany Bonilla y
-                                      Carlos Luna <br />
-                                  <i className='fas fa-envelope'></i> dany.bonilla@mh.gob.sv y
-                                      carlos.luna@mh.gob.sv
-                                </p>
-                                <hr />
-                                <p>
-                                  <strong>Santa Ana </strong>
-                                  Cantón Puente El Jobo, Santa Ana Km. 112. <br />
-                                  <i className='fas fa-clock'></i> Lun - Dom 06:00 am - 10:00pm
-                                  <i className='fas fa-phone'></i> 2244-6422
-                                  <i className='fas fa-user'></i>Cajeros de Aduana: Dany Bonilla y
-                                      Carlos Luna
-                                  <i className='fas fa-envelope'></i> dany.bonilla@mh.gob.sv y
-                                      carlos.luna@mh.gob.sv
-                                </p>
-                              </div>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>
