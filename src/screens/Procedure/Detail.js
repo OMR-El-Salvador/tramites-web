@@ -63,6 +63,11 @@ const places = {
   'other': 'Otros'
 }
 
+const currencies = {
+  'dollar': '$',
+  'colon': '₡'
+}
+
 export default class ProcedureDetailScreen extends Component {
   constructor(props) {
     super(props);
@@ -151,7 +156,10 @@ export default class ProcedureDetailScreen extends Component {
                                 {this.state.data.charge_link ? (
                                   <URL href={this.state.data.charge_link} text='Ver archivo'/>
                                 ) : (
-                                  <span>{presentationMeans[this.state.data.charge_amount]}.</span>
+                                  <span>
+                                    {currencies[this.state.data.currency]}
+                                    {this.state.data.charge_amount}
+                                  </span>
                                 )}.
                               </p>
                               <p>
