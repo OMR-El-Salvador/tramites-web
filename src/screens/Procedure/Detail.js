@@ -89,9 +89,9 @@ export default class ProcedureDetailScreen extends Component {
     let classPath = 'class(name)';
 
     let params =
-      '?select=*,'+','+legalBasePath+','+classPath+','+procedurePath+','+formsPath+
+      '?select=*,'+legalBasePath+','+classPath+','+procedurePath+','+formsPath+
       '&id=eq.' + this.state.id;
-    // HttpService.getResource(resPath, params).then(data => console.log(data));
+    HttpService.getResource(resPath, params).then(data => console.log(data));
     HttpService.getResource(resPath, params).then(data => this.setState({data: data[0]}));
   }
 
