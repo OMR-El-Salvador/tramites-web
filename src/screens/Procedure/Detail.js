@@ -80,6 +80,8 @@ const legislationTypes = {
   'executive_order': 'Decreto ejecutivo'
 }
 
+let prevTopic = null;
+
 export default class ProcedureDetailScreen extends Component {
   constructor(props) {
     super(props);
@@ -103,7 +105,7 @@ export default class ProcedureDetailScreen extends Component {
     let params =
       '?select=*,'+legalBasePath+','+classPath+','+procedurePath+','+formsPath+
       '&id=eq.' + this.state.id;
-    HttpService.getResource(resPath, params).then(data => console.log(data));
+    // HttpService.getResource(resPath, params).then(data => console.log(data));
     HttpService.getResource(resPath, params).then(data => this.setState({data: data[0]}));
   }
 
@@ -112,6 +114,8 @@ export default class ProcedureDetailScreen extends Component {
   getPlaces(placesArray) {
     return placesArray.reduce((acc, curr, i) => acc + (i === 0 ? '' : ', ') + places[curr], '');
   }
+
+  changeTopic(newTopic) { this.prevTopic=newTopic; };
 
   render() {
     return (
@@ -160,13 +164,16 @@ export default class ProcedureDetailScreen extends Component {
                     <div className='row' style={generalElementStyle}>
                       <div className='col-md-12'>
                         <h5>¿Cuál es su base legal?</h5>
-                          <table className='table table-bordered table-striped table-hover w-100 d-block d-md-table'>
+                          <table className='table table-hover'>
                             <tbody>
                               {
                                 this.state.data.legal_base.map(lb => (
                                   <tr key={lb.id}>
-                                    <td>{lb.legal_topic.name}</td>
+                                    <td style={itemHeaderStyle}>
+                                      {lb.legal_topic.name!==this.prevTopic && lb.legal_topic.name}
+                                    </td>
                                     <td>{!lb.legislation_name?'No Existe':lb.legislation_name}</td>
+                                    {this.changeTopic(lb.legal_topic.name)}
                                   </tr>
                                 ))
                               }
