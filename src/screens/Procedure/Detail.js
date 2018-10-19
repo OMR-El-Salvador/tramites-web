@@ -54,6 +54,15 @@ const singleTimeUnits = {
   'year': 'año'
 }
 
+const places = {
+  'central_offices': 'Oficinas centrales',
+  'regional_offices': 'Oficinas regionales',
+  'financial_institution': 'Instituciones financieras',
+  'online': 'En línea',
+  'treasury': 'Ministerio de Hacienda',
+  'other': 'Otros'
+}
+
 export default class ProcedureDetailScreen extends Component {
   constructor(props) {
     super(props);
@@ -63,10 +72,15 @@ export default class ProcedureDetailScreen extends Component {
   componentDidMount() {
     let resPath = 'mode_detail';
     let params = '?id=eq.' + this.state.id;
+    // HttpService.getResource(resPath, params).then(data => console.log(data));
     HttpService.getResource(resPath, params).then(data => this.setState({data: data[0]}));
   }
 
   getTimeVal(key, amount) { return amount===1 ? singleTimeUnits[key] : timeUnits[key]; }
+
+  getPlaces(placesArray) {
+    return placesArray.reduce((acc, curr, i) => acc + (i === 0 ? '' : ', ') + places[curr], '');
+  }
 
   render() {
     return (
@@ -131,14 +145,20 @@ export default class ProcedureDetailScreen extends Component {
                             {presentationMeans[this.state.data.presentation_means]}.
                           </p>
                           {(this.state.data.charge_amount || this.state.data.charge_link) && (
-                            <p>
-                              <span style={itemHeaderStyle}>Costo: </span>
-                              {this.state.data.charge_link ? (
-                                <URL href={this.state.data.charge_link} text='Ver archivo'/>
-                              ) : (
-                                <span>{presentationMeans[this.state.data.charge_amount]}.</span>
-                              )}.
-                            </p>
+                            <div>
+                              <p>
+                                <span style={itemHeaderStyle}>Costo: </span>
+                                {this.state.data.charge_link ? (
+                                  <URL href={this.state.data.charge_link} text='Ver archivo'/>
+                                ) : (
+                                  <span>{presentationMeans[this.state.data.charge_amount]}.</span>
+                                )}.
+                              </p>
+                              <p>
+                                <span style={itemHeaderStyle}>Lugares de pago: </span>
+                                {this.getPlaces(this.state.data.payment_places)}.
+                              </p>
+                            </div>
                           )}
                           <p>
                             <span style={itemHeaderStyle}>Tiempo de respuesta: </span>
@@ -146,18 +166,6 @@ export default class ProcedureDetailScreen extends Component {
                             {this.getTimeVal(this.state.data.response_time_unit,
                                 this.state.data.response_time_amount)}.
                           </p>
-                          <p>
-                            <span style={itemHeaderStyle}>Clase: </span>
-                            {this.state.data.class}.
-                          </p>
-                          {this.state.data.validity_time_unit && (
-                            <p>
-                              <span style={itemHeaderStyle}>Vigencia: </span>
-                              {this.state.data.validity_time_amount}&nbsp;
-                              {this.getTimeVal(this.state.data.validity_time_unit,
-                                  this.state.data.validity_time_amount)}.
-                            </p>
-                          )}
                           {this.state.data.legal_time_unit && (
                             <p>
                               <span style={itemHeaderStyle}>Tiempo regulado: </span>
@@ -166,6 +174,18 @@ export default class ProcedureDetailScreen extends Component {
                                   this.state.data.legal_time_amount)}.
                             </p>
                           )}
+                          {this.state.data.validity_time_unit && (
+                            <p>
+                              <span style={itemHeaderStyle}>Vigencia: </span>
+                              {this.state.data.validity_time_amount}&nbsp;
+                              {this.getTimeVal(this.state.data.validity_time_unit,
+                                  this.state.data.validity_time_amount)}.
+                            </p>
+                          )}
+                          <p>
+                            <span style={itemHeaderStyle}>Clase: </span>
+                            {this.state.data.class}.
+                          </p>
                           <p>
                             <span style={itemHeaderStyle}>Unidad: </span>
                             {this.state.data.responsible_unit}. {this.state.data.responsible_area}
