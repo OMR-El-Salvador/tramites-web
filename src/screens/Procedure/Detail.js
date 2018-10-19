@@ -71,12 +71,26 @@ const currencies = {
 export default class ProcedureDetailScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { id: this.props.match.params.id, data: { procedure_name: '', institution: '' } };
+    this.state = {
+      id: this.props.match.params.id,
+      data: { procedure: { name: '', institution: {}}, class: { name: ''}}
+    };
   }
 
   componentDidMount() {
-    let resPath = 'mode_detail';
-    let params = '?id=eq.' + this.state.id;
+    let resPath = 'modes';
+    let addressesPath =
+      'addresses(detail,schedule,phone,responsible_name,responsible_position,'+
+      'municipality(name, department(name)))';
+    let legalBasePath =
+      'legal_base(type,legislation_name,legislation_reference,legal_topic(name))';
+    let procedurePath = 'procedure(name,institution(name))';
+    let formsPath = 'forms(name,url)';
+    let classPath = 'class(name)';
+
+    let params =
+      '?select=*,'+addressesPath+','+legalBasePath+','+classPath+','+procedurePath+','+formsPath+
+      '&id=eq.' + this.state.id;
     // HttpService.getResource(resPath, params).then(data => console.log(data));
     HttpService.getResource(resPath, params).then(data => this.setState({data: data[0]}));
   }
@@ -96,7 +110,7 @@ export default class ProcedureDetailScreen extends Component {
               <div className='col-md-12'>
                 <div className='row'>
                   <div className='col-md-12' style={headerStyle}>
-                    <ProcedureName text={this.state.data.procedure_name} />
+                    <ProcedureName text={this.state.data.procedure.name} />
                   </div>
                 </div>
                 <div className='row'>
@@ -137,7 +151,7 @@ export default class ProcedureDetailScreen extends Component {
                             {this.state.data.code}
                           </h5>
                           <h6 style={cardElementStyle} className='card-subtitle mb-2 text-muted'>
-                            {this.state.data.institution}
+                            {this.state.data.procedure.institution.name}
                           </h6>
                           <URL
                               style={cardElementStyle}
@@ -192,7 +206,7 @@ export default class ProcedureDetailScreen extends Component {
                           )}
                           <p>
                             <span style={itemHeaderStyle}>Clase: </span>
-                            {this.state.data.class}.
+                            {this.state.data.class.name}.
                           </p>
                           <p>
                             <span style={itemHeaderStyle}>Unidad: </span>
