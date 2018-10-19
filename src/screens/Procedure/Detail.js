@@ -89,7 +89,7 @@ export default class ProcedureDetailScreen extends Component {
     let classPath = 'class(name)';
 
     let params =
-      '?select=*,'+addressesPath+','+legalBasePath+','+classPath+','+procedurePath+','+formsPath+
+      '?select=*,'+','+legalBasePath+','+classPath+','+procedurePath+','+formsPath+
       '&id=eq.' + this.state.id;
     // HttpService.getResource(resPath, params).then(data => console.log(data));
     HttpService.getResource(resPath, params).then(data => this.setState({data: data[0]}));
@@ -140,6 +140,39 @@ export default class ProcedureDetailScreen extends Component {
                           </li>
                           <li>Cartel original que se emitió al momento de la autorización</li>
                         </ol>
+                      </div>
+                    </div>
+                    <div className='row' style={generalElementStyle}>
+                      <div className='col-md-12'>
+                        <h5>¿Cuál es su base legal?</h5>
+                          <table className='table table-bordered table-striped table-hover'>
+                            <tbody>
+                              <tr>
+                                <td>Fundamento que da origen al trámite</td>
+                                <td>art. 50, 115 Reglamento del Código Tributario.</td>
+                              </tr>
+                              <tr>
+                                <td>Institución/Unidad responsable</td>
+                                <td>art. 34 Código tributario</td>
+                              </tr>
+                              <tr>
+                                <td>Requisitos</td>
+                                <td>Todo Instrucciones de Trabajo</td>
+                              </tr>
+                              <tr>
+                                <td>Plazos de respuesta</td>
+                                <td>Todo Instrucciones de Trabajo</td>
+                              </tr>
+                              <tr>
+                                <td>Vigencia</td>
+                                <td></td>
+                              </tr>
+                              <tr>
+                                <td>Tarifas o derechos</td>
+                                <td></td>
+                              </tr>
+                            </tbody>
+                          </table>
                       </div>
                     </div>
                   </div>
