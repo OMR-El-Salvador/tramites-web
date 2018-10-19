@@ -68,12 +68,24 @@ const currencies = {
   'colon': '₡'
 }
 
+const legislationTypes = {
+  'regulation': 'Reglamento de Ley',
+  'law': 'Ley',
+  'constitution': 'Constitutición',
+  'other': 'Otro',
+  'non_existent': 'No existe',
+  'ministerial_agreement': 'Acuerdo ministerial',
+  'international_treaty': 'Tratado internacional',
+  'technical_regulation': 'Reglamento técnico',
+  'executive_order': 'Decreto ejecutivo'
+}
+
 export default class ProcedureDetailScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       id: this.props.match.params.id,
-      data: { procedure: { name: '', institution: {}}, class: { name: ''}}
+      data: { procedure: { name: '', institution: {}}, class: { name: ''}, legal_base: []}
     };
   }
 
@@ -83,7 +95,7 @@ export default class ProcedureDetailScreen extends Component {
     //   'addresses(detail,schedule,phone,responsible_name,responsible_position,'+
     //   'municipality(name, department(name)))';
     let legalBasePath =
-      'legal_base(type,legislation_name,legislation_reference,legal_topic(name))';
+      'legal_base(id,type,legislation_name,legislation_reference,legal_topic(name))';
     let procedurePath = 'procedure(name,institution(name))';
     let formsPath = 'forms(name,url)';
     let classPath = 'class(name)';
@@ -104,9 +116,12 @@ export default class ProcedureDetailScreen extends Component {
   render() {
     return (
       <div>
-        <section className='text-left' id='section-procedures' style={sectionStyle}>
+        <section
+            className='text-left procedure-detail justify-content-center align-items-center'
+            id='section-procedures'
+            style={sectionStyle}>
           <div className='container'>
-            <div className='row align-items-center justify-content-center procedure-detail'>
+            <div className='row'>
               <div className='col-md-12'>
                 <div className='row'>
                   <div className='col-md-12' style={headerStyle}>
@@ -145,32 +160,16 @@ export default class ProcedureDetailScreen extends Component {
                     <div className='row' style={generalElementStyle}>
                       <div className='col-md-12'>
                         <h5>¿Cuál es su base legal?</h5>
-                          <table className='table table-bordered table-striped table-hover'>
+                          <table className='table table-bordered table-striped table-hover w-100 d-block d-md-table'>
                             <tbody>
-                              <tr>
-                                <td>Fundamento que da origen al trámite</td>
-                                <td>art. 50, 115 Reglamento del Código Tributario.</td>
-                              </tr>
-                              <tr>
-                                <td>Institución/Unidad responsable</td>
-                                <td>art. 34 Código tributario</td>
-                              </tr>
-                              <tr>
-                                <td>Requisitos</td>
-                                <td>Todo Instrucciones de Trabajo</td>
-                              </tr>
-                              <tr>
-                                <td>Plazos de respuesta</td>
-                                <td>Todo Instrucciones de Trabajo</td>
-                              </tr>
-                              <tr>
-                                <td>Vigencia</td>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td>Tarifas o derechos</td>
-                                <td></td>
-                              </tr>
+                              {
+                                this.state.data.legal_base.map(lb => (
+                                  <tr key={lb.id}>
+                                    <td>{lb.legal_topic.name}</td>
+                                    <td>{!lb.legislation_name?'No Existe':lb.legislation_name}</td>
+                                  </tr>
+                                ))
+                              }
                             </tbody>
                           </table>
                       </div>
@@ -251,39 +250,6 @@ export default class ProcedureDetailScreen extends Component {
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className='row procedure-legal-base'>
-                  <div className='col-md-12'>
-                    <h6>Base legal</h6>
-                    <table className='table table-bordered table-striped table-hover'>
-                      <tbody>
-                        <tr>
-                          <td>Fundamento que da origen al trámite</td>
-                          <td>art. 50, 115 Reglamento del Código Tributario.</td>
-                        </tr>
-                        <tr>
-                          <td>Institución/Unidad responsable</td>
-                          <td>art. 34 Código tributario</td>
-                        </tr>
-                        <tr>
-                          <td>Requisitos</td>
-                          <td>Todo Instrucciones de Trabajo</td>
-                        </tr>
-                        <tr>
-                          <td>Plazos de respuesta</td>
-                          <td>Todo Instrucciones de Trabajo</td>
-                        </tr>
-                        <tr>
-                          <td>Vigencia</td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td>Tarifas o derechos</td>
-                          <td></td>
-                        </tr>
-                      </tbody>
-                    </table>
                   </div>
                 </div>
               </div>
