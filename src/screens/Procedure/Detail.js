@@ -14,28 +14,50 @@ const headerStyle = {
   fontWeight: '600'
 }
 
-const cardElementStyle = {
+const generalElementStyle = {
   marginTop: '0.5em'
 }
 
-const tagStyle= {
-  marginLeft: '0.5em'
+const cardElementStyle = {
+  color: 'black',
+  marginTop: '0.5em'
 }
 
 const modeTextStyle = {
   color: '#386CA4',
   fontWeight: '400',
-  fontSize: '1.3em'
+  fontSize: '1.3em',
+  marginTop: '0.5em'
 }
 
 const itemHeaderStyle = {
   fontWeight: '500'
 }
 
+const presentationMeans = {
+  'face': 'Presencial',
+  'online': 'En línea',
+  'face_online': 'Presencial y En Línea'
+}
+
+const timeUnits = {
+  'minute': 'minutos',
+  'day': 'días',
+  'month': 'meses',
+  'year': 'años'
+}
+
+const singleTimeUnits = {
+  'minute': 'minuto',
+  'day': 'día',
+  'month': 'mes',
+  'year': 'año'
+}
+
 export default class ProcedureDetailScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { id: this.props.match.params.id, data: { } };
+    this.state = { id: this.props.match.params.id, data: { procedure_name: '', institution: '' } };
   }
 
   componentDidMount() {
@@ -43,6 +65,8 @@ export default class ProcedureDetailScreen extends Component {
     let params = '?id=eq.' + this.state.id;
     HttpService.getResource(resPath, params).then(data => this.setState({data: data[0]}));
   }
+
+  getTimeVal(key, amount) { return amount===1 ? singleTimeUnits[key] : timeUnits[key]; }
 
   render() {
     return (
@@ -52,88 +76,112 @@ export default class ProcedureDetailScreen extends Component {
             <div className='row align-items-center justify-content-center procedure-detail'>
               <div className='col-md-12'>
                 <div className='row'>
-                  <div className='col-md-9'>
-                    <div className='row'>
-                      <div className='col-md-12' style={headerStyle}>
-                        { this.state.data.procedure_name &&
-                        <ProcedureName text={this.state.data.procedure_name} /> }
+                  <div className='col-md-12' style={headerStyle}>
+                    <ProcedureName text={this.state.data.procedure_name} />
+                  </div>
+                </div>
+                <div className='row'>
+                  <div className='col-md-12' style={modeTextStyle}>
+                    {this.state.data.name}
+                  </div>
+                </div>
+                <div className='row'>
+                  <div className='col-md-8'>
+                    <div className='row' style={generalElementStyle}>
+                      <div className='col-md-12'>
+                        {this.state.data.description}.
                       </div>
                     </div>
-                    <div className='row'>
+                    <div className='row' style={generalElementStyle}>
                       <div className='col-md-12'>
-                        <p style={modeTextStyle}>{this.state.data.name}</p>
+                        <h5>¿Quiénes están obligados?</h5>{this.state.data.subject}.
                       </div>
                     </div>
-                    <div className='row'>
+                    <div className='row' style={generalElementStyle}>
                       <div className='col-md-12'>
-                        <p>{this.state.data.description}</p>
-                      </div>
-                    </div>
-                    <div className='row'>
-                      <div className='col-md-12'>
-                        <p>
-                          <span style={itemHeaderStyle}>Sujetos obligados: </span>
-                          {this.state.data.subject}
-                        </p>
-                      </div>
-                    </div>
-                    <div className='row'>
-                      <div className='col-md-12'>
-                        <a href='#' style={tagStyle} className='badge badge-success'>Subsidios y programas sociales</a>
-                        <a href='#' style={tagStyle} className='badge badge-success'>Inicio y operación de negocios</a>
-                        <a href='#' style={tagStyle} className='badge badge-success'>Seguridad, defensa y materiales peligrosos</a>
+                        <h5>¿Cuáles son los requisitos?</h5>
+                        <ol type='a'>
+                          <li>
+                            Solicitud de traslado, especificando las características del equipo y la
+                            nueva dirección
+                          </li>
+                          <li>Cartel original que se emitió al momento de la autorización</li>
+                        </ol>
                       </div>
                     </div>
                   </div>
-                  <div className='col-md-3'>
-                    <div className='card'>
-                      <div className='card-body'>
-                        <h5 style={cardElementStyle} className='card-title'>{this.state.data.institution}</h5>
-                        <h6 style={cardElementStyle} className='card-subtitle mb-2 text-muted'>{this.state.data.code}</h6>
-                        <URL style={cardElementStyle} href='https://miempresa.gob.sv/' text='Ver en línea' />
+                  <div className='col-md-4'>
+                    <div className='row'>
+                      <div className='card'>
+                        <div className='card-body'>
+                          <h5 style={cardElementStyle} className='card-title'>
+                            {this.state.data.code}
+                          </h5>
+                          <h6 style={cardElementStyle} className='card-subtitle mb-2 text-muted'>
+                            {this.state.data.institution}
+                          </h6>
+                          <URL
+                              style={cardElementStyle}
+                              href='https://miempresa.gob.sv/'
+                              text='Trámite en línea' />
+                          <i className='pull-right fas fa-external-link-alt action-icon'></i>
+                          <br /><br />
+                          <p>
+                            <span style={itemHeaderStyle}>Presentación: </span>
+                            {presentationMeans[this.state.data.presentation_means]}.
+                          </p>
+                          {(this.state.data.charge_amount || this.state.data.charge_link) && (
+                            <p>
+                              <span style={itemHeaderStyle}>Costo: </span>
+                              {this.state.data.charge_link ? (
+                                <URL href={this.state.data.charge_link} text='Ver archivo'/>
+                              ) : (
+                                <span>{presentationMeans[this.state.data.charge_amount]}.</span>
+                              )}.
+                            </p>
+                          )}
+                          <p>
+                            <span style={itemHeaderStyle}>Tiempo de respuesta: </span>
+                            {this.state.data.response_time_amount}&nbsp;
+                            {this.getTimeVal(this.state.data.response_time_unit,
+                                this.state.data.response_time_amount)}.
+                          </p>
+                          <p>
+                            <span style={itemHeaderStyle}>Clase: </span>
+                            {this.state.data.class}.
+                          </p>
+                          {this.state.data.validity_time_unit && (
+                            <p>
+                              <span style={itemHeaderStyle}>Vigencia: </span>
+                              {this.state.data.validity_time_amount}&nbsp;
+                              {this.getTimeVal(this.state.data.validity_time_unit,
+                                  this.state.data.validity_time_amount)}.
+                            </p>
+                          )}
+                          {this.state.data.legal_time_unit && (
+                            <p>
+                              <span style={itemHeaderStyle}>Tiempo regulado: </span>
+                              {this.state.data.legal_time_amount}&nbsp;
+                              {this.getTimeVal(this.state.data.legal_time_unit,
+                                  this.state.data.legal_time_amount)}.
+                            </p>
+                          )}
+                          <p>
+                            <span style={itemHeaderStyle}>Unidad: </span>
+                            {this.state.data.responsible_unit}. {this.state.data.responsible_area}
+                          </p>
+                          <a href='#' className='badge badge-success'>Subsidios y programas sociales</a>
+                          <a href='#' className='badge badge-success'>Inicio y operación de negocios</a>
+                          <a href='#' className='badge badge-success'>Seguridad, defensa y materiales peligrosos</a>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <hr />
-                <div className='row'>
-                  <div className='col-md-12'>
-                    <h6>Requisitos</h6>
-                    <ol type='a'>
-                      <li>
-                        Solicitud de traslado, especificando las carasterísticas del equipo y la
-                        nueva dirección
-                      </li>
-                      <li>Cartel original que se emitio al momento de la autorización</li>
-                    </ol>
-                  </div>
-                </div>
                 <hr />
-                <div className='row'>
-                  <div className='col-md-4'>
-                    <p>Medios de presentación: Presencial y en linea.</p>
-                  </div>
-                  <div className='col-md-4'>
-                    <p>Respuesta: 5 minutos.</p>
-                  </div>
-                  <div className='col-md-4'>
-                    <p>Sin vigencia.</p>
-                  </div>
-                </div>
-                <div className='row'>
-                  <div className='col-md-6'>
-                    <h6>Costo</h6>
-                    <ol type='a'>
-                      <li>Monto: 50 colones, 2 colones por cada folio.</li>
-                      <li>Lugares: Oficinas Centrales.</li>
-                      <li>Métodos: Efectivo y Tarjeta de crédito.</li>
-                    </ol>
-                  </div>
-                  <div className='col-md-6'>
-                    <h6>Unidad administrativa</h6>
-                    <p>División de registro y asistencia tributaria/Departamento de registro</p>
-                  </div>
-                </div>
+                <hr />
+                <hr />
                 <div className='row'>
                   <div className='col-md-12'>
                     <div className='row'>
