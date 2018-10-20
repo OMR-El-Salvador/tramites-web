@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
 import '../../services/http';
 
 import './Categories.css';
+import CategoryCard from '../../components/Category/Card';
+
 import { HttpService } from '../../services/http';
 
 const icoClass = {
@@ -66,22 +67,12 @@ export default class Categories extends Component {
               <div className='row'>
                 {
                   this.state.categories.map(cat => (
-                    <div key={cat.id} className='col-lg-4 col-sm-6 d-flex align-items-stretch'>
-                      <Link to={`/modes/category/${cat.id}`}>
-                        <div className='card'>
-                          <img
-                            className='card-img-top'
-                            width='128px'
-                            height='128px'
-                            src={require('../../img/icons/'+cat.code+'.svg')} />
-                          <br />
-                          <div className='d-flex flex-column'>
-                            <p className='card-title'>{cat.name}</p>
-                            <p className='card-text text-left'>{cat.description}</p>
-                          </div>
-                        </div>
-                      </Link>
-                    </div>
+                    <CategoryCard
+                      id={cat.id}
+                      code={cat.code}
+                      name={cat.name}
+                      description={cat.description}
+                      />
                   ))
                 }
               </div>
