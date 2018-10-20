@@ -89,7 +89,7 @@ export default class ProcedureDetailScreen extends Component {
     super(props);
     this.state = {
       id: this.props.match.params.id,
-      data: { procedure: { name: '', institution: {}}, class: { name: ''}, legal_base: []}
+      data: { procedure: { name: '', institution: { } }, class: { name: ''}, legal_base: [ ] }
     };
   }
 
@@ -100,7 +100,7 @@ export default class ProcedureDetailScreen extends Component {
     //   'municipality(name, department(name)))';
     let legalBasePath =
       'legal_base(id,type,legislation_name,legislation_reference,legal_topic(name))';
-    let procedurePath = 'procedure(name,institution(name))';
+    let procedurePath = 'procedure(name,institution(name,url))';
     let formsPath = 'forms(name,url)';
     let classPath = 'class(name)';
 
@@ -189,18 +189,24 @@ export default class ProcedureDetailScreen extends Component {
                       <div className='card'>
                         <div className='card-body'>
                           <img className='card-img-top' src={DefaultLogo} />
-                          <h5 style={cardElementStyle} className='card-title'>
-                            {this.state.data.procedure.institution.name}
-                          </h5>
+                          {this.state.data.procedure.institution.name &&
+                            <h5 style={cardElementStyle} className='card-title'>
+                              {this.state.data.procedure.institution.name}
+                            </h5>
+                          }
+                          {this.state.data.procedure.institution.url &&
+                            <div>
+                              <URL
+                                  style={cardElementStyle}
+                                  href={this.state.data.procedure.institution.url}
+                                  text='Ver sitio web' />
+                              <i className='pull-right fas fa-external-link-alt action-icon'></i>
+                            </div>
+                          }
                           <h6 style={cardElementStyle} className='card-subtitle mb-2 text-muted'>
                             {this.state.data.code}
                           </h6>
-                          <URL
-                              style={cardElementStyle}
-                              href='https://miempresa.gob.sv/'
-                              text='Trámite en línea' />
-                          <i className='pull-right fas fa-external-link-alt action-icon'></i>
-                          <br /><br />
+                          <br />
                           <p>
                             <span style={itemHeaderStyle}>Presentación: </span>
                             {presentationMeans[this.state.data.presentation_means]}.

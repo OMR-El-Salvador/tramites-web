@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default class URL extends Component {
   render() {
     return (
-      <a href={this.props.href}>{this.props.text}</a>
+      <a target='_blank' href={this.props.href}>{this.props.text}</a>
     )
   }
 }
