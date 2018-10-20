@@ -6,24 +6,6 @@ import './Categories.css';
 import { HttpService } from '../../services/http';
 
 const icoClass = {
-  'SPS-001': 'fas fa-hand-paper',
-  'PD-001': 'fab fa-accessible-icon',
-  'VT-001': 'fas fa-shuttle-van',
-  'EDU-001': 'fas fa-graduation-cap',
-  'CON-001': 'fas fa-toolbox',
-  'ION-001': 'fas fa-industry',
-  'DOT-001': 'fas fa-hand-holding-usd',
-  'PF-001': 'fas fa-heart',
-  'MIG-001': 'fas fa-globe-americas',
-  'TOP-001': 'fas fa-briefcase',
-  'AAB-001': 'fab fa-pagelines',
-  'CE-001': 'fas fa-theater-masks',
-  'AF-001': 'fas fa-hands-helping',
-  'IE-001': 'fas fa-atlas',
-  'EC-001': 'fas fa-lightbulb',
-  'SDM-001': 'fas fa-shield-alt',
-  'SAL-001': 'fas fa-stethoscope',
-  'ID-001': 'fas fa-id-card',
   MAG: 'fas fa-leaf',
   MARN: 'fas fa-tint',
   MC: 'fas fa-theater-masks',
@@ -87,9 +69,12 @@ export default class Categories extends Component {
                     <div key={cat.id} className='col-lg-4 col-sm-6 d-flex align-items-stretch'>
                       <Link to={`/modes/category/${cat.id}`}>
                         <div className='card'>
-                          <div>
-                            <i className={icoClass[cat.code]}></i>
-                          </div>
+                          <img
+                            className='card-img-top'
+                            width='128px'
+                            height='128px'
+                            src={require('../../img/icons/'+cat.code+'.svg')} />
+                          <br />
                           <div className='d-flex flex-column'>
                             <p className='card-title'>{cat.name}</p>
                             <p className='card-text text-left'>{cat.description}</p>
