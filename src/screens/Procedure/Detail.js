@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import ProcedureName from '../../components/Procedure/Name';
 import URL from '../../components/UI/URL/URL';
 
+import DefaultLogo from '../../img/default.png';
+
 import '../../services/http';
 import { HttpService } from '../../services/http';
 
@@ -186,11 +188,12 @@ export default class ProcedureDetailScreen extends Component {
                     <div className='row'>
                       <div className='card'>
                         <div className='card-body'>
+                          <img className='card-img-top' src={DefaultLogo} />
                           <h5 style={cardElementStyle} className='card-title'>
-                            {this.state.data.code}
+                            {this.state.data.procedure.institution.name}
                           </h5>
                           <h6 style={cardElementStyle} className='card-subtitle mb-2 text-muted'>
-                            {this.state.data.procedure.institution.name}
+                            {this.state.data.code}
                           </h6>
                           <URL
                               style={cardElementStyle}
