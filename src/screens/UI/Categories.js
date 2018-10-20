@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import '../../services/http';
 
 import './Categories.css';
@@ -84,15 +85,17 @@ export default class Categories extends Component {
                 {
                   this.state.categories.map(cat => (
                     <div key={cat.id} className='col-lg-4 col-sm-6 d-flex align-items-stretch'>
-                      <div className='card'>
-                        <div>
-                          <i className={icoClass[cat.code]}></i>
+                      <Link to={`/modes/category/${cat.id}`}>
+                        <div className='card'>
+                          <div>
+                            <i className={icoClass[cat.code]}></i>
+                          </div>
+                          <div className='d-flex flex-column'>
+                            <p className='card-title'>{cat.name}</p>
+                            <p className='card-text text-left'>{cat.description}</p>
+                          </div>
                         </div>
-                        <div className='d-flex flex-column'>
-                          <p className='card-title'>{cat.name}</p>
-                          <p className='card-text text-left'>{cat.description}</p>
-                        </div>
-                      </div>
+                      </Link>
                     </div>
                   ))
                 }

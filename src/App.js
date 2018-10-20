@@ -8,8 +8,9 @@ import Data from './screens/UI/Data';
 import Home from './screens/UI/Home';
 import NavBar from './screens/UI/NavBar';
 import Footer from './screens/UI/Footer';
-import ProcedureListScreen from "./screens/Procedure/List";
-import ProcedureDetailScreen from "./screens/Procedure/Detail";
+import ProcedureListScreen from './screens/Procedure/List';
+import ProcedureDetailScreen from './screens/Procedure/Detail';
+import ModesCategoryListScreen from './screens/Modes/CategoryList';
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
           <Route path="/categories" component={Categories} />
           <Route path="/about" component={About} />
           <Route exact path="/procedures" component={ProcedureListScreen} />
+          <Route path="/modes/category/:id([0-9]{1,5})" component={ModesCategoryListScreen} />
           <Route path="/procedures/:id([0-9]{1,5})" component={ProcedureDetailScreen} />
 
           <Footer />
