@@ -11,10 +11,9 @@ import ProcedureCost from '../../components/Procedure/Cost';
 import ProcedurePaymentPlaces from '../../components/Procedure/PaymentPlaces';
 import ProcedureTimeElement from '../../components/Procedure/TimeElement';
 import ProcedureCardElement from '../../components/Procedure/CardElement';
-
-const generalElementStyle = {
-  marginTop: '0.5em'
-}
+import ProcedureDescriptionElement from '../../components/Procedure/DescriptionElement';
+import RequirementList from '../../components/Requirement/List';
+import LegalBasisList from '../../components/LegalBasis/List';
 
 const cardElementStyle = {
   color: 'black',
@@ -27,20 +26,6 @@ const modeTextStyle = {
   fontSize: '1.3em',
   marginTop: '0.5em'
 }
-
-const legislationTypes = {
-  'regulation': 'Reglamento de Ley',
-  'law': 'Ley',
-  'constitution': 'Constitutición',
-  'other': 'Otro',
-  'non_existent': 'No existe',
-  'ministerial_agreement': 'Acuerdo ministerial',
-  'international_treaty': 'Tratado internacional',
-  'technical_regulation': 'Reglamento técnico',
-  'executive_order': 'Decreto ejecutivo'
-}
-
-let prevTopic = null;
 
 export default class ProcedureDetailScreen extends Component {
   constructor(props) {
@@ -70,9 +55,10 @@ export default class ProcedureDetailScreen extends Component {
     HttpService.getResource(resPath, params).then(data => this.setState({data: data[0]}));
   }
 
-  changeTopic(newTopic) { this.prevTopic = newTopic; };
-
   render() {
+    let requirements = <RequirementList />
+    let legalBasis = <LegalBasisList legalBasis={this.state.data.legal_base} />
+
     return (
       <div>
         <section
@@ -94,46 +80,36 @@ export default class ProcedureDetailScreen extends Component {
                 </div>
                 <div className='row'>
                   <div className='col-md-8'>
-                    <div className='row' style={generalElementStyle}>
+                    <div className='row'>
                       <div className='col-md-12'>
-                        {this.state.data.description}.
+                        <ProcedureDescriptionElement
+                          header='¿En qué consiste?'
+                          body={this.state.data.description + '.'}
+                        />
                       </div>
                     </div>
-                    <div className='row' style={generalElementStyle}>
+                    <div className='row'>
                       <div className='col-md-12'>
-                        <h5>¿Quiénes están obligados?</h5>{this.state.data.subject}.
+                        <ProcedureDescriptionElement
+                          header='¿Quiénes están obligados?' 
+                          body={this.state.data.subject + '.'}
+                        />
                       </div>
                     </div>
-                    <div className='row' style={generalElementStyle}>
+                    <div className='row'>
                       <div className='col-md-12'>
-                        <h5>¿Cuáles son los requisitos?</h5>
-                        <ol type='a'>
-                          <li>
-                            Solicitud de traslado, especificando las características del equipo y la
-                            nueva dirección
-                          </li>
-                          <li>Cartel original que se emitió al momento de la autorización</li>
-                        </ol>
+                        <ProcedureDescriptionElement
+                          header='¿Cuáles son los requisitos?'
+                          body={requirements}
+                        />
                       </div>
                     </div>
-                    <div className='row' style={generalElementStyle}>
+                    <div className='row'>
                       <div className='col-md-12'>
-                        <h5>¿Cuál es su base legal?</h5>
-                          <table className='table table-hover'>
-                            <tbody>
-                              {
-                                this.state.data.legal_base.map(lb => (
-                                  <tr key={lb.id}>
-                                    <td style={{fontWeight: '500'}}>
-                                      {lb.legal_topic.name!==this.prevTopic && lb.legal_topic.name}
-                                    </td>
-                                    <td>{!lb.legislation_name?'No Existe':lb.legislation_name}</td>
-                                    {this.changeTopic(lb.legal_topic.name)}
-                                  </tr>
-                                ))
-                              }
-                            </tbody>
-                          </table>
+                        <ProcedureDescriptionElement
+                          header='¿Cuál es su base legal?'
+                          body={legalBasis}
+                        />
                       </div>
                     </div>
                   </div>
