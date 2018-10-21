@@ -8,7 +8,7 @@ const generalElementStyle = {
 export default class ProcedureDescriptionElement extends Component {
   render() {
     return (
-      <div style={generalElementStyle}><h5>¿Cuáles son los requisitos?</h5>{this.props.body}</div>
+      <div style={generalElementStyle}><h5>{this.props.header}</h5>{this.props.body}</div>
     )
   }
 }
