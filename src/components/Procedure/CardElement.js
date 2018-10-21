@@ -18,5 +18,5 @@ export default class ProcedureCardElement extends Component {
 
 ProcedureCardElement.propTypes = {
   header: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired
+  body: PropTypes.any.isRequired
 };
