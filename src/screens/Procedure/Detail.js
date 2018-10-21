@@ -199,14 +199,12 @@ export default class ProcedureDetailScreen extends Component {
                       {this.state.data.presentation_means && (
                         <ProcedurePresentationMeans means={this.state.data.presentation_means}/>
                       )}
+                      <ProcedureCost
+                        currency={this.state.data.currency}
+                        amount={this.state.data.charge_amount}
+                        link={this.state.data.charge_link} />
                       {(this.state.data.charge_amount || this.state.data.charge_link) && (
-                        <div>
-                          <ProcedureCost
-                            currency={this.state.data.currency}
-                            amount={this.state.data.charge_amount}
-                            link={this.state.data.charge_link} />
-                          <ProcedurePaymentPlaces places={this.state.data.payment_places} />
-                        </div>
+                        <ProcedurePaymentPlaces places={this.state.data.payment_places} />
                       )}
                       {this.state.data.response_time_unit && (
                         <ProcedureTimeElement

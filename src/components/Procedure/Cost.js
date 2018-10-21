@@ -10,11 +10,15 @@ const currencies = {
 
 export default class ProcedureCost extends Component {
   render() {
-    let detail;
-    if (this.props.charge_link) detail = <URL href={this.props.link} text='Ver archivo'/>;
-    else detail = currencies[this.props.currency] + this.props.amount.toFixed(2);
+      let detail;
+      if (this.props.link)
+        detail = <URL href={this.props.link} text='Ver archivo'/>;
+      else if (this.props.amount)
+        detail = currencies[this.props.currency] + this.props.amount.toFixed(2);
+      else
+        detail= 'No tiene'
 
-    return <ProcedureCardElement header={'Costo'} body={detail} />;
+      return <ProcedureCardElement header={'Costo'} body={detail} />;
   }
 }
 
