@@ -80,37 +80,85 @@ export default class ProcedureDetailScreen extends Component {
                 </div>
                 <div className='row'>
                   <div className='col-md-8'>
-                    <div className='row'>
-                      <div className='col-md-12'>
-                        <ProcedureDescriptionElement
-                          header='¿En qué consiste?'
-                          body={this.state.data.description + '.'}
-                        />
+                    <ul className='nav nav-pills' role='tablist'>
+                      <li className='nav-item'>
+                        <a
+                          className='nav-link active'
+                          id='details-tab'
+                          data-toggle='tab'
+                          href='#details'
+                          role='tab'
+                          aria-controls='información'
+                          aria-selected='true'>
+                          Información
+                        </a>
+                      </li>
+                      <li className='nav-item'>
+                        <a
+                          className='nav-link'
+                          id='forms-tab'
+                          data-toggle='tab'
+                          href='#forms'
+                          role='tab'
+                          aria-controls='formularios'
+                          aria-selected='false'>
+                          Formularios
+                        </a>
+                      </li>
+                      <li className='nav-item'>
+                        <a
+                          className='nav-link'
+                          id='addresses-tab'
+                          data-toggle='tab'
+                          href='#addresses'
+                          role='tab'
+                          aria-controls='direcciones'
+                          aria-selected='false'>
+                          Direcciones
+                        </a>
+                      </li>
+                    </ul>
+                    <div className='tab-content'>
+                      <div
+                        className='tab-pane fade show active'
+                        id='details'
+                        role='tabpanel'
+                        aria-labelledby='details-tab'>
+                        <div className='row'>
+                            <div className='col-md-12'>
+                              <ProcedureDescriptionElement
+                                header='¿En qué consiste?'
+                                body={this.state.data.description + '.'}
+                              />
+                            </div>
+                          </div>
+                          <div className='row'>
+                            <div className='col-md-12'>
+                              <ProcedureDescriptionElement
+                                header='¿Quiénes están obligados?'
+                                body={this.state.data.subject + '.'}
+                              />
+                            </div>
+                          </div>
+                          <div className='row'>
+                            <div className='col-md-12'>
+                              <ProcedureDescriptionElement
+                                header='¿Cuáles son los requisitos?'
+                                body={requirements}
+                              />
+                            </div>
+                          </div>
+                          <div className='row'>
+                            <div className='col-md-12'>
+                              <ProcedureDescriptionElement
+                                header='¿Cuál es su base legal?'
+                                body={legalBasis}
+                              />
+                            </div>
+                          </div>
                       </div>
-                    </div>
-                    <div className='row'>
-                      <div className='col-md-12'>
-                        <ProcedureDescriptionElement
-                          header='¿Quiénes están obligados?' 
-                          body={this.state.data.subject + '.'}
-                        />
-                      </div>
-                    </div>
-                    <div className='row'>
-                      <div className='col-md-12'>
-                        <ProcedureDescriptionElement
-                          header='¿Cuáles son los requisitos?'
-                          body={requirements}
-                        />
-                      </div>
-                    </div>
-                    <div className='row'>
-                      <div className='col-md-12'>
-                        <ProcedureDescriptionElement
-                          header='¿Cuál es su base legal?'
-                          body={legalBasis}
-                        />
-                      </div>
+                      <div className='tab-pane fade' id='forms' role='tabpanel' aria-labelledby='forms-tab'>...</div>
+                      <div className='tab-pane fade' id='addresses' role='tabpanel' aria-labelledby='addresses-tab'>...</div>
                     </div>
                   </div>
                   <div className='col-md-4'>
