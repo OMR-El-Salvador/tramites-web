@@ -14,6 +14,7 @@ import ProcedureCardElement from '../../components/Procedure/CardElement';
 import ProcedureDescriptionElement from '../../components/Procedure/DescriptionElement';
 import RequirementList from '../../components/Requirement/List';
 import LegalBasisList from '../../components/LegalBasis/List';
+import FormList from '../../components/Form/List';
 
 const cardElementStyle = {
   color: 'black',
@@ -44,7 +45,7 @@ export default class ProcedureDetailScreen extends Component {
     let legalBasePath =
       'legal_base(id,type,legislation_name,legislation_reference,legal_topic(name))';
     let procedurePath = 'procedure(name,institution(name,url))';
-    let formsPath = 'forms(name,url)';
+    let formsPath = 'forms(id,name,url)';
     let classPath = 'class(name)';
     let categoriesPath = 'categories(id,name)';
 
@@ -160,7 +161,13 @@ export default class ProcedureDetailScreen extends Component {
                             </div>
                           </div>
                       </div>
-                      <div className='tab-pane fade' id='forms' role='tabpanel' aria-labelledby='forms-tab'>...</div>
+                      <div
+                        className='tab-pane fade'
+                        id='forms'
+                        role='tabpanel'
+                        aria-labelledby='forms-tab'>
+                        <FormList forms={this.state.data.forms} />
+                      </div>
                       <div className='tab-pane fade' id='addresses' role='tabpanel' aria-labelledby='addresses-tab'>...</div>
                     </div>
                   </div>
