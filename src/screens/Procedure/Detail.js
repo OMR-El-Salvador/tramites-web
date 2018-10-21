@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
-
-import ProcedureName from '../../components/Procedure/Name';
-import URL from '../../components/UI/URL/URL';
+import { HttpService } from '../../services/http';
 
 import DefaultLogo from '../../img/default.png';
 
-import '../../services/http';
-import { HttpService } from '../../services/http';
-
-const sectionStyle = {
-  marginTop: '1.3em'
-}
-
-const headerStyle = {
-  fontWeight: '600'
-}
+import URL from '../../components/UI/URL/URL';
+import ProcedureName from '../../components/Procedure/Name';
+import ProcedurePresentationMeans from '../../components/Procedure/PresentationMeans';
+import ProcedureCost from '../../components/Procedure/Cost';
+import ProcedurePaymentPlaces from '../../components/Procedure/PaymentPlaces';
+import ProcedureTimeElement from '../../components/Procedure/TimeElement';
+import ProcedureCardElement from '../../components/Procedure/CardElement';
 
 const generalElementStyle = {
   marginTop: '0.5em'
@@ -30,44 +25,6 @@ const modeTextStyle = {
   fontWeight: '400',
   fontSize: '1.3em',
   marginTop: '0.5em'
-}
-
-const itemHeaderStyle = {
-  fontWeight: '500'
-}
-
-const presentationMeans = {
-  'face': 'Presencial',
-  'online': 'En línea',
-  'face_online': 'Presencial y En Línea'
-}
-
-const timeUnits = {
-  'minute': 'minutos',
-  'day': 'días',
-  'month': 'meses',
-  'year': 'años'
-}
-
-const singleTimeUnits = {
-  'minute': 'minuto',
-  'day': 'día',
-  'month': 'mes',
-  'year': 'año'
-}
-
-const places = {
-  'central_offices': 'Oficinas centrales',
-  'regional_offices': 'Oficinas regionales',
-  'financial_institution': 'Instituciones financieras',
-  'online': 'En línea',
-  'treasury': 'Ministerio de Hacienda',
-  'other': 'Otros'
-}
-
-const currencies = {
-  'dollar': '$',
-  'colon': '₡'
 }
 
 const legislationTypes = {
@@ -105,19 +62,13 @@ export default class ProcedureDetailScreen extends Component {
     let classPath = 'class(name)';
 
     let params =
-      '?select=*,'+legalBasePath+','+classPath+','+procedurePath+','+formsPath+
+      '?select=*,' + legalBasePath + ',' + classPath + ',' + procedurePath + ',' + formsPath +
       '&id=eq.' + this.state.id;
     // HttpService.getResource(resPath, params).then(data => console.log(data));
     HttpService.getResource(resPath, params).then(data => this.setState({data: data[0]}));
   }
 
-  getTimeVal(key, amount) { return amount===1 ? singleTimeUnits[key] : timeUnits[key]; }
-
-  getPlaces(placesArray) {
-    return placesArray.reduce((acc, curr, i) => acc + (i === 0 ? '' : ', ') + places[curr], '');
-  }
-
-  changeTopic(newTopic) { this.prevTopic=newTopic; };
+  changeTopic(newTopic) { this.prevTopic = newTopic; };
 
   render() {
     return (
@@ -125,12 +76,12 @@ export default class ProcedureDetailScreen extends Component {
         <section
             className='text-left procedure-detail justify-content-center align-items-center'
             id='section-procedures'
-            style={sectionStyle}>
+            style={{marginTop: '1.3em'}}>
           <div className='container'>
             <div className='row'>
               <div className='col-md-12'>
                 <div className='row'>
-                  <div className='col-md-12' style={headerStyle}>
+                  <div className='col-md-12' style={{fontWeight: '600'}}>
                     <ProcedureName text={this.state.data.procedure.name} />
                   </div>
                 </div>
@@ -171,7 +122,7 @@ export default class ProcedureDetailScreen extends Component {
                               {
                                 this.state.data.legal_base.map(lb => (
                                   <tr key={lb.id}>
-                                    <td style={itemHeaderStyle}>
+                                    <td style={{fontWeight: '500'}}>
                                       {lb.legal_topic.name!==this.prevTopic && lb.legal_topic.name}
                                     </td>
                                     <td>{!lb.legislation_name?'No Existe':lb.legislation_name}</td>
@@ -207,59 +158,51 @@ export default class ProcedureDetailScreen extends Component {
                             {this.state.data.code}
                           </h6>
                           <br />
-                          <p>
-                            <span style={itemHeaderStyle}>Presentación: </span>
-                            {presentationMeans[this.state.data.presentation_means]}.
-                          </p>
+                          {this.state.data.presentation_means && (
+                            <ProcedurePresentationMeans means={this.state.data.presentation_means}/>
+                          )}
                           {(this.state.data.charge_amount || this.state.data.charge_link) && (
                             <div>
-                              <p>
-                                <span style={itemHeaderStyle}>Costo: </span>
-                                {this.state.data.charge_link ? (
-                                  <URL href={this.state.data.charge_link} text='Ver archivo'/>
-                                ) : (
-                                  <span>
-                                    {currencies[this.state.data.currency]}
-                                    {this.state.data.charge_amount}
-                                  </span>
-                                )}.
-                              </p>
-                              <p>
-                                <span style={itemHeaderStyle}>Lugares de pago: </span>
-                                {this.getPlaces(this.state.data.payment_places)}.
-                              </p>
+                              <ProcedureCost
+                                currency={this.state.data.currency}
+                                amount={this.state.data.charge_amount}
+                                link={this.state.data.charge_link} />
+                              <ProcedurePaymentPlaces places={this.state.data.payment_places} />
                             </div>
                           )}
-                          <p>
-                            <span style={itemHeaderStyle}>Tiempo de respuesta: </span>
-                            {this.state.data.response_time_amount}&nbsp;
-                            {this.getTimeVal(this.state.data.response_time_unit,
-                                this.state.data.response_time_amount)}.
-                          </p>
+                          {this.state.data.response_time_unit && (
+                            <ProcedureTimeElement
+                              unit={this.state.data.response_time_unit}
+                              amount={this.state.data.response_time_amount}
+                              description='Tiempo de respuesta'
+                            />
+                          )}
                           {this.state.data.legal_time_unit && (
-                            <p>
-                              <span style={itemHeaderStyle}>Tiempo regulado: </span>
-                              {this.state.data.legal_time_amount}&nbsp;
-                              {this.getTimeVal(this.state.data.legal_time_unit,
-                                  this.state.data.legal_time_amount)}.
-                            </p>
+                            <ProcedureTimeElement
+                              unit={this.state.data.legal_time_unit}
+                              amount={this.state.data.legal_time_amount}
+                              description='Tiempo regulado'
+                            />
                           )}
                           {this.state.data.validity_time_unit && (
-                            <p>
-                              <span style={itemHeaderStyle}>Vigencia: </span>
-                              {this.state.data.validity_time_amount}&nbsp;
-                              {this.getTimeVal(this.state.data.validity_time_unit,
-                                  this.state.data.validity_time_amount)}.
-                            </p>
+                            <ProcedureTimeElement
+                              unit={this.state.data.validity_time_unit}
+                              amount={this.state.data.validity_time_amount}
+                              description='Vigencia'
+                            />
                           )}
-                          <p>
-                            <span style={itemHeaderStyle}>Clase: </span>
-                            {this.state.data.class.name}.
-                          </p>
-                          <p>
-                            <span style={itemHeaderStyle}>Unidad: </span>
-                            {this.state.data.responsible_unit}. {this.state.data.responsible_area}
-                          </p>
+                          {this.state.data.class && (
+                            <ProcedureCardElement
+                              header='Clase'
+                              body={this.state.data.class.name} />
+                          )}
+                          <ProcedureCardElement
+                            header='Unidad'
+                            body= {
+                              this.state.data.responsible_area + '. ' +
+                              this.state.data.responsible_area
+                            }
+                          />
                           <a href='#' className='badge badge-success'>Subsidios y programas sociales</a>
                           <a href='#' className='badge badge-success'>Inicio y operación de negocios</a>
                           <a href='#' className='badge badge-success'>Seguridad, defensa y materiales peligrosos</a>
