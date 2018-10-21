@@ -51,3 +51,14 @@ nav {
 footer {
   font-family: 'Open Sans', sans-serif;
 }
+
+.result-text {
+  margin-top: 2%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.term {
+  color: #95C11F;
+}

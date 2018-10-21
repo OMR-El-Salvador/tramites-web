@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import queryString from 'query-string';
 
 import '../../services/http';
-import './List.css';
 
 import ProcedureList from '../../components/Procedure/List';
 import { HttpService } from '../../services/http';

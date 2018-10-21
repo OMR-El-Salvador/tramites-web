@@ -67,12 +67,14 @@ export default class Categories extends Component {
               <div className='row'>
                 {
                   this.state.categories.map(cat => (
-                    <CategoryCard
-                      id={cat.id}
-                      code={cat.code}
-                      name={cat.name}
-                      description={cat.description}
-                      />
+                    <div className='col-lg-4 col-sm-6 d-flex align-items-stretch'>
+                      <CategoryCard
+                        id={cat.id}
+                        code={cat.code}
+                        name={cat.name}
+                        description={cat.description}
+                        />
+                    </div>
                   ))
                 }
               </div>

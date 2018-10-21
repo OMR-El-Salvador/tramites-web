@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 export default class CategoryElement extends Component {
   render() {
     return (
-      <div key={this.props.id} className='col-lg-4 col-sm-6 d-flex align-items-stretch'>
+      <div key={this.props.id}>
         <Link to={`/modes/category/${this.props.id}`}>
           <div className='card'>
             <img
