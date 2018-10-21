@@ -12,6 +12,7 @@ export default class CategoryElement extends Component {
               className='card-img-top'
               width='128px'
               height='128px'
+              alt='ícono de categoría'
               src={require('../../img/icons/'+this.props.code+'.svg')} />
             <br />
             <div className='d-flex flex-column'>
