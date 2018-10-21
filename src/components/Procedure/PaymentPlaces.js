@@ -13,7 +13,7 @@ const places = {
 
 export default class ProcedurePaymentPlaces extends Component {
   getPlaces() {
-    return this.props.places.reduce((acc,curr,i) => acc+(i===0?'':',')+places[curr],'');
+    return this.props.places.reduce((acc,curr,i) => acc+(i===0?'':', ')+places[curr],'');
   }
 
   render() { return <ProcedureCardElement header={'Lugares de pago'} body={this.getPlaces()} />; }
