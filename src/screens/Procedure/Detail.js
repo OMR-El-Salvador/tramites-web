@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import { HttpService } from '../../services/http';
 
 import DefaultLogo from '../../img/default.png';
@@ -60,10 +61,11 @@ export default class ProcedureDetailScreen extends Component {
     let procedurePath = 'procedure(name,institution(name,url))';
     let formsPath = 'forms(name,url)';
     let classPath = 'class(name)';
+    let categoriesPath = 'categories(id,name)';
 
     let params =
-      '?select=*,' + legalBasePath + ',' + classPath + ',' + procedurePath + ',' + formsPath +
-      '&id=eq.' + this.state.id;
+      '?select=*,' + legalBasePath + ',' + classPath + ',' + procedurePath + ',' + formsPath + ',' +
+      categoriesPath + '&id=eq.' + this.state.id;
     // HttpService.getResource(resPath, params).then(data => console.log(data));
     HttpService.getResource(resPath, params).then(data => this.setState({data: data[0]}));
   }
@@ -139,7 +141,7 @@ export default class ProcedureDetailScreen extends Component {
                     <div className='row'>
                       <div className='card'>
                         <div className='card-body'>
-                          <img className='card-img-top' src={DefaultLogo} />
+                          <img className='card-img-top' src={DefaultLogo} alt='Logo institucional'/>
                           {this.state.data.procedure.institution.name &&
                             <h5 style={cardElementStyle} className='card-title'>
                               {this.state.data.procedure.institution.name}
@@ -198,14 +200,18 @@ export default class ProcedureDetailScreen extends Component {
                           )}
                           <ProcedureCardElement
                             header='Unidad'
-                            body= {
+                            body = {
                               this.state.data.responsible_area + '. ' +
                               this.state.data.responsible_area
                             }
                           />
-                          <a href='#' className='badge badge-success'>Subsidios y programas sociales</a>
-                          <a href='#' className='badge badge-success'>Inicio y operación de negocios</a>
-                          <a href='#' className='badge badge-success'>Seguridad, defensa y materiales peligrosos</a>
+                          {this.state.data.categories && this.state.data.categories.map(cat =>
+                            <Link key={cat.id} to={`/modes/category/${cat.id}`}>
+                              <span className='badge badge-success'>
+                                {cat.name}
+                              </span>
+                            </Link>
+                          )}
                         </div>
                       </div>
                     </div>
