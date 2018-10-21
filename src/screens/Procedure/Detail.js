@@ -22,7 +22,7 @@ const cardElementStyle = {
 
 const modeTextStyle = {
   color: '#386CA4',
-  fontWeight: '400',
+  fontWeight: '500',
   fontSize: '1.3em',
   marginTop: '0.5em'
 }
@@ -67,7 +67,7 @@ export default class ProcedureDetailScreen extends Component {
             style={{marginTop: '1.3em'}}>
           <div className='container'>
             <div className='row'>
-              <div className='col-md-12'>
+              <div className='col-md-8'>
                 <div className='row'>
                   <div className='col-md-12' style={{fontWeight: '600'}}>
                     <ProcedureName text={this.state.data.procedure.name} />
@@ -79,8 +79,11 @@ export default class ProcedureDetailScreen extends Component {
                   </div>
                 </div>
                 <div className='row'>
-                  <div className='col-md-8'>
-                    <ul className='nav nav-pills' role='tablist'>
+                  <div className='col-md-12'>
+                    <ul
+                      className='nav nav-pills nav-fill'
+                      role='tablist'
+                      style={{marginTop: '2em', marginBottom: '1em'}}>
                       <li className='nav-item'>
                         <a
                           className='nav-link active'
@@ -161,83 +164,83 @@ export default class ProcedureDetailScreen extends Component {
                       <div className='tab-pane fade' id='addresses' role='tabpanel' aria-labelledby='addresses-tab'>...</div>
                     </div>
                   </div>
-                  <div className='col-md-4'>
-                    <div className='row'>
-                      <div className='card'>
-                        <div className='card-body'>
-                          <img className='card-img-top' src={DefaultLogo} alt='Logo institucional'/>
-                          {this.state.data.procedure.institution.name &&
-                            <h5 style={cardElementStyle} className='card-title'>
-                              {this.state.data.procedure.institution.name}
-                            </h5>
-                          }
-                          {this.state.data.procedure.institution.url &&
-                            <div>
-                              <URL
-                                  style={cardElementStyle}
-                                  href={this.state.data.procedure.institution.url}
-                                  text='Ver sitio web' />
-                              <i className='pull-right fas fa-external-link-alt action-icon'></i>
-                            </div>
-                          }
-                          <h6 style={cardElementStyle} className='card-subtitle mb-2 text-muted'>
-                            {this.state.data.code}
-                          </h6>
-                          <br />
-                          {this.state.data.presentation_means && (
-                            <ProcedurePresentationMeans means={this.state.data.presentation_means}/>
-                          )}
-                          {(this.state.data.charge_amount || this.state.data.charge_link) && (
-                            <div>
-                              <ProcedureCost
-                                currency={this.state.data.currency}
-                                amount={this.state.data.charge_amount}
-                                link={this.state.data.charge_link} />
-                              <ProcedurePaymentPlaces places={this.state.data.payment_places} />
-                            </div>
-                          )}
-                          {this.state.data.response_time_unit && (
-                            <ProcedureTimeElement
-                              unit={this.state.data.response_time_unit}
-                              amount={this.state.data.response_time_amount}
-                              description='Tiempo de respuesta'
-                            />
-                          )}
-                          {this.state.data.legal_time_unit && (
-                            <ProcedureTimeElement
-                              unit={this.state.data.legal_time_unit}
-                              amount={this.state.data.legal_time_amount}
-                              description='Tiempo regulado'
-                            />
-                          )}
-                          {this.state.data.validity_time_unit && (
-                            <ProcedureTimeElement
-                              unit={this.state.data.validity_time_unit}
-                              amount={this.state.data.validity_time_amount}
-                              description='Vigencia'
-                            />
-                          )}
-                          {this.state.data.class && (
-                            <ProcedureCardElement
-                              header='Clase'
-                              body={this.state.data.class.name} />
-                          )}
-                          <ProcedureCardElement
-                            header='Unidad'
-                            body = {
-                              this.state.data.responsible_area + '. ' +
-                              this.state.data.responsible_area
-                            }
-                          />
-                          {this.state.data.categories && this.state.data.categories.map(cat =>
-                            <Link key={cat.id} to={`/modes/category/${cat.id}`}>
-                              <span className='badge badge-success'>
-                                {cat.name}
-                              </span>
-                            </Link>
-                          )}
+                </div>
+              </div>
+              <div className='col-md-4'>
+                <div className='row'>
+                  <div className='card'>
+                    <div className='card-body'>
+                      <img className='card-img-top' src={DefaultLogo} alt='Logo institucional'/>
+                      {this.state.data.procedure.institution.name &&
+                        <h5 style={cardElementStyle} className='card-title'>
+                          {this.state.data.procedure.institution.name}
+                        </h5>
+                      }
+                      {this.state.data.procedure.institution.url &&
+                        <div>
+                          <URL
+                              style={cardElementStyle}
+                              href={this.state.data.procedure.institution.url}
+                              text='Ver sitio web' />
+                          <i className='pull-right fas fa-external-link-alt action-icon'></i>
                         </div>
-                      </div>
+                      }
+                      <h6 style={cardElementStyle} className='card-subtitle mb-2 text-muted'>
+                        {this.state.data.code}
+                      </h6>
+                      <br />
+                      {this.state.data.presentation_means && (
+                        <ProcedurePresentationMeans means={this.state.data.presentation_means}/>
+                      )}
+                      {(this.state.data.charge_amount || this.state.data.charge_link) && (
+                        <div>
+                          <ProcedureCost
+                            currency={this.state.data.currency}
+                            amount={this.state.data.charge_amount}
+                            link={this.state.data.charge_link} />
+                          <ProcedurePaymentPlaces places={this.state.data.payment_places} />
+                        </div>
+                      )}
+                      {this.state.data.response_time_unit && (
+                        <ProcedureTimeElement
+                          unit={this.state.data.response_time_unit}
+                          amount={this.state.data.response_time_amount}
+                          description='Tiempo de respuesta'
+                        />
+                      )}
+                      {this.state.data.legal_time_unit && (
+                        <ProcedureTimeElement
+                          unit={this.state.data.legal_time_unit}
+                          amount={this.state.data.legal_time_amount}
+                          description='Tiempo regulado'
+                        />
+                      )}
+                      {this.state.data.validity_time_unit && (
+                        <ProcedureTimeElement
+                          unit={this.state.data.validity_time_unit}
+                          amount={this.state.data.validity_time_amount}
+                          description='Vigencia'
+                        />
+                      )}
+                      {this.state.data.class && (
+                        <ProcedureCardElement
+                          header='Clase'
+                          body={this.state.data.class.name} />
+                      )}
+                      <ProcedureCardElement
+                        header='Unidad'
+                        body = {
+                          this.state.data.responsible_area + '. ' +
+                          this.state.data.responsible_area
+                        }
+                      />
+                      {this.state.data.categories && this.state.data.categories.map(cat =>
+                        <Link key={cat.id} to={`/modes/category/${cat.id}`}>
+                          <span className='badge badge-success'>
+                            {cat.name}
+                          </span>
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>
