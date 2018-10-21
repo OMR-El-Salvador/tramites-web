@@ -3,8 +3,8 @@ import queryString from 'query-string';
 
 import '../../services/http';
 
-import ProcedureList from '../../components/Procedure/List';
 import { HttpService } from '../../services/http';
+import ProcedureSearchResults from '../../components/Procedure/SearchResults';
 
 export default class ProcedureListScreen extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class ProcedureListScreen extends Component {
 
   componentDidMount() {
     let resPath = 'rpc/procedures_search';
-    let params = '?select=id,name,code,modes(id,name,code,description)&term=' + this.state.term;
+    let params = '?select=id,name,code,modes(id,name,code,description),institution(name,url)&term=' + this.state.term;
     HttpService.getResource(resPath, params).then(data => this.setState({procedures: data}));
   }
 
@@ -43,7 +43,7 @@ export default class ProcedureListScreen extends Component {
                   }
                   para "<em className='term'>{this.state.term}</em>":
                 </p>
-                <ProcedureList procedures={this.state.procedures} />
+                <ProcedureSearchResults procedures={this.state.procedures} />
               </div>
             </div>
           </div>
