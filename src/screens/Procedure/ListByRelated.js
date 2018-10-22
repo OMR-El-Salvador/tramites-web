@@ -6,7 +6,7 @@ import ProcedureList from '../../components/Procedure/List';
 import { HttpService } from '../../services/http';
 import InstitutionCard from '../../components/Institutions/Card';
 
-export default class ProcedureListScreen extends Component {
+export default class ProcedureListByRelatedScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,8 +17,8 @@ export default class ProcedureListScreen extends Component {
 
   componentDidMount() {
     let resPath = 'institutions';
-    let params = '?select=id,name,code,procedures(id,name,code,modes(id,name,code,description))&id=eq.' +this.state.id;
-    HttpService.getResource(resPath, params).then(data => console.log(data));
+    let proceduresPath = 'procedures(id,name,code,modes(id,name,code,description))';
+    let params = '?select=id,name,code,' + proceduresPath + '&id=eq.' + this.state.id;
     HttpService.getResource(resPath, params).then(data => this.setState({institution: data[0]}));
   }
 
