@@ -1,32 +1,21 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
+import Card from '../UI/Card';
 
-export default class CategoryElement extends Component {
+export default class CategoryCard extends Component {
   render() {
     return (
-      <div key={this.props.id}>
-        <Link to={`/modes/category/${this.props.id}`}>
-          <div className='card'>
-            <img
-              className='card-img-top'
-              width='128px'
-              height='128px'
-              alt='ícono de categoría'
-              src={require('../../img/icons/'+this.props.code+'.svg')} />
-            <br />
-            <div className='d-flex flex-column'>
-              <p className='card-title'>{this.props.name}</p>
-              <p className='card-text text-left'>{this.props.description}</p>
-            </div>
-          </div>
-        </Link>
-      </div>
+      <Card
+        name={this.props.name}
+        code={this.props.code}
+        description={this.props.description}
+        path={`/modes/category/${this.props.id}`}
+      />
     )
   }
 }
 
-CategoryElement.propTypes = {
+CategoryCard.propTypes = {
   name: PropTypes.string.isRequired,
   code: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,

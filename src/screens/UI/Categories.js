@@ -3,28 +3,12 @@ import '../../services/http';
 
 import './Categories.css';
 import CategoryCard from '../../components/Category/Card';
+import InstitutionCard from '../../components/Institutions/Card';
 
 import { HttpService } from '../../services/http';
+import ClassCard from '../../components/Classes/Card';
 
-const icoClass = {
-  MAG: 'fas fa-leaf',
-  MARN: 'fas fa-tint',
-  MC: 'fas fa-theater-masks',
-  MDN: 'fas fa-shield-alt',
-  MGDT: 'fas fa-map',
-  MH: 'fas fa-clipboard-list',
-  MINEC: 'fas fa-money-bill-alt',
-  MINED: 'fas fa-book',
-  MINSAL: 'fas fa-user-md',
-  MITUR: 'fas fa-umbrella-beach',
-  MJSP: 'fas fa-balance-scale',
-  MOP: 'fas fa-road',
-  MRREE: 'fas fa-passport',
-  MTPS: 'fas fa-industry',
-  CIU: 'fas fa-users',
-  EMP: 'fas fa-building',
-  ORG: 'fas fa-warehouse',
-}
+const cardStyle = { marginTop: '0.5em', marginBottom: '0.5em' }
 
 export default class Categories extends Component {
   constructor (props) {
@@ -63,59 +47,34 @@ export default class Categories extends Component {
                 </form>
               </div>
             </div>
-            { this.state.groupBy === 'CAT' &&
-              <div className='row'>
-                {
-                  this.state.categories.map(cat => (
-                    <div key={cat.id} className='col-lg-4 col-sm-6 d-flex align-items-stretch'>
-                      <CategoryCard
-                        id={cat.id}
-                        code={cat.code}
-                        name={cat.name}
-                        description={cat.description}
-                        />
-                    </div>
-                  ))
-                }
-              </div>
-            }
-            {this.state.groupBy === 'MIN' &&
-              <div className='row'>
-                {
-                  this.state.ministries.map(min => (
-                    <div key={min.id} className='col-lg-3 col-sm-6 d-flex align-items-stretch mb-4'>
-                      <div className='card'>
-                        <div>
-                          <i className={icoClass[min.code]}>
-                          </i>
-                        </div>
-                        <div className='d-flex flex-column'>
-                          <p className='card-title'>{min.name}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                }
-              </div>
-            }
-            {this.state.groupBy === 'CL' &&
-              <div className='row'>
-                {
-                  this.state.classes.map(cl => (
-                    <div key={cl.id} className='col-lg-4 col-sm-4 align-items-stretch'>
-                      <div className='card'>
-                        <div>
-                          <i className={icoClass[cl.code]}></i>
-                        </div>
-                        <div className='d-flex flex-column'>
-                          <p className='card-title'>{cl.name}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                }
-              </div>
-            }
+            <div className='row'>
+              { this.state.groupBy === 'CAT' &&
+                this.state.categories.map(cat => (
+                  <div key={cat.id} className='col-lg-4 col-sm-6' style={cardStyle}>
+                    <CategoryCard
+                      id={cat.id}
+                      code={cat.code}
+                      name={cat.name}
+                      description={cat.description}
+                      />
+                  </div>
+                ))
+              }
+              {this.state.groupBy === 'MIN' &&
+                this.state.ministries.map(min => (
+                  <div key={min.id} className='col-lg-3 col-sm-4' style={cardStyle}>
+                    <InstitutionCard id={min.id} code={min.code} name={min.name} />
+                  </div>
+                ))
+              }
+              {this.state.groupBy === 'CL' &&
+                this.state.classes.map(cl => (
+                  <div key={cl.id} className='col-lg-3 col-sm-4' style={cardStyle}>
+                    <ClassCard id={cl.id} code={cl.code} name={cl.name} />
+                  </div>
+                ))
+              }
+            </div>
           </div>
         </section>
       </div>
