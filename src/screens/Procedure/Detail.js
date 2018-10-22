@@ -15,6 +15,8 @@ import ProcedureDescriptionElement from '../../components/Procedure/DescriptionE
 import RequirementList from '../../components/Requirement/List';
 import LegalBasisList from '../../components/LegalBasis/List';
 import FormList from '../../components/Form/List';
+import Loading from '../../components/UI/Loading';
+import Error from '../../components/UI/Error';
 
 const cardElementStyle = {
   color: 'black',
@@ -33,6 +35,7 @@ export default class ProcedureDetailScreen extends Component {
     super(props);
     this.state = {
       id: this.props.match.params.id,
+      status: 'loading',
       data: { procedure: { name: '', institution: { } }, class: { name: ''}, legal_base: [ ] }
     };
   }
@@ -53,7 +56,10 @@ export default class ProcedureDetailScreen extends Component {
       '?select=*,' + legalBasePath + ',' + classPath + ',' + procedurePath + ',' + formsPath + ',' +
       categoriesPath + '&id=eq.' + this.state.id;
     // HttpService.getResource(resPath, params).then(data => console.log(data));
-    HttpService.getResource(resPath, params).then(data => this.setState({data: data[0]}));
+    HttpService.getResource(resPath, params).then(data => {
+      if (data.length > 0) this.setState({status: 'success', data: data[0]});
+      else this.setState({status: 'error'});
+    });
   }
 
   render() {
@@ -67,190 +73,196 @@ export default class ProcedureDetailScreen extends Component {
             id='section-procedures'
             style={{marginTop: '1.3em'}}>
           <div className='container'>
-            <div className='row'>
-              <div className='col-md-8'>
-                <div className='row'>
-                  <div className='col-md-12' style={{fontWeight: '600'}}>
-                    <ProcedureName text={this.state.data.procedure.name} />
-                  </div>
-                </div>
-                <div className='row'>
-                  <div className='col-md-12' style={modeTextStyle}>
-                    {this.state.data.name}
-                  </div>
-                </div>
-                <div className='row'>
-                  <div className='col-md-12'>
-                    <ul
-                      className='nav nav-pills nav-fill'
-                      role='tablist'
-                      style={{marginTop: '2em', marginBottom: '1em'}}>
-                      <li className='nav-item'>
-                        <a
-                          className='nav-link active'
-                          id='details-tab'
-                          data-toggle='tab'
-                          href='#details'
-                          role='tab'
-                          aria-controls='información'
-                          aria-selected='true'>
-                          Información
-                        </a>
-                      </li>
-                      <li className='nav-item'>
-                        <a
-                          className='nav-link'
-                          id='forms-tab'
-                          data-toggle='tab'
-                          href='#forms'
-                          role='tab'
-                          aria-controls='formularios'
-                          aria-selected='false'>
-                          Formularios
-                        </a>
-                      </li>
-                      <li className='nav-item'>
-                        <a
-                          className='nav-link'
-                          id='addresses-tab'
-                          data-toggle='tab'
-                          href='#addresses'
-                          role='tab'
-                          aria-controls='direcciones'
-                          aria-selected='false'>
-                          Direcciones
-                        </a>
-                      </li>
-                    </ul>
-                    <div className='tab-content'>
-                      <div
-                        className='tab-pane fade show active'
-                        id='details'
-                        role='tabpanel'
-                        aria-labelledby='details-tab'>
-                        <div className='row'>
-                            <div className='col-md-12'>
-                              <ProcedureDescriptionElement
-                                header='¿En qué consiste?'
-                                body={this.state.data.description + '.'}
-                              />
-                            </div>
-                          </div>
-                          <div className='row'>
-                            <div className='col-md-12'>
-                              <ProcedureDescriptionElement
-                                header='¿Quiénes están obligados?'
-                                body={this.state.data.subject + '.'}
-                              />
-                            </div>
-                          </div>
-                          <div className='row'>
-                            <div className='col-md-12'>
-                              <ProcedureDescriptionElement
-                                header='¿Cuáles son los requisitos?'
-                                body={requirements}
-                              />
-                            </div>
-                          </div>
-                          <div className='row'>
-                            <div className='col-md-12'>
-                              <ProcedureDescriptionElement
-                                header='¿Cuál es su base legal?'
-                                body={legalBasis}
-                              />
-                            </div>
-                          </div>
-                      </div>
-                      <div
-                        className='tab-pane fade'
-                        id='forms'
-                        role='tabpanel'
-                        aria-labelledby='forms-tab'>
-                        <FormList forms={this.state.data.forms} />
-                      </div>
-                      <div className='tab-pane fade' id='addresses' role='tabpanel' aria-labelledby='addresses-tab'>...</div>
+            {this.state.status === 'success' && (
+              <div className='row'>
+                <div className='col-md-8'>
+                  <div className='row'>
+                    <div className='col-md-12' style={{fontWeight: '600'}}>
+                      <ProcedureName text={this.state.data.procedure.name} />
                     </div>
                   </div>
-                </div>
-              </div>
-              <div className='col-md-4'>
-                <div className='row'>
-                  <div className='card'>
-                    <div className='card-body'>
-                      <img className='card-img-top' src={DefaultLogo} alt='Logo institucional'/>
-                      {this.state.data.procedure.institution.name &&
-                        <h5 style={cardElementStyle} className='card-title'>
-                          {this.state.data.procedure.institution.name}
-                        </h5>
-                      }
-                      {this.state.data.procedure.institution.url &&
-                        <div>
-                          <URL
-                              style={cardElementStyle}
-                              href={this.state.data.procedure.institution.url}
-                              text='Ver sitio web' />
-                          <i className='pull-right fas fa-external-link-alt action-icon'></i>
+                  <div className='row'>
+                    <div className='col-md-12' style={modeTextStyle}>
+                      {this.state.data.name}
+                    </div>
+                  </div>
+                  <div className='row'>
+                    <div className='col-md-12'>
+                      <ul
+                        className='nav nav-pills nav-fill'
+                        role='tablist'
+                        style={{marginTop: '2em', marginBottom: '1em'}}>
+                        <li className='nav-item'>
+                          <a
+                            className='nav-link active'
+                            id='details-tab'
+                            data-toggle='tab'
+                            href='#details'
+                            role='tab'
+                            aria-controls='información'
+                            aria-selected='true'>
+                            Información
+                          </a>
+                        </li>
+                        <li className='nav-item'>
+                          <a
+                            className='nav-link'
+                            id='forms-tab'
+                            data-toggle='tab'
+                            href='#forms'
+                            role='tab'
+                            aria-controls='formularios'
+                            aria-selected='false'>
+                            Formularios
+                          </a>
+                        </li>
+                        <li className='nav-item'>
+                          <a
+                            className='nav-link'
+                            id='addresses-tab'
+                            data-toggle='tab'
+                            href='#addresses'
+                            role='tab'
+                            aria-controls='direcciones'
+                            aria-selected='false'>
+                            Direcciones
+                          </a>
+                        </li>
+                      </ul>
+                      <div className='tab-content'>
+                        <div
+                          className='tab-pane fade show active'
+                          id='details'
+                          role='tabpanel'
+                          aria-labelledby='details-tab'>
+                          <div className='row'>
+                              <div className='col-md-12'>
+                                <ProcedureDescriptionElement
+                                  header='¿En qué consiste?'
+                                  body={this.state.data.description + '.'}
+                                />
+                              </div>
+                            </div>
+                            <div className='row'>
+                              <div className='col-md-12'>
+                                <ProcedureDescriptionElement
+                                  header='¿Quiénes están obligados?'
+                                  body={this.state.data.subject + '.'}
+                                />
+                              </div>
+                            </div>
+                            <div className='row'>
+                              <div className='col-md-12'>
+                                <ProcedureDescriptionElement
+                                  header='¿Cuáles son los requisitos?'
+                                  body={requirements}
+                                />
+                              </div>
+                            </div>
+                            <div className='row'>
+                              <div className='col-md-12'>
+                                <ProcedureDescriptionElement
+                                  header='¿Cuál es su base legal?'
+                                  body={legalBasis}
+                                />
+                              </div>
+                            </div>
                         </div>
-                      }
-                      <h6 style={cardElementStyle} className='card-subtitle mb-2 text-muted'>
-                        {this.state.data.code}
-                      </h6>
-                      <br />
-                      {this.state.data.presentation_means && (
-                        <ProcedurePresentationMeans means={this.state.data.presentation_means}/>
-                      )}
-                      <ProcedureCost
-                        currency={this.state.data.currency}
-                        amount={this.state.data.charge_amount}
-                        link={this.state.data.charge_link} />
-                      {(this.state.data.charge_amount || this.state.data.charge_link) && (
-                        <ProcedurePaymentPlaces places={this.state.data.payment_places} />
-                      )}
-                      {this.state.data.response_time_unit && (
-                        <ProcedureTimeElement
-                          unit={this.state.data.response_time_unit}
-                          amount={this.state.data.response_time_amount}
-                          description='Tiempo de respuesta'
-                        />
-                      )}
-                      {this.state.data.legal_time_unit && (
-                        <ProcedureTimeElement
-                          unit={this.state.data.legal_time_unit}
-                          amount={this.state.data.legal_time_amount}
-                          description='Tiempo regulado'
-                        />
-                      )}
-                      {this.state.data.validity_time_unit && (
-                        <ProcedureTimeElement
-                          unit={this.state.data.validity_time_unit}
-                          amount={this.state.data.validity_time_amount}
-                          description='Vigencia'
-                        />
-                      )}
-                      {this.state.data.class && (
-                        <ProcedureCardElement
-                          header='Clase'
-                          body={this.state.data.class.name} />
-                      )}
-                      <ProcedureCardElement
-                        header='Unidad'
-                        body = {
-                          this.state.data.responsible_area + '. ' +
-                          this.state.data.responsible_area
+                        <div
+                          className='tab-pane fade'
+                          id='forms'
+                          role='tabpanel'
+                          aria-labelledby='forms-tab'>
+                          <FormList forms={this.state.data.forms} />
+                        </div>
+                        <div className='tab-pane fade' id='addresses' role='tabpanel' aria-labelledby='addresses-tab'>...</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className='col-md-4'>
+                  <div className='row'>
+                    <div className='card'>
+                      <div className='card-body'>
+                        <img className='card-img-top' src={DefaultLogo} alt='Logo institucional'/>
+                        {this.state.data.procedure.institution.name &&
+                          <h5 style={cardElementStyle} className='card-title'>
+                            {this.state.data.procedure.institution.name}
+                          </h5>
                         }
-                      />
-                      {this.state.data.categories && this.state.data.categories.map(cat =>
-                        <Link key={cat.id} to={`/modes/category/${cat.id}`}>
-                          <span className='badge badge-success'>
-                            {cat.name}
-                          </span>
-                        </Link>
-                      )}
+                        {this.state.data.procedure.institution.url &&
+                          <div>
+                            <URL
+                                style={cardElementStyle}
+                                href={this.state.data.procedure.institution.url}
+                                text='Ver sitio web' />
+                            <i className='pull-right fas fa-external-link-alt action-icon'></i>
+                          </div>
+                        }
+                        <h6 style={cardElementStyle} className='card-subtitle mb-2 text-muted'>
+                          {this.state.data.code}
+                        </h6>
+                        <br />
+                        {this.state.data.presentation_means && (
+                          <ProcedurePresentationMeans means={this.state.data.presentation_means}/>
+                        )}
+                        <ProcedureCost
+                          currency={this.state.data.currency}
+                          amount={this.state.data.charge_amount}
+                          link={this.state.data.charge_link} />
+                        {(this.state.data.charge_amount || this.state.data.charge_link) && (
+                          <ProcedurePaymentPlaces places={this.state.data.payment_places} />
+                        )}
+                        {this.state.data.response_time_unit && (
+                          <ProcedureTimeElement
+                            unit={this.state.data.response_time_unit}
+                            amount={this.state.data.response_time_amount}
+                            description='Tiempo de respuesta'
+                          />
+                        )}
+                        {this.state.data.legal_time_unit && (
+                          <ProcedureTimeElement
+                            unit={this.state.data.legal_time_unit}
+                            amount={this.state.data.legal_time_amount}
+                            description='Tiempo regulado'
+                          />
+                        )}
+                        {this.state.data.validity_time_unit && (
+                          <ProcedureTimeElement
+                            unit={this.state.data.validity_time_unit}
+                            amount={this.state.data.validity_time_amount}
+                            description='Vigencia'
+                          />
+                        )}
+                        {this.state.data.class && (
+                          <ProcedureCardElement
+                            header='Clase'
+                            body={this.state.data.class.name} />
+                        )}
+                        <ProcedureCardElement
+                          header='Unidad'
+                          body = {
+                            this.state.data.responsible_area + '. ' +
+                            this.state.data.responsible_area
+                          }
+                        />
+                        {this.state.data.categories && this.state.data.categories.map(cat =>
+                          <Link key={cat.id} to={`/modes/category/${cat.id}`}>
+                            <span className='badge badge-success'>
+                              {cat.name}
+                            </span>
+                          </Link>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )} {this.state.status === 'loading' &&
+              <div className='col-md-12 text-center'><Loading /></div>
+            } {this.state.status === 'error' &&
+              <div className='col-md-12 text-center'><Error /></div>
+            }
           </div>
         </section>
       </div>
