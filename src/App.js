@@ -9,7 +9,8 @@ import Home from './screens/UI/Home';
 import NavBar from './screens/UI/NavBar';
 import Footer from './screens/UI/Footer';
 import ProcedureListScreen from './screens/Procedure/List';
-import ProcedureListByRelatedScreen from './screens/Procedure/ListByRelated';
+import ProcedureListByInstitutionScreen from './screens/Procedure/ListByInstitution';
+import ProcedureListByClassScreen from './screens/Procedure/ListByClass';
 import ModeDetailScreen from './screens/Mode/Detail';
 import ModeListByCategoryScreen from './screens/Mode/ListByCategory';
 
@@ -28,7 +29,11 @@ class App extends Component {
           <Route exact path="/procedures" component={ProcedureListScreen} />
           <Route
             path="/procedures/institution/:id([0-9]{1,4})"
-            component={ProcedureListByRelatedScreen}
+            component={ProcedureListByInstitutionScreen}
+          />
+          <Route
+            path="/procedures/class/:id([0-9]{1,2})"
+            component={ProcedureListByClassScreen}
           />
           <Footer />
         </div>

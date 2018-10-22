@@ -5,7 +5,11 @@ import Card from '../UI/Card';
 export default class ClassCard extends Component {
   render() {
     return (
-      <Card name={this.props.name} code={this.props.code} path={`/modes/category/${this.props.id}`} />
+      <Card
+        name={this.props.name}
+        code={this.props.code}
+        path={`/procedures/class/${this.props.id}`}
+      />
     )
   }
 }
