@@ -6,7 +6,7 @@ import { HttpService } from '../../services/http';
 import ProcedureList from '../../components/Procedure/List';
 import CategoryCard from '../../components/Category/Card';
 
-export default class ModesCategoryListScreen extends Component {
+export default class ModeCategoryListScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {

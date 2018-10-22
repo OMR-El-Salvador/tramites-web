@@ -12,7 +12,7 @@ export default class ProcedureModes extends Component {
         {
           this.props.modes.map(mode => (
             <div key={mode.id}>
-              <Link to={`/procedures/${mode.id}`}>
+              <Link to={`/modes/${mode.id}`}>
                 <span className='modeName'>{mode.name}</span>
                 <br />
                 <p className='description'>{mode.description}</p>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import URL from '../../components/UI/URL/URL';
 import DefaultLogo from '../../img/default.png';
 
 import ProcedureElement from './Element';

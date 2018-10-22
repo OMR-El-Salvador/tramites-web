@@ -30,7 +30,7 @@ const modeTextStyle = {
   marginTop: '0.5em'
 }
 
-export default class ProcedureDetailScreen extends Component {
+export default class ModeDetailScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
