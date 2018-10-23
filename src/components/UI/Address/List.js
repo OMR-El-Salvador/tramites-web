@@ -47,25 +47,29 @@ export default class AddressesList extends Component {
 
   render() {
     return (
-      <div id='accordion'>
+      <div id='accordion' className='accordion'>
         {this.state.status === 'success' && (
           Object.keys(this.state.data).map((key) => (
-            <div key={this.state.data[key].id}>
+            <div key={this.state.data[key].id} className='card border-light'>
               <div
                 id={'heading-' + this.state.data[key].id}
-                className='card-header'
+                className='card-header collapsed'
                 data-toggle='collapse'
                 data-target={'#collapse-' + this.state.data[key].id}
                 aria-expanded='false'
-                aria-controls={'collapse-' + this.state.data[key].id}>
-                <h5 className='mb-0'>{this.state.data[key].name}</h5>
+                aria-controls={'collapse-' + this.state.data[key].id}
+                style={{backgroundColor: 'white'}}
+              >
+                <a style={{fontWeight: '450', fontSize: '1.2em'}}>
+                  {this.state.data[key].name}
+                </a>
               </div>
               <div
                 id={'collapse-' + this.state.data[key].id}
                 className='collapse'
                 aria-labelledby={'heading-'+this.state.data[key].id}
                 data-parent='#accordion'>
-                <div className='card-body'>
+                <div className='card-body text-secondary'>
                   {this.state.data[key].addresses.map(addr => (
                     <Address
                       key={addr.id}

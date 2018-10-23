@@ -62,3 +62,14 @@ footer {
 .term {
   color: #95C11F;
 }
+
+.accordion .card-header:after {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  float: right;
+  content: '\f077';
+  color: #ffc107;
+}
+.accordion .card-header.collapsed:after {
+  content: '\f078';
+}
