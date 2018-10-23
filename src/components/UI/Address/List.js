@@ -39,7 +39,6 @@ export default class AddressesList extends Component {
 
           prevDptName = currDptName
         });
-        console.log(result);
         this.setState({status: 'success', data: result});
       } else this.setState({status: 'empty'});
     });
@@ -68,6 +67,7 @@ export default class AddressesList extends Component {
                 <div className='card-body'>
                   {this.state.data[key].addresses.map(addr => (
                     <Address
+                      key={addr.id}
                       detail={addr.detail}
                       municipality={addr.municipality}
                       schedule={addr.schedule}
