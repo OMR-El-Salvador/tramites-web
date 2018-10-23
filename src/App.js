@@ -13,6 +13,7 @@ import ProcedureListByInstitutionScreen from './screens/Procedure/ListByInstitut
 import ProcedureListByClassScreen from './screens/Procedure/ListByClass';
 import ModeDetailScreen from './screens/Mode/Detail';
 import ModeListByCategoryScreen from './screens/Mode/ListByCategory';
+import Error from './components/UI/Error';
 
 class App extends Component {
   render() {
@@ -35,6 +36,7 @@ class App extends Component {
             path="/procedures/class/:id([0-9]{1,2})"
             component={ProcedureListByClassScreen}
           />
+          <Route render={() => <div className='text-center'><Error /></div>}/>
           <Footer />
         </div>
       </Router>
