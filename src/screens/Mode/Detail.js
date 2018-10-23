@@ -17,6 +17,7 @@ import LegalBasisList from '../../components/LegalBasis/List';
 import FormList from '../../components/Form/List';
 import Loading from '../../components/UI/Loading';
 import Error from '../../components/UI/Error';
+import AddressesList from '../../components/UI/Address/List';
 
 const cardElementStyle = {
   color: 'black',
@@ -42,9 +43,6 @@ export default class ModeDetailScreen extends Component {
 
   componentDidMount() {
     let resPath = 'modes';
-    // let addressesPath =
-    //   'addresses(detail,schedule,phone,responsible_name,responsible_position,'+
-    //   'municipality(name, department(name)))';
     let legalBasePath =
       'legal_base(id,type,legislation_name,legislation_reference,legal_topic(name))';
     let procedurePath = 'procedure(name,institution(name,url))';
@@ -175,7 +173,13 @@ export default class ModeDetailScreen extends Component {
                           aria-labelledby='forms-tab'>
                           <FormList forms={this.state.data.forms} />
                         </div>
-                        <div className='tab-pane fade' id='addresses' role='tabpanel' aria-labelledby='addresses-tab'>...</div>
+                        <div
+                          className='tab-pane fade'
+                          id='addresses'
+                          role='tabpanel'
+                          aria-labelledby='addresses-tab'>
+                          {this.state.data.id && <AddressesList id={this.state.data.id} />}
+                        </div>
                       </div>
                     </div>
                   </div>
