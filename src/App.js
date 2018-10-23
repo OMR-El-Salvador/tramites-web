@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import './App.css';
 
 import About from './screens/UI/About';
@@ -19,24 +19,25 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
+        <div className='App'>
           <NavBar />
-          <Route exact path="/" component={Home} />
-          <Route path="/data" component={Data} />
-          <Route path="/categories" component={Categories} />
-          <Route path="/about" component={About} />
-          <Route path="/modes/:id([0-9]{1,6})" component={ModeDetailScreen} />
-          <Route path="/modes/category/:id([0-9]{1,2})" component={ModeListByCategoryScreen} />
-          <Route exact path="/procedures" component={ProcedureListScreen} />
+          <Route exact path='/' component={Home} />
+          <Route path='/data' component={Data} />
+          <Route path='/categories' component={Categories} />
+          <Route path='/about' component={About} />
+          <Route path='/modes/:id([0-9]{1,6})' component={ModeDetailScreen} />
+          <Route path='/modes/category/:id([0-9]{1,2})' component={ModeListByCategoryScreen} />
+          <Route exact path='/procedures' component={ProcedureListScreen} />
           <Route
-            path="/procedures/institution/:id([0-9]{1,4})"
+            path='/procedures/institution/:id([0-9]{1,4})'
             component={ProcedureListByInstitutionScreen}
           />
           <Route
-            path="/procedures/class/:id([0-9]{1,2})"
+            path='/procedures/class/:id([0-9]{1,2})'
             component={ProcedureListByClassScreen}
           />
-          <Route render={() => <div className='text-center'><Error /></div>}/>
+          <Route path='/404' render={() => <div className='text-center'><Error /></div>}/>
+          <Redirect to='/404' />
           <Footer />
         </div>
       </Router>
