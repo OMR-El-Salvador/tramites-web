@@ -5,7 +5,7 @@ import URL from '../../components/UI/URL/URL';
 export default class FormList extends Component {
   render() {
     return (
-      (this.props.forms ? (
+      (this.props.forms.length > 0 ? (
         <table className='table table-hover'>
           <thead><tr><th>Nombre</th><th>Enlace</th></tr></thead>
           <tbody>
