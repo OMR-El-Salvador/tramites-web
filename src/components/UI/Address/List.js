@@ -9,7 +9,8 @@ export default class AddressesList extends Component {
 
   componentDidMount() {
     let resPath = 'addresses';
-    let params = '?select=*,municipality(id,name,department(id,name))&order=municipality_id&mode_id=eq.' + this.state.id;
+    let munPath = 'municipality(id,name,department(id,name))';
+    let params = '?select=*,' + munPath + '&order=municipality_id&mode_id=eq.' + this.state.id;
 
     HttpService.getResource(resPath, params).then(data => {
       if (data.length > 0) {
