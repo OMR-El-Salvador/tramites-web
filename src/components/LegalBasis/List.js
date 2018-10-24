@@ -31,13 +31,15 @@ export default class LegalBasisList extends Component {
   constructor() {
     super();
 
-    this.state = { modalIsOpen: false, selected: null };
+    this.state = { modalIsOpen: false, selected: 0 };
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
-  openModal(i) { this.setState({modalIsOpen: true, selected: i}); }
+  openModal(i) {
+    if (this.props.legalBasis[i].legislation_name) this.setState({selected: i, modalIsOpen: true});
+  }
 
   closeModal() { this.setState({modalIsOpen: false}); }
 
@@ -56,20 +58,21 @@ export default class LegalBasisList extends Component {
           <button onClick={this.closeModal} type='button' className='close' aria-label='Close'>
             <span aria-hidden='true'>&times;</span>
           </button>
-          {this.state.selected &&
-          <div className='card border-light mb-3'>
-            <div className='card-header'>
+          <div className='card mb-3'>
+            <div
+              className='card-header bg-info text-white'
+              style={{fontWeight: '600', fontSize: '1.2em'}}>
               {this.props.legalBasis[this.state.selected].legal_topic.name}
             </div>
             <div className='card-body text-dark'>
-              <h5 className='card-title'>
-                {this.props.legalBasis[this.state.selected].legislation_name}
-              </h5>
-              <p className='card-text'>
-                {this.props.legalBasis[this.state.selected].legislation_reference}
+              <p className='card-title' style={{fontWeight: '500'}}>
+                {this.props.legalBasis[this.state.selected].legislation_name}.
+              </p>
+              <p className='card-text legal-basis-reference' style={{fontWeight: '400'}}>
+                {this.props.legalBasis[this.state.selected].legislation_reference}.
               </p>
             </div>
-          </div>}
+          </div>
         </Modal>
         <table className='table table-hover'>
           <tbody>

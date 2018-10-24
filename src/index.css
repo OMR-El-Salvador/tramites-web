@@ -73,3 +73,7 @@ footer {
 .accordion .card-header.collapsed:after {
   content: '\f078';
 }
+
+.legal-basis-reference:first-letter {
+  text-transform: capitalize;
+}

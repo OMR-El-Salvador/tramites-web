@@ -37,7 +37,7 @@ class App extends Component {
             component={ProcedureListByClassScreen}
           />
           <Route path='/404' render={() => <div className='text-center'><Error /></div>}/>
-          <Redirect to='/404' />
+          {/* <Redirect to='/404' /> */}
           <Footer />
         </div>
       </Router>
