@@ -2,45 +2,13 @@ import React, { Component } from 'react';
 import '../../services/http';
 
 import './Categories.css';
-import { HttpService } from '../../services/http';
+import CategoryCard from '../../components/Category/Card';
+import InstitutionCard from '../../components/Institutions/Card';
 
-const icoClass = {
-  'SPS-001': 'fas fa-hand-paper',
-  'PD-001': 'fab fa-accessible-icon',
-  'VT-001': 'fas fa-shuttle-van',
-  'EDU-001': 'fas fa-graduation-cap',
-  'CON-001': 'fas fa-toolbox',
-  'ION-001': 'fas fa-industry',
-  'DOT-001': 'fas fa-hand-holding-usd',
-  'PF-001': 'fas fa-heart',
-  'MIG-001': 'fas fa-globe-americas',
-  'TOP-001': 'fas fa-briefcase',
-  'AAB-001': 'fab fa-pagelines',
-  'CE-001': 'fas fa-theater-masks',
-  'AF-001': 'fas fa-hands-helping',
-  'IE-001': 'fas fa-atlas',
-  'EC-001': 'fas fa-lightbulb',
-  'SDM-001': 'fas fa-shield-alt',
-  'SAL-001': 'fas fa-stethoscope',
-  'ID-001': 'fas fa-id-card',
-  MAG: 'fas fa-leaf',
-  MARN: 'fas fa-tint',
-  MC: 'fas fa-theater-masks',
-  MDN: 'fas fa-shield-alt',
-  MGDT: 'fas fa-map',
-  MH: 'fas fa-clipboard-list',
-  MINEC: 'fas fa-money-bill-alt',
-  MINED: 'fas fa-book',
-  MINSAL: 'fas fa-user-md',
-  MITUR: 'fas fa-umbrella-beach',
-  MJSP: 'fas fa-balance-scale',
-  MOP: 'fas fa-road',
-  MRREE: 'fas fa-passport',
-  MTPS: 'fas fa-industry',
-  CIU: 'fas fa-users',
-  EMP: 'fas fa-building',
-  ORG: 'fas fa-warehouse',
-}
+import { HttpService } from '../../services/http';
+import ClassCard from '../../components/Classes/Card';
+
+const cardStyle = { marginTop: '0.5em', marginBottom: '0.5em' }
 
 export default class Categories extends Component {
   constructor (props) {
@@ -79,65 +47,34 @@ export default class Categories extends Component {
                 </form>
               </div>
             </div>
-            { this.state.groupBy === 'CAT' &&
-              <div className='row'>
-                {
-                  this.state.categories.map(cat => (
-                    <div key={cat.id} className='col-lg-4 col-sm-6 d-flex align-items-stretch'>
-                      <div className='pb_feature-v1 card text-center'>
-                        <div className='pb_icon card-img-top'>
-                          <i className={icoClass[cat.code] + ' pb_icon-gradient'}></i>
-                        </div>
-                        <div className='media-body card-body d-flex flex-column'>
-                          <h6 className='mt-0 mb-3 heading card-title'>{cat.name}</h6>
-                          <p className='card-text text-left'>{cat.description}</p>
-                          <button href='#' className='btn card-btn mt-auto'>Ver trámites</button>
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                }
-              </div>
-            }
-            {this.state.groupBy === 'MIN' &&
-              <div className='row'>
-                {
-                  this.state.ministries.map(min => (
-                    <div key={min.id} className='col-lg-3 col-sm-6 d-flex align-items-stretch mb-4'>
-                      <div className='pb_feature-v1 card text-center'>
-                        <div className='pb_icon card-img-top'>
-                          <i className={icoClass[min.code] + ' pb_icon-gradient-institutions'}>
-                          </i>
-                        </div>
-                        <div className='media-body card-body d-flex flex-column'>
-                          <h6 className='mt-0 mb-3 heading card-title'>{min.name}</h6>
-                          <button href='#' className='btn card-btn mt-auto'>Ver trámites</button>
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                }
-              </div>
-            }
-            {this.state.groupBy === 'CL' &&
-              <div className='row'>
-                {
-                  this.state.classes.map(cl => (
-                    <div key={cl.id} className='col-lg-4 col-sm-4 align-items-stretch'>
-                      <div className='pb_feature-v1 card text-center'>
-                        <div className='pb_icon card-img-top'>
-                          <i className={icoClass[cl.code] + ' pb_icon-gradient-classes'}></i>
-                        </div>
-                        <div className='media-body card-body d-flex flex-column'>
-                          <h6 className='mt-0 mb-3 heading card-title'>{cl.name}</h6>
-                          <button href='#' className='btn card-btn mt-auto'>Ver trámites</button>
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                }
-              </div>
-            }
+            <div className='row'>
+              { this.state.groupBy === 'CAT' &&
+                this.state.categories.map(cat => (
+                  <div key={cat.id} className='col-lg-4 col-sm-6' style={cardStyle}>
+                    <CategoryCard
+                      id={cat.id}
+                      code={cat.code}
+                      name={cat.name}
+                      description={cat.description}
+                      />
+                  </div>
+                ))
+              }
+              {this.state.groupBy === 'MIN' &&
+                this.state.ministries.map(min => (
+                  <div key={min.id} className='col-lg-3 col-sm-4' style={cardStyle}>
+                    <InstitutionCard id={min.id} code={min.code} name={min.name} />
+                  </div>
+                ))
+              }
+              {this.state.groupBy === 'CL' &&
+                this.state.classes.map(cl => (
+                  <div key={cl.id} className='col-lg-3 col-sm-4' style={cardStyle}>
+                    <ClassCard id={cl.id} code={cl.code} name={cl.name} />
+                  </div>
+                ))
+              }
+            </div>
           </div>
         </section>
       </div>

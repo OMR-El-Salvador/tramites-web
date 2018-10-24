@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import queryString from 'query-string';
 
 import '../../services/http';
-import './List.css';
 
-import ProcedureList from '../../components/Procedure/List';
 import { HttpService } from '../../services/http';
+import ProcedureSearchResults from '../../components/Procedure/SearchResults';
 
 export default class ProcedureListScreen extends Component {
   constructor(props) {
@@ -19,14 +18,14 @@ export default class ProcedureListScreen extends Component {
 
   componentDidMount() {
     let resPath = 'rpc/procedures_search';
-    let params = '?select=id,name,code,modes(id,name,code,description)&term=' + this.state.term;
+    let params = '?select=id,name,code,modes(id,name,code,description),institution(name,url)&term=' + this.state.term;
     HttpService.getResource(resPath, params).then(data => this.setState({procedures: data}));
   }
 
   render() {
     return (
       <div>
-        <section className='text-left card card-body bg-light' id='section-procedures'>
+        <section id='section-procedures'>
           <div className='container'>
             <div className='row'>
               <div className='col-md-12'>
@@ -34,18 +33,17 @@ export default class ProcedureListScreen extends Component {
                   {
                     this.state.procedures.length > 1
                     ?
-                    'Se encontraron los siguientes ' + this.state.procedures.length + ' resultados '
+                    'Se encontraron ' + this.state.procedures.length + ' resultados '
                     :
                     this.state.procedures.lenght === 1
                     ?
-                    'Se encontró el siguiente resultado '
+                    'Se encontró un resultado '
                     :
                     'No se encontraron resultados '
                   }
-                  para "<em>{this.state.term}</em>":
+                  para "<em className='term'>{this.state.term}</em>":
                 </p>
-                <hr />
-                <ProcedureList procedures={this.state.procedures} />
+                <ProcedureSearchResults procedures={this.state.procedures} />
               </div>
             </div>
           </div>

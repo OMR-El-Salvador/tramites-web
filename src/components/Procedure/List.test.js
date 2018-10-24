@@ -10,6 +10,7 @@ beforeEach(() => {
     {
       id: 1,
       name: 'Procedure A',
+      code: 'PROC-001',
       modes: [
         { id: 1, name: 'For natural persons', description: 'Procedure for natural persons' },
         { id: 2, name: 'For companies', description: 'Procedure for companies' },
@@ -19,6 +20,7 @@ beforeEach(() => {
     {
       id: 2,
       name: 'Procedure B',
+      code: 'PROC-001',
       modes: [
         { id: 1, name: 'For natural persons', description: 'Procedure for natural persons' },
         { id: 2, name: 'For companies', description: 'Procedure for companies' },
@@ -28,6 +30,7 @@ beforeEach(() => {
     {
       id: 3,
       name: 'Procedure C',
+      code: 'PROC-001',
       modes: [
         { id: 1, name: 'For natural persons', description: 'Procedure for natural persons' },
         { id: 2, name: 'For companies', description: 'Procedure for companies' },

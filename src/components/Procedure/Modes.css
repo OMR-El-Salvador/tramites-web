@@ -1,4 +1,17 @@
-#description {
-  color: black;
-  font-family: 'Heebo', sans-serif;
+.description {
+  color: #2F4F4F;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+.procedureMode {
+  font-size: 1.3em;
+  letter-spacing: -0.03em;
+  padding: 0.5em;
+}
+
+.modeName {
+  font-weight: 500;
 }
