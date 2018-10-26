@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { HttpService } from '../../services/http';
-import ProcedureCardElement from "./CardElement";
-import URL from '../../components/UI/URL/URL';
 import Loading from '../UI/Loading';
 
 const currencies = { 'dollar': '$', 'colon': '₡' }
@@ -19,38 +17,34 @@ export default class ProcedureCost extends Component {
   }
 
   render() {
-    if (this.state.status === 'empty') return <p style={{fontWeight: '500'}}>No posee costos.</p>
+    if (this.state.status === 'empty') return <p style={{fontWeight: '400'}}>No posee.</p>
     else if (this.state.status === 'loading') return <Loading />
     else {
       return (
-        <div>
+        <div style={{ marginTop: '0.5em', letterSpacing: '0.005em' }}>
           {this.state.data.amount &&
-          <ProcedureCardElement
-            header={'Monto'}
-            body={currencies[this.state.data.currency] + this.state.data.amount}
-          />}
-          {this.state.data.description &&
-          <ProcedureCardElement header={'Descripción'} body={this.state.data.description} />}
+          (currencies[this.state.data.currency] + this.state.data.amount + '. ')}
+          {this.state.data.description && (this.state.data.description + '.')}
+          <br />
           {this.state.data.main_url &&
-          <ProcedureCardElement
-            header={'Información'}
-            body={<URL href={this.state.data.main_url} text='Ver en línea' />}
-          />}
+          <a href={this.state.data.main_url} className='btn btn-success'>Información en línea</a>}
           {this.state.data.secondary_url &&
-          <ProcedureCardElement
-            header={'Información complementaria'}
-            body={<URL href={this.state.data.main_url} text='Ver en línea' />}
-          />}
-          {this.state.data.main_file &&
-          <ProcedureCardElement
-            header={'Información'}
-            body={<URL href={this.state.data.main_file} text='Ver en línea' />}
-          />}
+          <a
+            style={{marginLeft: '0.3em'}}
+            href={this.state.data.secondary_url}
+            className='btn btn-info'>
+            Información complementaria
+          </a>}
+          {/* TODO: Mount document server */}
+          {/* {this.state.data.main_file &&
+          <a href={this.state.data.main_file} className='btn btn-success'>Información en línea</a>}
           {this.state.data.secondary_file &&
-          <ProcedureCardElement
-            header={'Información complementaria'}
-            body={<URL href={this.state.data.main_file} text='Ver en línea' />}
-          />}
+          <a
+            style={{marginLeft: '0.3em'}}
+            href={this.state.data.secondary_file}
+            className='btn btn-info'>
+            Información complementaria
+          </a>} */}
         </div>
       )
     }
