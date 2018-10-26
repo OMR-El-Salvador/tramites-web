@@ -178,7 +178,7 @@ export default class ModeDetailScreen extends Component {
                           id='costs'
                           role='tabpanel'
                           aria-labelledby='costs-tab'>
-                          <ProcedureCost />
+                          {this.state.data.id && <ProcedureCost id={this.state.data.id} />}
                         </div>
                         <div
                           className='tab-pane fade'
