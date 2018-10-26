@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NumberFormat from 'react-number-format';
 import PropTypes from 'prop-types';
 
 import { HttpService } from '../../services/http';
@@ -23,7 +24,13 @@ export default class ProcedureCost extends Component {
       return (
         <div style={{ marginTop: '0.5em', letterSpacing: '0.005em' }}>
           {this.state.data.amount &&
-          (currencies[this.state.data.currency] + this.state.data.amount + '. ')}
+          (<NumberFormat
+            value={this.state.data.amount}
+            displayType={'text'}
+            thousandSeparator={true}
+            prefix={currencies[this.state.data.currency]}
+            renderText={value => value + '. '}
+          />)}
           {this.state.data.description && (this.state.data.description + '.')}
           <br />
           {this.state.data.main_url &&
