@@ -189,12 +189,12 @@ export default class ModeDetailScreen extends Component {
                         <h5 style={cardElementStyle} className='card-title'>
                           {this.state.data.procedure.institution.name}
                         </h5>}
-                        {this.state.data.procedure.institution.url &&
+                        {this.state.data.presentation_url &&
                         <div>
                           <URL
                             style={cardElementStyle}
-                            href={this.state.data.procedure.institution.url}
-                            text='Ver sitio web'
+                            href={this.state.data.presentation_url}
+                            text='Realizar en línea '
                           />
                           <i className='pull-right fas fa-external-link-alt action-icon'></i>
                         </div>}
