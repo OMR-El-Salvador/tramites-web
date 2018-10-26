@@ -10,7 +10,6 @@ import Error from '../../components/UI/Error';
 import AddressesList from '../../components/UI/Address/List';
 
 import ProcedureName from '../../components/Procedure/Name';
-import ProcedurePresentationMeans from '../../components/Procedure/PresentationMeans';
 import ProcedureCost from '../../components/Procedure/Cost';
 import ProcedurePaymentPlaces from '../../components/Procedure/PaymentPlaces';
 import ProcedureTimeElement from '../../components/Procedure/TimeElement';
@@ -101,6 +100,18 @@ export default class ModeDetailScreen extends Component {
                         <li className='nav-item'>
                           <a
                             className='nav-link'
+                            id='costs-tab'
+                            data-toggle='tab'
+                            href='#costs'
+                            role='tab'
+                            aria-controls='costos'
+                            aria-selected='false'>
+                            Costos
+                          </a>
+                        </li>
+                        <li className='nav-item'>
+                          <a
+                            className='nav-link'
                             id='forms-tab'
                             data-toggle='tab'
                             href='#forms'
@@ -164,6 +175,13 @@ export default class ModeDetailScreen extends Component {
                         </div>
                         <div
                           className='tab-pane fade'
+                          id='costs'
+                          role='tabpanel'
+                          aria-labelledby='costs-tab'>
+                          <ProcedureCost />
+                        </div>
+                        <div
+                          className='tab-pane fade'
                           id='forms'
                           role='tabpanel'
                           aria-labelledby='forms-tab'>
@@ -202,12 +220,6 @@ export default class ModeDetailScreen extends Component {
                           {this.state.data.code}
                         </h6>
                         <br />
-                        {this.state.data.presentation_means &&
-                        <ProcedurePresentationMeans means={this.state.data.presentation_means}/>}
-                        <ProcedureCost
-                          currency={this.state.data.currency}
-                          amount={this.state.data.charge_amount}
-                          link={this.state.data.charge_link} />
                         {(this.state.data.charge_amount || this.state.data.charge_link) &&
                         <ProcedurePaymentPlaces places={this.state.data.payment_places} />}
                         {this.state.data.response_time_unit &&
