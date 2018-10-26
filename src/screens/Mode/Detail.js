@@ -100,18 +100,6 @@ export default class ModeDetailScreen extends Component {
                         <li className='nav-item'>
                           <a
                             className='nav-link'
-                            id='costs-tab'
-                            data-toggle='tab'
-                            href='#costs'
-                            role='tab'
-                            aria-controls='costos'
-                            aria-selected='false'>
-                            Costos
-                          </a>
-                        </li>
-                        <li className='nav-item'>
-                          <a
-                            className='nav-link'
                             id='forms-tab'
                             data-toggle='tab'
                             href='#forms'
@@ -167,18 +155,19 @@ export default class ModeDetailScreen extends Component {
                           <div className='row'>
                             <div className='col-md-12'>
                               <ProcedureDescriptionElement
+                                header='¿Cuáles son los costos?'
+                                body={<ProcedureCost id={this.state.data.id} />}
+                              />
+                            </div>
+                          </div>
+                          <div className='row'>
+                            <div className='col-md-12'>
+                              <ProcedureDescriptionElement
                                 header='¿Cuál es su base legal?'
                                 body={legalBasis}
                               />
                             </div>
                           </div>
-                        </div>
-                        <div
-                          className='tab-pane fade'
-                          id='costs'
-                          role='tabpanel'
-                          aria-labelledby='costs-tab'>
-                          {this.state.data.id && <ProcedureCost id={this.state.data.id} />}
                         </div>
                         <div
                           className='tab-pane fade'
