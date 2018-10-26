@@ -5,6 +5,7 @@ import '../../services/http';
 
 import { HttpService } from '../../services/http';
 import ProcedureSearchResults from '../../components/Procedure/SearchResults';
+import Loading from '../../components/UI/Loading';
 
 export default class ProcedureListScreen extends Component {
   constructor(props) {
@@ -12,14 +13,15 @@ export default class ProcedureListScreen extends Component {
     let params = queryString.parse(this.props.location.search)
     this.state = {
       term: params.term,
-      procedures: []
+      procedures: [],
+      status: 'loading'
     };
   }
 
   componentDidMount() {
     let resPath = 'rpc/procedures_search';
     let params = '?select=id,name,code,modes(id,name,code,description),institution(name,url)&term=' + this.state.term;
-    HttpService.getResource(resPath, params).then(data => this.setState({procedures: data}));
+    HttpService.getResource(resPath, params).then(data => this.setState({procedures: data, status: 'success'}));
   }
 
   render() {
@@ -29,21 +31,25 @@ export default class ProcedureListScreen extends Component {
           <div className='container'>
             <div className='row'>
               <div className='col-md-12'>
-                <p className='result-text'>
-                  {
-                    this.state.procedures.length > 1
-                    ?
-                    'Se encontraron ' + this.state.procedures.length + ' resultados '
-                    :
-                    this.state.procedures.lenght === 1
-                    ?
-                    'Se encontró un resultado '
-                    :
-                    'No se encontraron resultados '
-                  }
-                  para "<em className='term'>{this.state.term}</em>":
-                </p>
-                <ProcedureSearchResults procedures={this.state.procedures} />
+                {this.state.status === 'loading' ? 
+                <Loading className='text-center' /> :
+                <div>
+                  <p className='result-text'>
+                    {
+                      this.state.procedures.length > 1
+                      ?
+                      'Se encontraron ' + this.state.procedures.length + ' resultados '
+                      :
+                      this.state.procedures.lenght === 1
+                      ?
+                      'Se encontró un resultado '
+                      :
+                      'No se encontraron resultados '
+                    }
+                    para "<em className='term'>{this.state.term}</em>":
+                  </p>
+                  <ProcedureSearchResults procedures={this.state.procedures} />
+                </div>}
               </div>
             </div>
           </div>
