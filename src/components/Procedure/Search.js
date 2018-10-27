@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
-import './Search.css';
-
 class ProcedureSearch extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +37,8 @@ class ProcedureSearch extends Component {
                 <input
                   type='submit'
                   disabled={!this.state.value}
-                  className='btn btn-search btn-lg btn-block'
+                  style={{ color: 'white' }}
+                  className='btn btn-lg btn-block btn-success'
                   value='Buscar…'
                 />
               </div>
