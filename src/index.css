@@ -77,3 +77,33 @@ footer {
 .legal-basis-reference:first-letter {
   text-transform: capitalize;
 }
+
+.cover {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.cover {
+  position: relative;
+  height: 55vh;
+}
+@media (max-width: 767px) {
+  .cover {
+    height: inherit;
+    text-align: center !important;
+    padding: 3em 0;
+  }
+}
+.cover > .container {
+  position: relative;
+}
+.cover > .container > .row {
+  height: 55vh;
+}
+@media (max-width: 767px) {
+  .cover > .container > .row {
+    height: inherit;
+    padding: 3em 0;
+  }
+}

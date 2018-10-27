@@ -16,7 +16,7 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <section className='pb_cover_v3 text-left' id='section-home' style={divStyle}>
+        <section className='cover text-left' id='section-home' style={divStyle}>
           <div className='container'>
             <div className='row align-items-center justify-content-center'>
               <div className='col-md-6'>
