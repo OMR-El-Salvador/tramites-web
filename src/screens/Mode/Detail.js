@@ -250,6 +250,7 @@ export default class ModeDetailScreen extends Component {
                           </Link>
                         )}
                         <hr />
+                        <em>Actualizado el {this.state.data.updated.split('T')[0]}.</em><br /><br />
                         <strong style={{color: 'black'}}>
                           <span><i className='fas fa-archway'></i></span>&nbsp;
                           Con base en información brindada por la institución al OMR.
