@@ -209,6 +209,11 @@ export default class ModeDetailScreen extends Component {
                           {this.state.data.code}
                         </h6>
                         <br />
+                        <strong style={{color: 'black'}}>
+                          Ficha generada con base en información brindada por la institución al OMR.
+                        </strong>
+                        {/* Recuperado de transparencia.gob.sv */}
+                        <br /><br />
                         {(this.state.data.charge_amount || this.state.data.charge_link) &&
                         <ProcedurePaymentPlaces places={this.state.data.payment_places} />}
                         {this.state.data.response_time_unit &&
