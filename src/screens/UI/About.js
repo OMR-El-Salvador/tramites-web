@@ -3,19 +3,18 @@ import React, { Component } from 'react'
 export default class About extends Component {
   render() {
     return (
-      <section className="pb_cover_v3 overflow-hidden cover-bg-indigo cover-bg-opacity text-left pb_gradient_v1 pb_slant-light" id="section-home">
-        <div className="container">
-          <div className="row align-items-center justify-content-center">
-            <div className="col-md-6">
-              <h2 className="heading mb-3">gob.sv </h2>
-              <div className="sub-heading">
-                <p className="mb-4">Bienvenido a tu portal para consulta de Trámites. Podrás encontrar información sobre los trámites de los 14 ministerios.</p>
-              </div>
-            </div>
-            <div className="col-md-1">
-            </div>
-            <h3>About</h3>
-          </div>
+      <section id='section-home'>
+        <div className='container' style={{marginTop: '1em'}}>
+          <h1>Acerca de</h1>
+          <p style={{lineHeight: '2em', fontSize: '1.1em'}}>
+            Este portal contiene la información sobre trámites de los 14 ministerios que forman el 
+            Órgano Ejecutivo del Gobierno de El Salvador. La información <strong>fue brindada al
+            Organismo de Mejora Regulatoria por las instituciones</strong> correspondientes como 
+            parte del proyecto de simplificación y registro de trámites:&nbsp;
+            <a href='http://www.omr.gob.sv/index.php/noticias/4-el-goes-le-apuesta-a-la-simplificacion-de-tramites-y-a-la-creacion-de-un-registro-nacional-de-tramites'>
+              Ver más información
+            </a>. 
+          </p>
         </div>
       </section>
     )
