@@ -8,7 +8,7 @@ export default class ClassCard extends Component {
       <Card
         name={this.props.name}
         code={this.props.code}
-        path={`/procedures/class/${this.props.id}`}
+        path={`/tramites/clase/${this.props.id}`}
       />
     )
   }

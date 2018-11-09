@@ -22,18 +22,18 @@ class App extends Component {
         <div className='App'>
           <NavBar />
           <Route exact path='/' component={Home} />
-          <Route path='/data' component={Data} />
-          <Route path='/categories' component={Categories} />
-          <Route path='/about' component={About} />
-          <Route path='/modes/:id([0-9]{1,6})' component={ModeDetailScreen} />
-          <Route path='/modes/category/:id([0-9]{1,2})' component={ModeListByCategoryScreen} />
-          <Route exact path='/procedures' component={ProcedureListScreen} />
+          {/* <Route path='/data' component={Data} /> */}
+          <Route path='/categorias' component={Categories} />
+          <Route path='/acercaDe' component={About} />
+          <Route path='/modalidades/:id([0-9]{1,6})' component={ModeDetailScreen} />
+          <Route path='/modalidades/categoria/:id([0-9]{1,2})' component={ModeListByCategoryScreen} />
+          <Route exact path='/tramites' component={ProcedureListScreen} />
           <Route
-            path='/procedures/institution/:id([0-9]{1,4})'
+            path='/tramites/institucion/:id([0-9]{1,4})'
             component={ProcedureListByInstitutionScreen}
           />
           <Route
-            path='/procedures/class/:id([0-9]{1,2})'
+            path='/tramites/clase/:id([0-9]{1,2})'
             component={ProcedureListByClassScreen}
           />
           <Route path='/404' render={() => <div className='text-center'><Error /></div>}/>

@@ -8,7 +8,7 @@ export default class InstitutionCard extends Component {
       <Card
         name={this.props.name}
         code={this.props.code}
-        path={`/procedures/institution/${this.props.id}`}
+        path={`/tramites/institucion/${this.props.id}`}
       />
     )
   }

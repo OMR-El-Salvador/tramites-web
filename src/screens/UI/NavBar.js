@@ -26,17 +26,17 @@ export default class NavBar extends Component {
           </button>
           <div className='collapse navbar-collapse' id='probootstrap-navbar'>
             <ul className='navbar-nav ml-auto'>
-              <li className='nav-item' style={itemSt}>
+              {/* <li className='nav-item' style={itemSt}>
                 <Link style={linkSt} to='/data'>Datos</Link>
+              </li> */}
+              <li className='nav-item' style={itemSt}>
+                <Link style={linkSt} to='/categorias'>Categorías</Link>
               </li>
               <li className='nav-item' style={itemSt}>
-                <Link style={linkSt} to='/categories'>Categorías</Link>
+                <Link style={linkSt} to='/acercaDe'>Glosario</Link>
               </li>
               <li className='nav-item' style={itemSt}>
-                <Link style={linkSt} to='/about'>Glosario</Link>
-              </li>
-              <li className='nav-item' style={itemSt}>
-                <Link style={linkSt} to='/about'>Acerca de</Link>
+                <Link style={linkSt} to='/acercaDe'>Acerca de</Link>
               </li>
             </ul>
           </div>

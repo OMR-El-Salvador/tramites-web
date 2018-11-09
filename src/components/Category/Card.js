@@ -9,7 +9,7 @@ export default class CategoryCard extends Component {
         name={this.props.name}
         code={this.props.code}
         description={this.props.description}
-        path={`/modes/category/${this.props.id}`}
+        path={`/modalidades/categoria/${this.props.id}`}
       />
     )
   }

@@ -14,7 +14,7 @@ class ProcedureSearch extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    if (this.state.value !== '') this.props.history.push('/procedures?term='+this.state.value);
+    if (this.state.value !== '') this.props.history.push('/tramites?term='+this.state.value);
   }
 
   render() {
