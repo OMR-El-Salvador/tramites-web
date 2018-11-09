@@ -17,7 +17,8 @@ export default class AddressesList extends Component {
     let fData = [];
     Object.keys(this.state.data).forEach((key) => (
       this.state.data[key].addresses.forEach(addr => {
-        if (term && addr.municipality.toLowerCase().indexOf(term.toLowerCase()) > -1) fData.push(addr)
+        if (term && addr.municipality.toLowerCase().indexOf(term.toLowerCase()) > -1)
+          fData.push(addr)
       })
     ))
     this.setState({ term: term, filteredData: fData });
