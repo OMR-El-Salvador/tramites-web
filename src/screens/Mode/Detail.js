@@ -246,9 +246,7 @@ export default class ModeDetailScreen extends Component {
                         />
                         {this.state.data.categories && this.state.data.categories.map(cat =>
                           <Link key={cat.id} to={`/modes/category/${cat.id}`}>
-                            <span className='badge badge-success'>
-                              {cat.name}
-                            </span>
+                            <span className='badge badge-success'>{cat.name}</span>
                           </Link>
                         )}
                         <hr />
