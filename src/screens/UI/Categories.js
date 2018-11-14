@@ -3,7 +3,6 @@ import '../../services/http';
 
 import './Categories.css';
 import CategoryCard from '../../components/Category/Card';
-import InstitutionCard from '../../components/Institutions/Card';
 
 import { HttpService } from '../../services/http';
 import ClassCard from '../../components/Classes/Card';
@@ -60,13 +59,27 @@ export default class Categories extends Component {
                   </div>
                 ))
               }
-              {this.state.groupBy === 'MIN' &&
-                this.state.ministries.map(min => (
-                  <div key={min.id} className='col-lg-3 col-sm-4' style={cardStyle}>
-                    <InstitutionCard id={min.id} code={min.code} name={min.name} />
-                  </div>
-                ))
-              }
+              {this.state.groupBy === 'MIN' && (
+                <div className='table-responsive'>
+                  <table className='table table-striped table-bordered table-hover table-sm'>
+                    <tbody>
+                    {this.state.ministries.map(min => (
+                      <tr key={min.id} >
+                        <td style={{ fontWeight: '600', verticalAlign: 'middle' }}>{min.name}</td>
+                        <td className='text-center text-white'>
+                          <a
+                            className='btn btn-info'
+                            role='button'
+                            href={`/tramites/institucion/${min.id}`}>
+                            Ver trámites
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
               {this.state.groupBy === 'CL' &&
                 this.state.classes.map(cl => (
                   <div key={cl.id} className='col-lg-3 col-sm-4' style={cardStyle}>
