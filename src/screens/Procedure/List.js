@@ -35,8 +35,8 @@ export default class ProcedureListScreen extends Component {
           <div className='container'>
             <div className='row'>
               <div className='col-md-12'>
-                {this.state.status === 'loading' ? 
-                <Loading className='text-center' /> :
+                {this.state.status === 'loading' ?
+                <div className='text-center'><Loading /></div> :
                 <div>
                   <p className='result-text'>
                     {

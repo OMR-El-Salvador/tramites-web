@@ -5,6 +5,7 @@ import { HttpService } from '../../services/http';
 
 import ProcedureList from '../../components/Procedure/List';
 import CategoryCard from '../../components/Category/Card';
+import Loading from '../../components/UI/Loading';
 
 export default class ModeCategoryListScreen extends Component {
   constructor(props) {
@@ -12,7 +13,8 @@ export default class ModeCategoryListScreen extends Component {
     this.state = {
       cat_id: this.props.match.params.id,
       procedures: [],
-      category: null
+      category: null,
+      status: 'loading'
     };
   }
 
@@ -40,7 +42,9 @@ export default class ModeCategoryListScreen extends Component {
     };
 
     HttpService.getResource(resPath, params).then(data => formatData(this, data));
-    HttpService.getResource(catPath).then(data => this.setState({category: data[0]}));
+    HttpService.getResource(catPath).then(
+      data => this.setState({ category: data[0], status: 'success' })
+    );
   }
 
   render() {
@@ -60,22 +64,25 @@ export default class ModeCategoryListScreen extends Component {
                 }
               </div>
               <div className='col-md-9'>
-                {this.state.procedures.length > 0 ? (
-                  <div>
-                    <p className='result-text'>
-                      {this.state.procedures.length}
-                      {
-                        this.state.procedures.length > 1 ?
-                        ' trámites están asociados ' :
-                        ' trámite está asociado '
-                      }
-                      a la categoría.
-                    </p>
-                    <ProcedureList procedures={this.state.procedures} />
-                  </div>
-                ) : (
-                  <h6>No se encontró información.</h6>
-                )}
+                {this.state.status === 'loading' ?
+                <div className='text-center'><Loading /></div> :
+                  this.state.procedures.length > 0 ? (
+                    <div>
+                      <p className='result-text'>
+                        {this.state.procedures.length}
+                        {
+                          this.state.procedures.length > 1 ?
+                          ' trámites están asociados ' :
+                          ' trámite está asociado '
+                        }
+                        a la categoría.
+                      </p>
+                      <ProcedureList procedures={this.state.procedures} />
+                    </div>
+                  ) : (
+                    <h6>No se encontró información.</h6>
+                  )
+                }
               </div>
             </div>
           </div>

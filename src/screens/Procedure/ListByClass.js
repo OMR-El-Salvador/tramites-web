@@ -5,13 +5,15 @@ import '../../services/http';
 import ProcedureList from '../../components/Procedure/List';
 import { HttpService } from '../../services/http';
 import ClassCard from '../../components/Classes/Card';
+import Loading from '../../components/UI/Loading';
 
 export default class ProcedureListByClassScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       id: this.props.match.params.id,
-      class: { procedures: [ ] }
+      class: { procedures: [ ] },
+      status: 'loading'
     };
   }
 
@@ -20,7 +22,9 @@ export default class ProcedureListByClassScreen extends Component {
     let proceduresPath = 'procedures(id,name,code,modes(id,name,code,description))';
     let order = '&procedures.order=name'
     let params = '?select=id,name,code,' + proceduresPath + '&id=eq.' + this.state.id + order;
-    HttpService.getResource(resPath, params).then(data => this.setState({class: data[0]}));
+    HttpService.getResource(resPath, params).then(
+      data => this.setState({ class: data[0], status: 'success' })
+    );
   }
 
   render() {
@@ -38,21 +42,25 @@ export default class ProcedureListByClassScreen extends Component {
                   />}
               </div>
               <div className='col-md-9'>
-                <p className='result-text'>
-                  {
-                    this.state.class.procedures.length > 1
-                    ?
-                      this.state.class.procedures.length +
-                      ' trámites están relacionados con la clase:'
-                    :
-                      this.state.class.procedures.lenght === 1
-                    ?
-                      'La clase cuenta con un trámite relacionado:'
-                    :
-                      'No se encontraron resultados.'
-                  }
-                </p>
-                <ProcedureList procedures={this.state.class.procedures} />
+                {this.state.status === 'loading' ?
+                <div className='text-center'><Loading /></div> :
+                <div>
+                  <p className='result-text'>
+                    {
+                      this.state.class.procedures.length > 1
+                      ?
+                        this.state.class.procedures.length +
+                        ' trámites están relacionados con la clase:'
+                      :
+                        this.state.class.procedures.lenght === 1
+                      ?
+                        'La clase cuenta con un trámite relacionado:'
+                      :
+                        'No se encontraron resultados.'
+                    }
+                  </p>
+                  <ProcedureList procedures={this.state.class.procedures} />
+                </div>}
               </div>
             </div>
           </div>
