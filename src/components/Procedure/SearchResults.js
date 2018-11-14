@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import DefaultLogo from '../../img/default.png';
-
 import ProcedureElement from './Element';
+import InstitutionCard from '../Institutions/Card';
 
 const listStyle = {
   fontWeight: '300',
@@ -15,20 +14,6 @@ const itemStyle = {
   marginTop: '2em'
 };
 
-const cardElementStyle = {
-  color: 'black',
-  marginTop: '0.5em',
-  fontWeight: '600',
-  letterSpacing: '0.03em'
-}
-
-const cardImage = {
-  maxWidth: '128px',
-  maxHeight: '128px',
-  width: 'auto',
-  height: 'auto',
-}
-
 export default class ProcedureSearchResults extends Component {
   render() {
     return (
@@ -39,15 +24,11 @@ export default class ProcedureSearchResults extends Component {
               <div className='col-md-3'>
                 <div className='card'>
                   <div className='card-body'>
-                    <img
-                      style={cardImage}
-                      className='mx-auto d-block card-img-top'
-                      src={DefaultLogo}
-                      alt='Logo institucional'
+                    <InstitutionCard
+                      id={procedure.institution.id}
+                      code='default'
+                      name={procedure.institution.name}
                     />
-                    <h5 style={cardElementStyle} className='card-title'>
-                      {procedure.institution.name}
-                    </h5>
                   </div>
                 </div>
               </div>

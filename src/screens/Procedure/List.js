@@ -20,8 +20,12 @@ export default class ProcedureListScreen extends Component {
 
   componentDidMount() {
     let resPath = 'rpc/procedures_search';
-    let params = '?select=id,name,code,modes(id,name,code,description),institution(name,url)&term=' + this.state.term;
-    HttpService.getResource(resPath, params).then(data => this.setState({procedures: data, status: 'success'}));
+    let modesPath = 'modes(id,name,code,description)';
+    let instPath = 'institution(id,name,url)';
+    let params = '?select=id,name,code,' + modesPath + ',' + instPath + '&term=' + this.state.term;
+    HttpService.getResource(resPath, params).then(
+      data => this.setState({procedures: data, status: 'success'}
+    ));
   }
 
   render() {
