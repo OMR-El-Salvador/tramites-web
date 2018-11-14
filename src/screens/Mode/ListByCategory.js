@@ -19,7 +19,8 @@ export default class ModeCategoryListScreen extends Component {
   componentDidMount() {
     let resPath = 'rpc/modes_by_cat';
     let columnsPath = 'select=id,name,description,procedure:procedures(id,code,name)';
-    let params = '?'+columnsPath+'&order=procedure_id&cat_id=' + this.state.cat_id;
+    let orderPath = 'procedure.order=name&order=procedure_id';
+    let params = '?' + columnsPath + '&' + orderPath + '&cat_id=' + this.state.cat_id;
 
     let catPath = 'categories?id=eq.' + this.state.cat_id;
 
