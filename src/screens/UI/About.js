@@ -19,15 +19,33 @@ export default class About extends Component {
           <p style={{lineHeight: '2em', fontSize: '1.1em'}}>
             <span className='fas fa-laptop' /> Código fuente: &nbsp;
             <span className='fab fa-github'/> &nbsp;
-            <a target='_blank' href='https://github.com/OMR-El-Salvador/tramites-web'>
+            <a
+              rel='noopener noreferrer'
+              target='_blank'
+              href='https://github.com/OMR-El-Salvador/tramites-web'>
               Repositorio en Github
             </a>.
             <br />
             <span className='fas fa-paint-brush'/> Iconos
             <ul>
-              <li><a target='_blank' href='http://www.freepik.com'>makyzz / Freepik</a></li>
-              <li><a target='_blank' href='http://www.baianat.com/resources/'>Baianat</a></li>
-              <li><a target='_blank' href='https://bit.ly/22d05zk'>Elegant Themes</a></li>
+              <li>
+                <a rel='noopener noreferrer' target='_blank' href='http://www.freepik.com'>
+                  makyzz / Freepik
+                </a>
+              </li>
+              <li>
+                <a
+                  rel='noopener noreferrer'
+                  target='_blank'
+                  href='http://www.baianat.com/resources/'>
+                  Baianat
+                </a>
+              </li>
+              <li>
+                <a rel='noopener noreferrer' target='_blank' href='https://bit.ly/22d05zk'>
+                  Elegant Themes
+                </a>
+              </li>
             </ul>
           </p>
         </div>

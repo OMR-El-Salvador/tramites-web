@@ -22,15 +22,11 @@ export default class ProcedureSearchResults extends Component {
           this.props.procedures.map(procedure => (
             <div key={procedure.id} style={itemStyle} className='row'>
               <div className='col-md-3'>
-                <div className='card'>
-                  <div className='card-body'>
-                    <InstitutionCard
-                      id={procedure.institution.id}
-                      code='default'
-                      name={procedure.institution.name}
-                    />
-                  </div>
-                </div>
+                <InstitutionCard
+                  id={procedure.institution.id}
+                  code='default'
+                  name={procedure.institution.name}
+                />
               </div>
               <div className='col-md-9'>
                 <ProcedureElement
