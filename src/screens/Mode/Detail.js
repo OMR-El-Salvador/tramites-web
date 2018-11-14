@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
 import { HttpService } from '../../services/http';
 
 import DefaultLogo from '../../img/default.png';
