@@ -32,7 +32,7 @@ export default class Footer extends Component {
               </ul>
             </div>
             <div className='col-md-6'>
-              <img src={FooterImg} alt='Participantes: MCC, FOMILENIO II, OMR, GOES' />
+              <img className='img-fluid' src={FooterImg} alt='Participantes: MCC, FOMILENIO II, OMR, GOES' />
             </div>
           </div>
         </div>
