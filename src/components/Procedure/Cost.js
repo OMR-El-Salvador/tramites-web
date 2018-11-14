@@ -18,7 +18,9 @@ export default class ProcedureCost extends Component {
   }
 
   render() {
-    if (this.state.status === 'empty') return <p style={{fontWeight: '400'}}>No posee.</p>
+    if (this.state.status === 'empty' ||
+        (this.state.status != 'loading' && this.state.data.amount === 0))
+      return <p style={{fontWeight: '400'}}>No posee.</p>
     else if (this.state.status === 'loading') return <Loading />
     else {
       return (
