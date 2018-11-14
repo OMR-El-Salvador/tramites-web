@@ -19,7 +19,8 @@ export default class ProcedureListByClassScreen extends Component {
 
   componentDidMount() {
     let resPath = 'classes';
-    let proceduresPath = 'procedures(id,name,code,modes(id,name,code,description))';
+    let modesPath = 'modes(id,name,code,description,categories(id,name))';
+    let proceduresPath = 'procedures(id,name,code,' + modesPath + ')';
     let order = '&procedures.order=name'
     let params = '?select=id,name,code,' + proceduresPath + '&id=eq.' + this.state.id + order;
     HttpService.getResource(resPath, params).then(

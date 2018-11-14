@@ -18,6 +18,7 @@ import ProcedureDescriptionElement from '../../components/Procedure/DescriptionE
 import RequirementList from '../../components/Requirement/List';
 import LegalBasisList from '../../components/LegalBasis/List';
 import FormList from '../../components/Form/List';
+import CategoriesTags from '../../components/Category/Tags';
 
 const cardElementStyle = { color: 'black', marginTop: '0.5em' }
 
@@ -244,11 +245,7 @@ export default class ModeDetailScreen extends Component {
                             this.state.data.responsible_area
                           }
                         />
-                        {this.state.data.categories && this.state.data.categories.map(cat =>
-                          <Link key={cat.id} to={`/modalidades/categoria/${cat.id}`}>
-                            <span className='badge badge-success'>{cat.name}</span>
-                          </Link>
-                        )}
+                        <CategoriesTags categories={this.state.data.categories} />
                         <hr />
                         <em>Actualizado el {this.state.data.updated.split('T')[0]}.</em><br /><br />
                         <strong style={{color: 'black'}}>
