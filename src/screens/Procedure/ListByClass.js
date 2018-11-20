@@ -12,19 +12,38 @@ export default class ProcedureListByClassScreen extends Component {
     super(props);
     this.state = {
       id: this.props.match.params.id,
-      class: { procedures: [ ] },
+      procedures: [],
+      class: null,
       status: 'loading'
     };
   }
 
   componentDidMount() {
-    let resPath = 'classes';
-    let modesPath = 'modes(id,name,code,description,categories(id,name))';
-    let proceduresPath = 'procedures(id,name,code,' + modesPath + ')';
-    let order = '&procedures.order=name'
-    let params = '?select=id,name,code,' + proceduresPath + '&id=eq.' + this.state.id + order;
-    HttpService.getResource(resPath, params).then(
-      data => this.setState({ class: data[0], status: 'success' })
+    let resPath = 'rpc/modes_by_class';
+    let columnsPath = 'select=id,name,description,procedure:procedures(id,code,name)';
+    let params = '?' + columnsPath + '&class_id=' + this.state.id;
+
+    let classPath = 'classes?id=eq.' + this.state.id;
+
+    let formatData = function(parent, data) {
+      console.log(data);
+      if (data.length===0) return [];
+
+      let prevPc = null;
+      let rs = [];
+      data.forEach(mode => {
+        let proc = mode.procedure;
+        if (prevPc !== proc.id) rs.push({id: proc.id, name: proc.name, code: proc.code, modes: []})
+
+        prevPc = proc.id;
+        rs[rs.length-1].modes.push({ id: mode.id, name: mode.name, description: mode.description });
+      });
+      parent.setState({procedures: rs})
+    };
+
+    HttpService.getResource(resPath, params).then(data => formatData(this, data));
+    HttpService.getResource(classPath).then(
+      data => this.setState({ class: data[0], status: 'success'})
     );
   }
 
@@ -35,7 +54,7 @@ export default class ProcedureListByClassScreen extends Component {
           <div className='container'>
             <div className='row' style={{marginTop: '3%'}}>
               <div className='col-md-3'>
-                {this.state.class.id &&
+                {this.state.class &&
                   <ClassCard
                     id={this.state.class.id}
                     code={this.state.class.code}
@@ -48,19 +67,19 @@ export default class ProcedureListByClassScreen extends Component {
                 <div>
                   <p className='result-text'>
                     {
-                      this.state.class.procedures.length > 1
+                      this.state.procedures.length > 1
                       ?
-                        this.state.class.procedures.length +
+                        this.state.procedures.length +
                         ' trámites están relacionados con la clase:'
                       :
-                        this.state.class.procedures.lenght === 1
+                        this.state.procedures.lenght === 1
                       ?
                         'La clase cuenta con un trámite relacionado:'
                       :
                         'No se encontraron resultados.'
                     }
                   </p>
-                  <ProcedureList procedures={this.state.class.procedures} />
+                  <ProcedureList procedures={this.state.procedures} />
                 </div>}
               </div>
             </div>
