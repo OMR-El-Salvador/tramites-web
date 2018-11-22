@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { HttpService } from '../../services/http';
 
-import DefaultLogo from '../../img/default.png';
+import DefaultLogo from '../../img/icons/goes.svg';
 
 import URL from '../../components/UI/URL/URL';
 import Loading from '../../components/UI/Loading';
