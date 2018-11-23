@@ -19,7 +19,7 @@ class ProcedureSearch extends Component {
 
   render() {
     return (
-      <div className='col-md-5 relative align-self-center'>
+      <div className='col-md-12 relative align-self-center'>
         <form onSubmit={this.handleSubmit}>
           <div className='row'>
             <div className='col-md-8'>

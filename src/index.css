@@ -86,25 +86,25 @@ footer {
 }
 .cover {
   position: relative;
-  height: 55vh;
+  height: 40vh;
 }
 @media (max-width: 767px) {
   .cover {
     height: inherit;
     text-align: center !important;
-    padding: 3em 0;
+    padding: 1em 0;
   }
 }
 .cover > .container {
   position: relative;
 }
 .cover > .container > .row {
-  height: 55vh;
+  height: 23vh;
 }
 @media (max-width: 767px) {
   .cover > .container > .row {
     height: inherit;
-    padding: 3em 0;
+    padding: 1em 0;
   }
 }
 
