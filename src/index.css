@@ -86,7 +86,6 @@ footer {
 }
 .cover {
   position: relative;
-  height: 40vh;
 }
 @media (max-width: 767px) {
   .cover {
@@ -97,9 +96,6 @@ footer {
 }
 .cover > .container {
   position: relative;
-}
-.cover > .container > .row {
-  height: 23vh;
 }
 @media (max-width: 767px) {
   .cover > .container > .row {
