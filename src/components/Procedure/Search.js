@@ -20,31 +20,33 @@ class ProcedureSearch extends Component {
   render() {
     return (
       <div className='col-md-12 relative align-self-center'>
-        <form onSubmit={this.handleSubmit}>
-          <div className='row'>
-            <div className='col-md-8'>
-              <div className='form-group'>
-                <input
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                  type='text'
-                  className='form-control-lg col-lg-12 search-box'
-                />
+        <div className='container-fluid'>
+          <form onSubmit={this.handleSubmit}>
+            <div className='row'>
+              <div className='col-md-8'>
+                <div className='form-group'>
+                  <input
+                    value={this.state.value}
+                    onChange={this.handleChange}
+                    type='text'
+                    className='form-control-lg col-lg-12 search-box'
+                  />
+                </div>
+              </div>
+              <div className='col-md-4'>
+                <div className='form-group'>
+                  <input
+                    type='submit'
+                    disabled={!this.state.value}
+                    style={{ color: 'white' }}
+                    className='btn btn-lg btn-block btn-success'
+                    value='Buscar…'
+                  />
+                </div>
               </div>
             </div>
-            <div className='col-md-4'>
-              <div className='form-group'>
-                <input
-                  type='submit'
-                  disabled={!this.state.value}
-                  style={{ color: 'white' }}
-                  className='btn btn-lg btn-block btn-success'
-                  value='Buscar…'
-                />
-              </div>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     )
   }
