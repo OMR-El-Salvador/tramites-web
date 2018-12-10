@@ -58,7 +58,6 @@ export default class ModeDetailScreen extends Component {
   }
 
   render() {
-    let requirements = <RequirementList />
     let legalBasis = <LegalBasisList legalBasis={this.state.data.legal_base} />
 
     return (
@@ -95,6 +94,18 @@ export default class ModeDetailScreen extends Component {
                             aria-controls='información'
                             aria-selected='true'>
                             Información
+                          </a>
+                        </li>
+                        <li className='nav-item'>
+                          <a
+                            className='nav-link'
+                            id='requirements-tab'
+                            data-toggle='tab'
+                            href='#requirements'
+                            role='tab'
+                            aria-controls='requisitos'
+                            aria-selected='true'>
+                            Requisitos
                           </a>
                         </li>
                         <li className='nav-item'>
@@ -147,14 +158,6 @@ export default class ModeDetailScreen extends Component {
                           <div className='row'>
                             <div className='col-md-12'>
                               <ProcedureDescriptionElement
-                                header='¿Cuáles son los requisitos?'
-                                body={requirements}
-                              />
-                            </div>
-                          </div>
-                          <div className='row'>
-                            <div className='col-md-12'>
-                              <ProcedureDescriptionElement
                                 header='¿Cuáles son los costos?'
                                 body={<ProcedureCost id={this.state.data.id} />}
                               />
@@ -168,6 +171,13 @@ export default class ModeDetailScreen extends Component {
                               />
                             </div>
                           </div>
+                        </div>
+                        <div
+                          className='tab-pane fade'
+                          id='requirements'
+                          role='tabpanel'
+                          aria-labelledby='requirements-tab'>
+                          {this.state.data.id && <RequirementList />}
                         </div>
                         <div
                           className='tab-pane fade'
