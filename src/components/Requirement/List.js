@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { HttpService } from '../../services/http';
 import RequirementElement from './Element';
 import Loading from '../UI/Loading';
-import Error from '../UI/Error';
 
 export default class RequirementList extends Component {
   constructor(props) {
@@ -15,10 +14,10 @@ export default class RequirementList extends Component {
 
   componentDidMount() {
     let resPath = 'modes_requirements';
-    let params = '?select=*,requirement(name)&mode_id=eq.' + this.state.id;
+    let params = '?select=*,type:requirement(name)&mode_id=eq.' + this.state.id;
 
     HttpService.getResource(resPath, params).then(data => {
-      if (data.length > 0) this.setState({status: 'success', data: data[0]});
+      if (data.length > 0) this.setState({status: 'success', data: data});
       else this.setState({status: 'error'});
     });
   }
@@ -27,10 +26,14 @@ export default class RequirementList extends Component {
     return (
       <div className='requirementList'>
         {this.state.status === 'success' && (
-          <h3>Success</h3>
-        )} {this.state.status === 'loading' &&
-          <Loading />
-        } {this.state.status === 'error' &&
+          <div className='card-header'>
+            {this.state.data.map(requirement => (
+              <RequirementElement key={requirement.id} requirement={requirement} />
+            ))}
+          </div>
+        )}
+        {this.state.status === 'loading' && <Loading />}
+        {this.state.status === 'error' &&
           <div><p style={{fontWeight: '500'}}>No posee requisitos.</p><br /></div>
         }
       </div>
