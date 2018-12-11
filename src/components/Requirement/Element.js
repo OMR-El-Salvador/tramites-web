@@ -22,13 +22,13 @@ export default class RequirementElement extends Component {
             <div className='col-md-6'>
               <i className='text-danger fas fa-external-link-alt'></i>
               &nbsp; Más información:
-              &nbsp; <URL href={this.props.requirement.url} text='Enlace' />
+              &nbsp; <URL href={this.props.requirement.url} text='Enlace' />.
             </div>
           }
           {this.props.requirement.copies_amount &&
             <div className='col-md-6'>
               <i className='text-danger fas fa-file'></i>
-              &nbsp; Numero de copias a presentar: {this.props.requirement.copies_amount}
+              &nbsp; Numero de copias a presentar: {this.props.requirement.copies_amount}.
             </div>
           }
         </div>
