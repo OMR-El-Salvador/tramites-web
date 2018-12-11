@@ -19,7 +19,7 @@ export default class FormList extends Component {
             }
           </tbody>
         </table>
-        ) : (<p style={{fontWeight: '500'}}>No posee formularios.</p>)
+        ) : (<div><p style={{fontWeight: '500'}}>No posee formularios.</p><br /></div>)
       )
     )
   }

@@ -31,7 +31,7 @@ export default class RequirementList extends Component {
         )} {this.state.status === 'loading' &&
           <Loading />
         } {this.state.status === 'error' &&
-          <Error />
+          <div><p style={{fontWeight: '500'}}>No posee requisitos.</p><br /></div>
         }
       </div>
     )
