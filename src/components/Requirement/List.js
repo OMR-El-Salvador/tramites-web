@@ -1,52 +1,41 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import RequirementElement from './Element';
 
-const mockRequirements = [
-  {
-    id: 1,
-    name: 'Solicitud de traslado, especificando las características del equipo y la dirección',
-    description: 'A description for Requirement A',
-    url: {
-      href: 'http://omr.gob.sv',
-      text: 'Link for Requirement A'
-    }
-  },
-  {
-    id: 2,
-    name: 'Cartel original que se emitió al momento de la autorización',
-    description: 'A description for Requirement B',
-    url: {
-      href: 'http://omr.gob.sv',
-      text: 'Link for Requirement B'
-    }
-  }
-]
+import { HttpService } from '../../services/http';
+import RequirementElement from './Element';
+import Loading from '../UI/Loading';
+import Error from '../UI/Error';
 
 export default class RequirementList extends Component {
-  render() {
-    let requirements = this.props.requirements ? this.props.requirements : mockRequirements;
+  constructor(props) {
+    super(props);
 
+    this.state = { id: this.props.id, data: {}, status: 'loading' };
+  }
+
+  componentDidMount() {
+    let resPath = 'modes_requirements';
+    let params = '?select=*,requirement(name)&mode_id=eq.' + this.state.id;
+
+    HttpService.getResource(resPath, params).then(data => {
+      if (data.length > 0) this.setState({status: 'success', data: data[0]});
+      else this.setState({status: 'error'});
+    });
+  }
+
+  render() {
     return (
       <div className='requirementList'>
-        <ol type='a'>
-          {
-            requirements.map(requirement => (
-              <li key={requirement.id}>
-                <RequirementElement
-                  name={requirement.name}
-                  description={requirement.description}
-                  url={requirement.url}
-                />
-              </li>
-            ))
-          }
-        </ol>
+        {this.state.status === 'success' && (
+          <h3>Success</h3>
+        )} {this.state.status === 'loading' &&
+          <Loading />
+        } {this.state.status === 'error' &&
+          <Error />
+        }
       </div>
     )
   }
 }
 
-RequirementList.propTypes = {
-  requirements: PropTypes.array,
-};
+RequirementList.propTypes = { id: PropTypes.number.isRequired };

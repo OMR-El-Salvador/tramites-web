@@ -177,7 +177,7 @@ export default class ModeDetailScreen extends Component {
                           id='requirements'
                           role='tabpanel'
                           aria-labelledby='requirements-tab'>
-                          {this.state.data.id && <RequirementList />}
+                          {this.state.data.id && <RequirementList id={this.state.data.id} />}
                         </div>
                         <div
                           className='tab-pane fade'
