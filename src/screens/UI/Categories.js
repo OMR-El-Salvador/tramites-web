@@ -20,9 +20,11 @@ export default class Categories extends Component {
   handleChange(evt) { this.setState({ groupBy: evt.target.value.toUpperCase() }); }
 
   componentDidMount() {
-    HttpService.getResource('institutions').then(data => this.setState({ministries: data}));
-    HttpService.getResource('categories').then(data => this.setState({categories: data}));
-    HttpService.getResource('classes').then(data => this.setState({classes: data}));
+    HttpService.getResource('institutions', '?order=name')
+        .then(data => this.setState({ministries: data}));
+    HttpService.getResource('categories', '?order=name')
+        .then(data => this.setState({categories: data}));
+    HttpService.getResource('classes', '?order=name').then(data => this.setState({classes: data}));
   }
 
   render() {
